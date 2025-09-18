@@ -6,7 +6,7 @@
 
 **HƯỚNG DẪN SỬ DỤNG GIT** --- [Link Github](https://gist.github.com/antruongnguyen/6bb4ebbcb8ad3608eeddff97ca615c47)
 
-**LINK TRA CỨU HTML, CSS, JS, ...**  ----   [W3schools](https://www.w3schools.com)
+**LINK TRA CỨU KHI CODE**  ---   [W3schools](https://www.w3schools.com)
 
 ## Hướng dẫn cơ bản clone và push
 
@@ -35,13 +35,15 @@
 6. **Push lên repo và tạo request**
    🚫 Tuyệt đối tránh push trực tiếp lên main.
    ```bash
-   git push origin <branch name>
+   git push origin <branch-name>
    ```
    **push lên xong thì truy cập github rồi chọn pull requests để yêu cầu review code**
 
 ## Lưu ý:
-1. Đặt tên class theo tiêu chuẩn BEM( search google để biết thêm chi tiết).
-2. Bố cục code sao cho dễ nhìn.
+1. Commit luôn phải rõ ràng
+2. Đặt tên class theo tiêu chuẩn BEM( search google để biết thêm chi tiết).
+3. Bố cục code sao cho dễ nhìn.
+
 
 
 
