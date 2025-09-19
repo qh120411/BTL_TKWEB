@@ -27,7 +27,8 @@
     ```bash
     touch <ten.dinhdangfile>
     ```
- 5. **Commit**: Khi thấy ổn rồi thì commit **Lưu ý chạy golive xem có bug không, nếu không có thì commit lại.
+ 5. **Commit**: Khi thấy ổn rồi thì commit.
+    **Lưu ý chạy golive xem có bug không, nếu không có thì commit lại.**
     ```bash
     git add .
     git commit -m "<ten commit>"
