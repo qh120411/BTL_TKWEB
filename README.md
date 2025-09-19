@@ -33,8 +33,8 @@
     git add .
     git commit -m "<ten commit>"
     ```
-6. **Push lên repo và tạo request**
-   🚫 Tuyệt đối tránh push trực tiếp lên main.
+6. **Push lên repo và tạo request**:<br>
+   **🚫 Tuyệt đối KHÔNG push trực tiếp vào main.**
    ```bash
    git push origin <branch-name>
    ```
@@ -44,6 +44,23 @@
 1. Commit luôn phải rõ ràng
 2. Đặt tên class theo tiêu chuẩn BEM( search google để biết thêm chi tiết).
 3. Bố cục code sao cho dễ nhìn.
+
+# CẤU TRÚC THƯ MỤC
+   ```python
+    ├── index.html
+    │
+    ├── folder css
+    │           └── các folder cho từng chức năng 
+    ├── folder js
+    │           └── các folder cho từng chức năng 
+    ├── các file html
+    │ 
+    └── README.md
+   ```
+
+
+   
+
 
 
 
