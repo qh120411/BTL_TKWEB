@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel = "stylesheet" href = "/css/main_style.css">
+        <link rel="icon" href="/image/logo.png" type="image/png">
         <script src =  "/js/mainjs.js" defer ></script>
         <title>Trang quản lí</title>
     </head>
@@ -18,13 +19,19 @@
                 </div>
             </div>
         </header>
-        <form>
-            <p>Đăng nhập</p>
-            <input id = "mail" class = "userinput" type = "email" placeholder = "Nhập tài khoản">
-            <input id = "pass" class = "userinput" type = "password" placeholder = "Mật khẩu">
-            <a href = "#">Quên mật khẩu?</a>
-            <a href = "#">Trợ giúp</a>
-            <button class = "login">Đăng nhập</button>
-        </form>
+        <div class = "container">
+            <h2>Đăng nhập</h2>
+            <form>
+                <div class = "input">
+                    <input id = "mail" class = "userinput" type = "email" placeholder = "Nhập tài khoản">
+                    <input id = "pass" class = "userinput" type = "password" placeholder = "Mật khẩu">
+                </div>
+                <div class = "options">
+                    <a href = "#">Quên mật khẩu?</a>
+                    <a href = "#">Trợ giúp</a>
+                </div>
+                <button class = "login">Đăng nhập</button>
+            </form>
+        </div>
     </body>
 </html>
