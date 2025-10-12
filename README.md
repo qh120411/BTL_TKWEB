@@ -6,7 +6,9 @@
 
 **HƯỚNG DẪN SỬ DỤNG GIT** --- [Link Github](https://gist.github.com/antruongnguyen/6bb4ebbcb8ad3608eeddff97ca615c47)
 
-**LINK TRA CỨU KHI CODE**  ---   [W3schools](https://www.w3schools.com)
+**HƯỚNG DẪN ĐẶT TÊN COMMIT** --- [Link hướng dẫn](https://viblo.asia/p/dat-ten-commit-message-sao-cho-tinh-nghia-anh-em-chac-chan-ben-lau-OeVKBM605kW)
+
+**LINK FIGMA** --- [Link Figma](https://www.figma.com/design/iGuidKTTSwQe7aK2f92eEH/Trang-web?node-id=0-1&t=YXv9H7UaS0SoyGkc-1)
 
 ## Hướng dẫn cơ bản clone và push
 
@@ -28,17 +30,16 @@
     touch <ten.dinhdangfile>
     ```
  5. **Commit**: Khi thấy ổn rồi thì commit.
-    **Lưu ý chạy golive xem có bug không, nếu không có thì commit lại.**
+    **Lưu ý:   Check lại quy tắc đặt tên commit, chạy golive xem có bug không nếu không có thì commit lại.**
     ```bash
     git add .
     git commit -m "<ten commit>"
     ```
-6. **Push lên repo và tạo request**:<br>
+7. **Push lên repo và tạo request**:<br>
    **🚫 Tuyệt đối KHÔNG push trực tiếp vào main.**
    ```bash
    git push origin <branch-name>
    ```
-   **push lên xong thì truy cập github rồi chọn pull requests để yêu cầu review code**
 
 ## Lưu ý:
 1. Commit luôn phải rõ ràng
@@ -60,6 +61,7 @@
 
 
    
+
 
 
 
