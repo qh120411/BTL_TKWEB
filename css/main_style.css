@@ -89,6 +89,10 @@ body {
     text-decoration: none;
 }
 
+.options a:hover {
+    text-decoration: underline;
+}
+
 .input {
     display: flex;
     flex-direction: column;
@@ -116,4 +120,9 @@ body {
     border: none;
     cursor: pointer; 
     margin-top: 80px;
+    
+}
+
+.login:hover {
+    background: orange;
 }
