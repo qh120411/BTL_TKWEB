@@ -54,13 +54,14 @@
     │           └── các folder cho từng chức năng 
     ├── folder js
     │           └── các folder cho từng chức năng 
-    ├── các file html
-    │ 
+    ├── folder html
+    │           └── các folder cho từng chức năng 
     └── README.md
    ```
 
 
    
+
 
 
 
