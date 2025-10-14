@@ -132,3 +132,24 @@ body {
 .login:hover {
     background: orange;
 }
+
+@media (max-width: 1920px) {
+    .logo {
+        height: 100px;
+        width: 100px;
+    }
+    .title h1 {
+        font-size : 33px;
+        font-weight : 800px;
+        margin-bottom: 5px;
+    }
+    .title p {
+        font-size : 25px;
+        font-weight : bold;
+        margin-top: 2.5px;
+    }
+    .container {
+        width: 320px;
+        height: 515px;
+    }
+}
