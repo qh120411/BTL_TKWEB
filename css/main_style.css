@@ -153,3 +153,46 @@ body {
         height: 515px;
     }
 }
+
+@media (max-width: 480px) {
+    body {
+    display: flex;
+    justify-content: center;     
+    align-items: center;         
+    flex-direction: column;
+    min-height: 90vh;          
+    margin: 0;
+    }
+
+    .logo-title{
+        gap: 3px;
+    }
+    .logo {
+        height: 55px;
+        width: 55px;
+    }
+    .title h1 {
+        font-size : 20px;
+        font-weight : 800px;
+        margin-bottom: 5px;
+    }
+    .title p {
+        font-size : 16px;
+        font-weight : bold;
+        margin-top: 2.5px;
+    }
+    .container {
+        width: 250px;
+        height: 500px;
+    }
+    .login {
+        width: 250px;
+        height: 60px;
+    }
+    .container h2 {
+        font-size: 32px;
+    }
+    .options {
+        font-size: 15px;
+    }
+}
