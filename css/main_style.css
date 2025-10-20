@@ -77,14 +77,49 @@ body {
     width: 100%;
 }
 
+.notification {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    color: red;
+    margin-top: 30px;
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+}
+
+.loader {
+    display: none;
+    justify-items: center;
+    --d:22px;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    color: var(--text-color);
+    box-shadow: 
+        calc(1*var(--d))      calc(0*var(--d))     0 0,
+        calc(0.707*var(--d))  calc(0.707*var(--d)) 0 1px,
+        calc(0*var(--d))      calc(1*var(--d))     0 2px,
+        calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 3px,
+        calc(-1*var(--d))     calc(0*var(--d))     0 4px,
+        calc(-0.707*var(--d)) calc(-0.707*var(--d)) 0 5px,
+        calc(0*var(--d))      calc(-1*var(--d))    0 6px;
+    animation: l27 1s infinite steps(8);
+  
+}
+@keyframes l27 {
+  100% {transform: rotate(1turn)}
+}
+
+
 .options {
     display: flex;
     justify-content: space-between;
     font-family: "Inter", "Segoe UI", Arial, sans-serif;
     width: 100%; 
     margin: 0 0 20px;
-    padding-top: 50px;
-    margin-top: 10px;
+    padding-top: 25px;
     font-size: 17px;
 }
 
@@ -110,7 +145,7 @@ body {
     border: none;
     font-family: "Inter", "Segoe UI", Arial, sans-serif;
     padding: 14px 16px;
-    margin-top: 10px;
+    margin-top: 5px;
     height: 30px;
     font-size: 15px;
 }
@@ -125,7 +160,7 @@ body {
     height: 67px;
     border: none;
     cursor: pointer; 
-    margin-top: 80px;
+    margin-top: 60px;
     
 }
 
