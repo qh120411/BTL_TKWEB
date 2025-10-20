@@ -26,8 +26,8 @@ submit.addEventListener("click", function (e) {
             loader.style.display = 'none';
             message.innerText = '✅ Đăng nhập thành công!';
         }, 1000);
-        delay(2000).then(() => {
-            window.location.href = "kk.html";
+        delay(1500).then(() => {
+            window.location.href = "../../html/main_page/main.html";
         });
         return;
     }
