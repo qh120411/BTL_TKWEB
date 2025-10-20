@@ -16,7 +16,7 @@ submit.addEventListener("click", function (e) {
         loader.style.display = "block";
         setTimeout(function() {
             loader.style.display = 'none';
-            message.innerText = 'Vui lòng nhập đầy đủ thông tin';
+            message.innerText = '⚠️ Vui lòng nhập đầy đủ thông tin';
         }, 1000);
         return;
     }
@@ -35,7 +35,7 @@ submit.addEventListener("click", function (e) {
         loader.style.display = "block";
         setTimeout(function() {
             loader.style.display = 'none';
-            message.innerText = 'Tài khoản hoặc mật khẩu không đúng!';
+            message.innerText = '❌ Tài khoản hoặc mật khẩu không đúng!';
         }, 1000);
         return;
     }
