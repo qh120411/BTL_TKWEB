@@ -1,11 +1,41 @@
 <!Doctype html>
-<html lang="en">
+<html lang>
 <html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <link rel = "stylesheet" href = "/css/main_style.css">
+        <link rel="icon" href="/image/logo.png" type="image/png">
+        <script src =  "/js/mainjs.js" defer ></script>
+        <title>Trang quản lí</title>
     </head>
     <body>
+        <header class = "header">
+            <div class = "logo-title">
+                <img class = "logo" src = "/image/logo.png" alt = "logo trường đh gtvt">
+                <div class = "title">
+                    <h1>TRANG QUẢN LÝ NHÀ XE</h1>
+                    <p>TRƯỜNG ĐẠI HỌC GIAO THÔNG VẬN TẢI</p>
+                </div>
+            </div>
+        </header>
+        <div class = "container">
+            <h2>Đăng nhập</h2>
+            <form>
+                <div class = "input">
+                    <input id = "mail" class = "userinput" type = "text" placeholder = "Nhập tài khoản">
+                    <input id = "pass" class = "userinput" type = "password" placeholder = "Mật khẩu">
+                </div>
+                <div class = "notification">
+                    <div class = "loader"></div>
+                    <div class = "message"></div>
+                </div>
+                <div class = "options">
+                    <a href = "#">Quên mật khẩu?</a>
+                    <a href = "#">Trợ giúp</a>
+                </div>
+                <button id = "login" class = "login">Đăng nhập</button>
+            </form>
+        </div>
     </body>
 </html>

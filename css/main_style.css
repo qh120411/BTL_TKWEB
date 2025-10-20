@@ -1,0 +1,233 @@
+:root {
+    --bg-color: #C5DBFA;
+    --text-color: #053370;
+}
+
+html {
+    background: url("/image/school_image.png") center/ cover no-repeat fixed;
+}
+
+body {
+    background-size: transparent;
+    color: var(--text-color);
+    display: flex;
+    justify-content: flex-start;  
+    align-items: center;     
+    margin: 0;                
+    flex-direction: column; 
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    position: relative;
+    width: 122px;
+    height: 122px;
+    border-radius: 112.50px;
+}
+
+.title h1 {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    font-size : 40px;
+    font-weight : 800px;
+    margin-bottom: 5px;
+}
+
+.title p {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    font-size : 28px;
+    font-weight : bold;
+    margin-top: 2.5px;
+    color: rgb(239, 225, 25);
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: rgba(255, 255, 255, 0.85);
+    width: 360px;
+    height: 600px;
+    border-radius: 31px;
+    text-align: center;
+    flex-direction: column;
+    padding: 60px 32px 32px;
+}
+
+.container h2 {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    font-size: 36px;
+    margin-bottom: 50px;
+    color: var(--text-color);
+    text-align: center;
+    margin-top: 0;
+    align-self: flex-start;
+    width: 100%;
+}
+
+.notification {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    color: red;
+    margin-top: 30px;
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+}
+
+.loader {
+    display: none;
+    justify-items: center;
+    --d:22px;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    color: var(--text-color);
+    box-shadow: 
+        calc(1*var(--d))      calc(0*var(--d))     0 0,
+        calc(0.707*var(--d))  calc(0.707*var(--d)) 0 1px,
+        calc(0*var(--d))      calc(1*var(--d))     0 2px,
+        calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 3px,
+        calc(-1*var(--d))     calc(0*var(--d))     0 4px,
+        calc(-0.707*var(--d)) calc(-0.707*var(--d)) 0 5px,
+        calc(0*var(--d))      calc(-1*var(--d))    0 6px;
+    animation: l27 1s infinite steps(8);
+  
+}
+@keyframes l27 {
+  100% {transform: rotate(1turn)}
+}
+
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    width: 100%; 
+    margin: 0 0 20px;
+    padding-top: 25px;
+    font-size: 17px;
+}
+
+.options a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.userinput {
+    color: var(--text-color);
+    background: #D9D9D9;
+    border-radius: 6px;
+    border: none;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    padding: 14px 16px;
+    margin-top: 5px;
+    height: 30px;
+    font-size: 15px;
+}
+
+.login {
+    display: block;
+    font-size: 24px;
+    border-radius: 10px;
+    color: white;
+    background: #053370;
+    width: 331px; 
+    height: 67px;
+    border: none;
+    cursor: pointer; 
+    margin-top: 60px;
+    
+}
+
+.login:hover {
+    background: orange;
+}
+
+@media (max-width: 1920px) {
+    .logo {
+        height: 100px;
+        width: 100px;
+    }
+    .title h1 {
+        font-size : 33px;
+        font-weight : 800px;
+        margin-bottom: 5px;
+    }
+    .title p {
+        font-size : 25px;
+        font-weight : bold;
+        margin-top: 2.5px;
+    }
+    .container {
+        width: 320px;
+        height: 515px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+    display: flex;
+    justify-content: center;     
+    align-items: center;         
+    flex-direction: column;
+    min-height: 90vh;          
+    margin: 0;
+    }
+
+    .logo-title{
+        gap: 3px;
+    }
+    .logo {
+        height: 55px;
+        width: 55px;
+    }
+    .title h1 {
+        font-size : 20px;
+        font-weight : 800px;
+        margin-bottom: 5px;
+    }
+    .title p {
+        font-size : 16px;
+        font-weight : bold;
+        margin-top: 2.5px;
+    }
+    .container {
+        width: 250px;
+        height: 500px;
+    }
+    .login {
+        width: 250px;
+        height: 60px;
+    }
+    .container h2 {
+        font-size: 32px;
+    }
+    .options {
+        font-size: 15px;
+    }
+}
