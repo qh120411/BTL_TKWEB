@@ -1,17 +1,43 @@
 let mail = document.getElementById("mail");
 let pass = document.getElementById("pass");
 let submit = document.getElementById("login");
+let message = document.querySelector('.message');
+let loader = document.querySelector('.loader');
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 submit.addEventListener("click", function (e) {
     e.preventDefault();
+    message.innerText = '';
 
-    if ( mail.value === '' || pass.value === '' ) {
-        alert("Tên tài khoản hoặc mật khẩu không hợp lệ");
+    if ( mail.value.trim() === '' || pass.value.trim() === '' ) {
+        loader.style.display = "block";
+        setTimeout(function() {
+            loader.style.display = 'none';
+            message.innerText = 'Vui lòng nhập đầy đủ thông tin';
+        }, 1000);
+        return;
     }
-    // else if ( mail.value === "admin" && pass.value === "admin@123") {
-    //     window.location.href = "kk.html"; // chuyển trang khác
-    // }
+    else if ( mail.value.trim() === "admin" && pass.value.trim() === "admin@123") {
+        loader.style.display = "block";
+        setTimeout(function() {
+            loader.style.display = 'none';
+            message.innerText = '✅ Đăng nhập thành công!';
+        }, 1000);
+        delay(2000).then(() => {
+            window.location.href = "kk.html";
+        });
+        return;
+    }
     else {
-        alert("Tên tài khoản hoặc mật khẩu không đúng");
+        loader.style.display = "block";
+        setTimeout(function() {
+            loader.style.display = 'none';
+            message.innerText = 'Tài khoản hoặc mật khẩu không đúng!';
+        }, 1000);
+        return;
     }
+
 });
