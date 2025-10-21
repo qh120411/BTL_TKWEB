@@ -67,7 +67,7 @@ body {
 /* Cụm ngày ở giữa */
 .date-control {
   display: flex;
-
+  padding: auto;
   gap: 10px;
   justify-content: center; /* Giúp cụm ngày ra giữa */
 }
@@ -79,15 +79,28 @@ body {
   border-radius: 4px;
   cursor: pointer;
   padding: 4px 10px;
+  margin: 10px;
 }
 
 .date-control input {
   padding: 5px 10px;
-  border: 1px solid #ccc;
+  border: 0px;
   border-radius: 6px;
+  font-weight: bold;
+  font-size: 15px;
 }
 .right {
   margin-top: 20px;
   margin-left: 400px;
   margin-right: 400px;
+}
+.buttonbackground {
+  padding: auto;
+  margin: auto;
+  width: 266px;
+  height: 46px;
+  display: inline-flex;
+  display: flex;
+  background-color: #fff;
+  justify-content: center;
 }

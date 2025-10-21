@@ -7,7 +7,7 @@ new Chart(ctx, {
     labels: ["0", "7h", "9h", "11h", "13h", "15h", "17h", "19h", "20h"],
     datasets: [
       {
-        label: "lượng xe vào",
+        label: "lượng xe vào                                                ",
         backgroundColor: "rgba(151,249,190,0.5)",
         borderColor: "rgba(42, 162, 184, 1)",
         pointBackgroundColor: "rgba(42, 162, 184, 1)",
