@@ -48,6 +48,7 @@ body {
   flex: 1;
 }
 .sidebar {
+  background-color: #fff;
   float: left;
 }
 .chart {
