@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thống kê doanh thu</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Thanh sidebar -->
+    <aside class="sidebar">
+  <div class="sidebar-top">
+    <button class="active" title="Trang chủ">🏠</button>
+    <button title="Thống kê">📊</button>
+    <button title="Lịch sử">📜</button>
+  </div>
+
+  <div class="sidebar-bottom">
+    <button title="Cài đặt">⚙️</button>
+    <button title="Đăng xuất">🚪</button>
+  </div>
+</aside>
+
+
+    <!-- Nội dung chính -->
+    <main class="main">
+      <div class="date-picker">
+        <button>&lt;</button>
+        <input type="text" value="15/10/2025" readonly />
+        <button>&gt;</button>
+      </div>
+
+      <!-- Biểu đồ thống kê -->
+      <section class="stats">
+        <h3>Thống kê doanh thu</h3>
+        <div class="chart-container">
+          <canvas id="pieChart"></canvas>
+          <div class="chart-info">
+            <p><span class="color-box blue"></span> Xe máy</p>
+            <p><span class="color-box orange"></span> Xe đạp</p>
+            <p><strong>Tổng:</strong> 15M vnd</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lịch sử giao dịch -->
+      <section class="history">
+        <h3>Lịch sử giao dịch</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Chủ xe</th>
+              <th>Mã sinh viên</th>
+              <th>BSX</th>
+              <th>Loại xe</th>
+              <th>Trạng thái</th>
+              <th>Doanh thu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td><td>Trần Quang Huy</td><td>242630944</td><td>36AA14057</td><td>Xe máy</td><td>Vé ngày</td><td>+3.000đ</td>
+            </tr>
+            <tr>
+              <td>2</td><td>Trần Quang Huy</td><td>242630944</td><td>36AA14057</td><td>Xe đạp</td><td>Vé ngày</td><td>+3.000đ</td>
+            </tr>
+            <tr>
+              <td>3</td><td>Trần Quang Huy</td><td>242630944</td><td>36AA14057</td><td>Xe máy</td><td>Vé tháng</td><td>+60.000đ</td>
+            </tr>
+            <tr>
+              <td>4</td><td>Trần Quang Huy</td><td>242630944</td><td>36AA14057</td><td>Xe máy</td><td>Vé ngày</td><td>+3.000đ</td>
+            </tr>
+            <tr>
+              <td>5</td><td>Trần Quang Huy</td><td>242630944</td><td>36AA14057</td><td>Xe máy</td><td>Vé ngày</td><td>+3.000đ</td>
+            </tr>
+            <tr>
+              <td>6</td><td>Trần Quang Huy</td><td>242630944</td><td>36AA14057</td><td>Xe máy</td><td>Vé ngày</td><td>+3.000đ</td>
+            </tr>
+            <tr>
+              <td>7</td><td>Trần Quang Huy</td><td>242630944</td><td>36AA14057</td><td>Xe máy</td><td>Vé ngày</td><td>+3.000đ</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <!-- Chart.js + JS riêng -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
