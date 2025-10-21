@@ -1,0 +1,21 @@
+body{
+    background-color: #E3EDF9 ;
+    padding: 0px;
+}
+aside{
+    background-color: #fff;
+    width: 90px;
+    margin-top: -13px;
+    border-radius: 20px;
+    align-items: center;
+    padding-left: 10px;
+    float: left
+}
+div{
+    width: 80%;
+    float: right;
+    height: 700px;
+}
+#container{
+    float: left;
+}
