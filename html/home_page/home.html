@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/main/main_page.css" />
     <!-- Icon FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Trang chính</title>
   </head>
 
@@ -52,6 +53,14 @@
           </a>
         </div>
       </nav>
+
+        <!-- Nội dung chính -->
+        <div class = "main-content">
+            <h2>Thống kê lượng xe ra/ vào trong ngày hôm nay</h2>
+            <canvas id ="canvas" height="650px" width="1100"></canvas>
+            <script src = "/js/home_page/home.js" defer></script>
+        </div>
+      </div>
     </div>
   </body>
 </html>
