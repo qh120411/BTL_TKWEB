@@ -25,30 +25,21 @@ function initDatePicker() {
   const dateInput = document.querySelector('input[type="date"]');
   const prevBtn = document.querySelector(".date-control button:first-child");
   const nextBtn = document.querySelector(".date-control button:last-child");
-
-  if (!dateInput || !prevBtn || !nextBtn) {
-    console.error("Không tìm thấy date picker elements");
-    return;
-  }
-
   // Nút lùi ngày
   prevBtn.addEventListener("click", () => {
     currentDate.setDate(currentDate.getDate() - 1);
     dateInput.value = formatDate(currentDate);
-    console.log("Lùi ngày:", dateInput.value);
   });
 
   // Nút tiến ngày
   nextBtn.addEventListener("click", () => {
     currentDate.setDate(currentDate.getDate() + 1);
     dateInput.value = formatDate(currentDate);
-    console.log("Tiến ngày:", dateInput.value);
   });
 
   // Khi người dùng chọn ngày
   dateInput.addEventListener("change", (e) => {
     currentDate = new Date(e.target.value);
-    console.log("Chọn ngày:", e.target.value);
   });
 }
 
@@ -62,11 +53,6 @@ function formatDate(date) {
 // ==================== TÌM KIẾM NHÂN VIÊN ====================
 function initSearch() {
   const searchInput = document.querySelector('.search-add input[type="text"]');
-
-  if (!searchInput) {
-    console.error("Không tìm thấy ô tìm kiếm");
-    return;
-  }
 
   searchInput.addEventListener("input", (e) => {
     const keyword = e.target.value.toLowerCase().trim();
@@ -85,19 +71,11 @@ function filterEmployees(keyword) {
       item.style.display = "none";
     }
   });
-
-  console.log("Tìm kiếm:", keyword);
 }
 
 // ==================== THÊM NHÂN VIÊN MỚI ====================
 function initAddButton() {
   const addBtn = document.querySelector(".search-add button");
-
-  if (!addBtn) {
-    console.error("Không tìm thấy nút Thêm");
-    return;
-  }
-
   addBtn.addEventListener("click", showAddEmployeeModal);
 }
 
@@ -121,9 +99,6 @@ function showAddEmployeeModal() {
 
     employees.push(newEmployee);
     renderEmployeeList();
-
-    console.log("Đã thêm nhân viên:", newEmployee);
-    alert(`Đã thêm nhân viên: ${name}`);
   }
 }
 
@@ -131,7 +106,7 @@ function showAddEmployeeModal() {
 function renderEmployeeList() {
   let employeePanel = document.querySelector(".employee-panel");
 
-  // Tạo panel nếu chưa có
+  // Tạo panel
   if (!employeePanel) {
     employeePanel = document.createElement("div");
     employeePanel.className = "employee-panel";
@@ -166,8 +141,6 @@ function renderEmployeeList() {
 
   // Thêm sự kiện drag
   addEmployeeDragHandlers();
-
-  console.log("Đã render", employees.length, "nhân viên");
 }
 
 // ==================== DRAG & DROP NHÂN VIÊN ====================
@@ -191,14 +164,10 @@ function handleDragStart(e) {
     name: empName,
     avatar: empAvatar,
   };
-
-  e.currentTarget.style.opacity = "0.4";
-  console.log("Bắt đầu kéo:", empName);
 }
 
 function handleDragEnd(e) {
   e.currentTarget.style.opacity = "1";
-  console.log("Kết thúc kéo");
 }
 
 // ==================== DRAG & DROP VÀO CA LÀM VIỆC ====================
@@ -210,8 +179,6 @@ function addDragDropHandlers() {
     card.addEventListener("drop", handleDrop);
     card.addEventListener("dragleave", handleDragLeave);
   });
-
-  console.log("Đã thêm drag handlers cho", shiftCards.length, "ca làm việc");
 }
 
 function handleDragOver(e) {
@@ -304,12 +271,5 @@ function removeEmployee(btn) {
     if (filledLines === 0) {
       dropHint.style.display = "block";
     }
-
-    console.log("Đã xóa", empName, "khỏi ca");
   }
 }
-
-// Export để có thể gọi từ HTML
-window.removeEmployee = removeEmployee;
-
-console.log("✅ Script đã load thành công!");

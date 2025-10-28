@@ -26,7 +26,7 @@ body {
 .sidebar {
   position: sticky;
   top: 0;
-  height: 70vh; /* Độ cao tối đa của sidebar */
+  height: 70vh;
   background: var(--panel);
   border-radius: 10px;
   overflow-y: auto;
@@ -35,7 +35,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 12px 6px;
-  border-right: 1px solid rgba(20, 40, 60, 0.06);
+  border-right: 1px solid rgba(30, 60, 90, 0.06);
 }
 .menu-btn {
   border: none;
@@ -99,12 +99,12 @@ body {
 }
 .content {
   background: var(--panel);
-  margin: 0 20px; /* cách 2 bên 20px */
-  border-radius: 10px; /* để nhìn mềm mại hơn */
-  padding: 20px; /* thêm khoảng bên trong */
+  margin: 0 20px;
+  border-radius: 10px;
+  padding: 20px;
   box-shadow: var(--shadow);
 }
-/* Section header (Phân ca + controls) */
+/* Section header  */
 .section-header {
   margin-top: 10px;
   background: var(--panel);
@@ -127,7 +127,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 0 auto; /* Giúp cụm ngày ra giữa */
+  margin: 0 auto;
 }
 
 /* Nút trái phải */
@@ -145,12 +145,6 @@ body {
   border-radius: 6px;
 }
 
-/* Cụm tìm kiếm + thêm */
-.section-header .search-add {
-  display: flex;
-  gap: 10px;
-}
-
 .section-header .search-add input {
   padding: 6px 10px;
   border: 1px solid #ccc;
@@ -160,7 +154,6 @@ body {
 .section-header .search-add button {
   background-color: #3a5ba0;
   color: white;
-  border: none;
   border-radius: 6px;
   padding: 6px 14px;
   cursor: pointer;
@@ -207,7 +200,7 @@ body {
   border: 1px solid rgba(30, 60, 90, 0.04);
 }
 .shift-title {
-  font-weight: 700;
+  font-weight: bold;
   font-size: 14px;
 }
 .shift-time {
@@ -251,13 +244,7 @@ body {
     flex-direction: row;
     width: 100%;
     height: 60px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  }
-  .main {
-    padding: 16px;
-  }
-  .shifts {
-    grid-template-columns: repeat(2, 1fr);
+    border-bottom: 1px solid rgba(30, 60, 90, 0.06);
   }
 }
 
