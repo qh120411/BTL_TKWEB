@@ -38,11 +38,18 @@
         </div>
         <script src="../js/trang4.js"></script>
         <div class="table">
-          <form action="/search" method="get">
-            <input type="search" name="q" placeholder="Nhập từ khóa..." />
-            <button type="submit">Tìm kiếm</button>
+          <form action="">
+            <input
+              type="search"
+              id="search"
+              name="q"
+              placeholder="Nhập từ khóa..."
+            />
+            <button type="button" onclick="SearchIntable()">Tìm kiếm</button>
+
+            <div id="result"></div>
           </form>
-          <table>
+          <table id="data-table">
             <thead>
               <tr>
                 <th>STT</th>
@@ -58,7 +65,7 @@
               <tr>
                 <td>1</td>
                 <td>Nguyễn Văn A</td>
-                <td>2025-10-15</td>
+                <td>24263723</td>
                 <td>29A-12345</td>
                 <td>2025-10-15 08:30</td>
                 <td>2025-10-15 10:00</td>
@@ -67,7 +74,7 @@
               <tr>
                 <td>2</td>
                 <td>Nguyễn Văn B</td>
-                <td>2025-10-15</td>
+                <td>234234</td>
                 <td>30B-67890</td>
                 <td>2025-10-15 09:00</td>
                 <td>2025-10-15 11:30</td>
@@ -75,8 +82,8 @@
               </tr>
               <tr>
                 <td>3</td>
-                <td>Nguyễn Văn C</td>
-                <td>2025-10-15</td>
+                <td>Trần Thị C</td>
+                <td>324234</td>
                 <td>31C-54321</td>
                 <td>2025-10-15 10:15</td>
                 <td>2025-10-15 12:45</td>

@@ -117,6 +117,7 @@ html body div div div form {
   margin: 30px;
   display: flex;
   justify-content: center;
+  display: block;
 }
 table {
   width: 100%;
@@ -131,4 +132,14 @@ td {
   padding: 5px 5px 5px 10px;
   border: 3px solid #000000;
   border-collapse: collapse;
+}
+#result {
+  margin-top: 10px;
+  border: #000000 2px solid;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  padding: 20px;
+  font-size: 15px;
 }
