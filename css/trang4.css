@@ -104,3 +104,31 @@ body {
   background-color: #fff;
   justify-content: center;
 }
+html body div div div form input {
+  margin-top: 7px;
+  height: 40px;
+  width: 600px;
+}
+html body div div div form button {
+  margin-top: 7px;
+  height: 40px;
+}
+html body div div div form {
+  margin: 30px;
+  display: flex;
+  justify-content: center;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+tr,
+th,
+td {
+  color: #003483;
+  font-size: 15px;
+  padding: 5px 5px 5px 10px;
+  border: 3px solid #000000;
+  border-collapse: collapse;
+}
