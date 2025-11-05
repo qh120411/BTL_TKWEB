@@ -273,3 +273,34 @@ function removeEmployee(btn) {
     }
   }
 }
+//
+function deleteEmployee(empId) {
+  const employee = employees.find((emp) => emp.id === empId);
+
+  if (!employee) {
+    alert("ko thấy nhân viên");
+    return;
+  }
+
+  if (confirm(`bạn xác nhận xóa nhân viên"${employee.name}"`));
+  employees = employees.filter((emp) => emp.id !== empId);
+
+  const assignedCards = document.querySelectorAll(`[data-emp-id="${empId}"]`);
+  assignedCards.forEach((card) => {
+    const shiftCard = card.closest(".shift-card");
+    const dropHint = shiftCard.querySelector(".drop-hint");
+    card.remove();
+
+    const placeholderLines = shiftCard.querySelector(".placeholder-lines");
+    const filledLines = placeholderLines.querySelectorAll(
+      ".line .assigned-employee"
+    ).length;
+    if (filledLines === 0) {
+      dropHint.style.display = "block";
+    }
+  });
+
+  renderEmployeeList();
+
+  console.log(`đã xóa nhân viên: ${employee.name}`);
+}
