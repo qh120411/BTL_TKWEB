@@ -130,7 +130,6 @@ function getDataTable() {
 }
 
 function SearchIntable() {
-  const searchInput = document.getElementById("search");
   let find = document.getElementById("search").value.toLowerCase();
   data = getDataTable();
 
@@ -149,13 +148,4 @@ function SearchIntable() {
   } else {
     resultArea.innerText = "❌ Không tìm thấy kết quả phù hợp!";
   }
-  localStorage.setItem("searchValue", searchInput.value);
 }
-window.addEventListener("load", () => {
-  const searchInput = document.getElementById("search");
-  const saved = localStorage.getItem("searchValue");
-  if (saved) {
-    searchInput.value = saved; // Gán lại nội dung đã nhập
-    SearchIntable(); // Tự động hiển thị kết quả (nếu có)
-  }
-});
