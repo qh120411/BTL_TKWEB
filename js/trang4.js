@@ -137,19 +137,37 @@ function SearchIntable() {
   let find = document.getElementById("search").value.toLowerCase();
   data = getDataTable();
   table = document.getElementById("data-table");
+  clear = document.getElementById("clear");
+  button = document.getElementById("search-button");
   const result = data.filter((item) =>
     Object.values(item).some((val) => val.toLowerCase().includes(find))
   );
-
   const resultArea = document.getElementById("result");
   if (result.length > 0) {
     resultArea.innerHTML = result
-      .map(
-        (r) =>
-          `STT: ${r.STT} | Chủ xe: ${r.Chuxe} | Biển số: ${r.Bienso} | Thời gian vào: ${r.Thoigianvao} | Thời gian ra: ${r.Thoigianra} | Loại xe: ${r.Loaixe}`
-      )
+      .map((r) => {
+        return `STT: ${r.STT} | Chủ xe: ${r.Chuxe} | Biển số: ${r.Bienso} | Thời gian vào: ${r.Thoigianvao} | Thời gian ra: ${r.Thoigianra} | Loại xe: ${r.Loaixe}`;
+      })
       .join("<br>");
   } else {
     resultArea.innerText = "❌ Không tìm thấy kết quả phù hợp!";
   }
+  table.style.display = "none";
+  resultArea.style.display = "block";
+  clear.style.display = "block";
+  button.style.display = "none";
+
+  if (find.trim() === "") {
+    table.style.display = "table";
+    button.style.display = "none";
+    resultArea.style.display = "none";
+    clear.style.display = "block";
+    return;
+  }
+  const searchInput = document.getElementById("search");
+  searchInput.addEventListener("search", () => {
+    if (searchInput.value === "") {
+      resetSearch();
+    }
+  });
 }
