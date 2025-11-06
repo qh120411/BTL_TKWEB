@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #DAE2EF;
+  background-color: #dae2ef;
 }
 
 .container {
@@ -16,16 +16,8 @@ body {
 
 /* Sidebar */
 .sidebar {
-  width: 67px;
-  height: 807px;
   background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 0;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
+  float: left;
 }
 
 .sidebar-top,
@@ -84,29 +76,24 @@ body {
   box-shadow: 0 3px 8px rgba(46, 110, 211, 0.4);
 } */
 
-
 /* Main content */
 .main {
   flex: 1;
   padding: 20px;
 }
 
-
-
 .date-control {
   display: flex;
   /* justify-content: center;    canh giữa ngang */
-  align-items: center;       /*  canh giữa dọc */
+  align-items: center; /*  canh giữa dọc */
   gap: 10px;
-  margin: 20px auto;         /*  căn giữa theo chiều ngang */
-  width: fit-content;        /*  vừa khít nội dung */
-  background-color: #FDFDFE;
+  margin: 20px auto; /*  căn giữa theo chiều ngang */
+  width: fit-content; /*  vừa khít nội dung */
+  background-color: #fdfdfe;
   padding: 5px 10px;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
-
-
 
 .date-control input {
   width: 130px;
@@ -116,7 +103,6 @@ body {
   border: 1px solid #ccc;
 }
 
-
 /* Biểu đồ thống kê */
 .stats {
   background-color: #ffffff;
@@ -125,7 +111,7 @@ body {
   text-align: center;
   max-width: 420px;
   margin: 0 auto 30px auto;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .chart-container {
@@ -148,8 +134,12 @@ body {
   margin-right: 5px;
 }
 
-.blue { background-color: #4a90e2; }
-.orange { background-color: #d68910; }
+.blue {
+  background-color: #4a90e2;
+}
+.orange {
+  background-color: #d68910;
+}
 
 /* Lịch sử giao dịch */
 .history {
@@ -157,18 +147,19 @@ body {
   border: 2px solid #89a8d6;
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .history h3 {
   text-align: center;
   background-color: white;
-  color: #E49C48;
+  color: #e49c48;
   border-radius: 8px;
   display: inline-block;
   padding: 5px 15px;
-  margin: 0px auto 15px ;
-  display: block; width: 30%;
+  margin: 0px auto 15px;
+  display: block;
+  width: 30%;
 }
 
 table {
@@ -177,7 +168,8 @@ table {
   background-color: white;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
@@ -233,5 +225,3 @@ tbody tr:nth-child(even) {
 .spacer {
   flex: 1;
 }
-
-
