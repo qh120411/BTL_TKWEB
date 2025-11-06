@@ -9,12 +9,15 @@ new Chart(ctx, {
       {
         label: "lượng xe vào",
         backgroundColor: "rgba(151,249,190,0.5)",
+        backgroundColor: "rgba(41, 95, 91, 0.5)",
         borderColor: "rgba(42, 162, 184, 1)",
         pointBackgroundColor: "rgba(42, 162, 184, 1)",
         tension: 0.35,
         data: [0, 400, 600, 2500, 2000, 1600, 1000, 800, 500],
 
         pointRadius: 2,
+        pointRadius: 5,
+        pointHoverRadius: 10,
       },
       {
         label: "Lượng xe ra",
@@ -24,10 +27,22 @@ new Chart(ctx, {
         tension: 0.35,
         data: [0, 100, 200, 100, 150, 200, 1000, 200, 300],
         pointRadius: 2,
+        pointRadius: 5,
+        pointHoverRadius: 10,
       },
     ],
   },
   options: {
+    responsive: true,
+    animation: {
+      duration: 1200,
+      easing: "easeOutQuart",
+    },
+    interaction: {
+      mode: "nearest",
+      axis: "x",
+      intersect: false,
+    },
     plugins: {
       legend: {
         position: "bottom",
@@ -96,4 +111,45 @@ function formatDate(date) {
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
+}
+
+function getDataTable() {
+  const rows = document.querySelectorAll("#data-table tbody tr");
+  const data = [];
+  for (let i = 0; i < rows.length; i++) {
+    const cells = rows[i].querySelectorAll("td");
+    const obj = {
+      STT: cells[0].innerText,
+      Chuxe: cells[1].innerText,
+      MSV: cells[2].innerText,
+      Bienso: cells[3].innerText,
+      Thoigianvao: cells[4].innerText,
+      Thoigianra: cells[5].innerText,
+      Loaixe: cells[6].innerText,
+    };
+    data.push(obj);
+  }
+
+  return data;
+}
+
+function SearchIntable() {
+  let find = document.getElementById("search").value.toLowerCase();
+  data = getDataTable();
+
+  const result = data.filter((item) =>
+    Object.values(item).some((val) => val.toLowerCase().includes(find))
+  );
+
+  const resultArea = document.getElementById("result");
+  if (result.length > 0) {
+    resultArea.innerHTML = result
+      .map(
+        (r) =>
+          `STT: ${r.STT} | Chủ xe: ${r.Chuxe} | Biển số: ${r.Bienso} | Thời gian vào: ${r.Thoigianvao} | Thời gian ra: ${r.Thoigianra} | Loại xe: ${r.Loaixe}`
+      )
+      .join("<br>");
+  } else {
+    resultArea.innerText = "❌ Không tìm thấy kết quả phù hợp!";
+  }
 }
