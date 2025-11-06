@@ -3,7 +3,11 @@ const ctx = document.getElementById("pieChart").getContext("2d");
 new Chart(ctx, {
   type: "doughnut",
   data: {
+<<<<<<< HEAD
+    labels: ["Xe đạp", "Xe máy"],
+=======
     labels: ["Xe máy", "Xe đạp"],
+>>>>>>> 87c8a0d36acc15063f8cb796bbcc0b24014f3605
     datasets: [
       {
         data: [10, 90],
