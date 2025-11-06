@@ -26,6 +26,7 @@ body {
   padding: 15px 0;
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
+  overflow-x: hidden;
 }
 
 .sidebar-top,
@@ -78,11 +79,6 @@ body {
   box-shadow: 0 2px 6px rgba(46, 110, 211, 0.3);
 }
 
-/* .sidebar button.active {
-  background-color: #2e6ed3;
-  color: white;
-  box-shadow: 0 3px 8px rgba(46, 110, 211, 0.4);
-} */
 
 /* Main content */
 .main {
@@ -92,7 +88,6 @@ body {
 
 .date-control {
   display: flex;
-  /* justify-content: center;    canh giữa ngang */
   align-items: center; /*  canh giữa dọc */
   gap: 10px;
   margin: 20px auto; /*  căn giữa theo chiều ngang */
@@ -167,7 +162,7 @@ body {
   padding: 5px 15px;
   margin: 0px auto 15px;
   display: block;
-  width: 30%;
+  width: 20%;
 }
 
 table {
