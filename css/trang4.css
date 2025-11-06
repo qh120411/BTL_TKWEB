@@ -136,15 +136,17 @@ td {
   border-collapse: collapse;
 }
 #beside_result {
-  width: 9%;
+  width: 8%;
   float: left;
+  padding: 0px;
+  margin: 0px;
   font-size: 18px;
   font-weight: bold;
   margin-right: -90px;
 }
 #result {
   float: right;
-  width: 88%;
+  width: 92%;
   border: #000000 2px solid;
   font-size: 18px;
   font-weight: bold;
