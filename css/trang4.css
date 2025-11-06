@@ -5,18 +5,8 @@ body {
 }
 /* Sidebar */
 .sidebar {
-  position: sticky;
-  top: 0;
-  height: 70vh; /* Độ cao tối đa của sidebar */
-  background: var(--panel);
-  border-radius: 10px;
-  overflow-y: auto;
-  width: 72px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 12px 6px;
-  border-right: 1px solid rgba(20, 40, 60, 0.06);
+  background-color: #fff;
+  float: left;
 }
 .menu-btn {
   border: none;
@@ -48,10 +38,7 @@ body {
 .spacer {
   flex: 1;
 }
-.sidebar {
-  background-color: #fff;
-  float: left;
-}
+
 .chart {
   border-radius: 10px;
   margin-top: 30px;
