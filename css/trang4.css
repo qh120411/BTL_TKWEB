@@ -5,18 +5,8 @@ body {
 }
 /* Sidebar */
 .sidebar {
-  position: sticky;
-  top: 0;
-  height: 70vh; /* Độ cao tối đa của sidebar */
-  background: var(--panel);
-  border-radius: 10px;
-  overflow-y: auto;
-  width: 72px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 12px 6px;
-  border-right: 1px solid rgba(20, 40, 60, 0.06);
+  background-color: #fff;
+  float: left;
 }
 .menu-btn {
   border: none;
@@ -40,6 +30,7 @@ body {
   font-size: 18px;
   cursor: pointer;
   border-radius: 10px;
+  align-items: center;
 }
 .nav-item :hover {
   background: #cadcf1;
@@ -47,9 +38,7 @@ body {
 .spacer {
   flex: 1;
 }
-.sidebar {
-  float: left;
-}
+
 .chart {
   border-radius: 10px;
   margin-top: 30px;
@@ -66,7 +55,7 @@ body {
 /* Cụm ngày ở giữa */
 .date-control {
   display: flex;
-
+  padding: auto;
   gap: 10px;
   justify-content: center; /* Giúp cụm ngày ra giữa */
 }
@@ -78,15 +67,92 @@ body {
   border-radius: 4px;
   cursor: pointer;
   padding: 4px 10px;
+  margin: 10px;
 }
 
 .date-control input {
   padding: 5px 10px;
-  border: 1px solid #ccc;
+  border: 0px;
   border-radius: 6px;
+  font-weight: bold;
+  font-size: 15px;
 }
 .right {
   margin-top: 20px;
   margin-left: 400px;
   margin-right: 400px;
+}
+.buttonbackground {
+  padding: auto;
+  margin: auto;
+  width: 266px;
+  height: 46px;
+  display: inline-flex;
+  display: flex;
+  background-color: #fff;
+  justify-content: center;
+}
+html body div div div form input {
+  margin-top: 7px;
+  height: 40px;
+  width: 600px;
+}
+html body div div div form button {
+  margin-top: 7px;
+  height: 40px;
+}
+html body div div div form {
+  margin: 30px;
+  display: flex;
+  justify-content: center;
+  display: block;
+}
+table {
+  margin: 0px 10px 0px 10px;
+  width: 98%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+tr,
+th,
+td {
+  color: #003483;
+  font-size: 15px;
+  padding: 5px 5px 5px 10px;
+  border: 3px solid #000000;
+  border-collapse: collapse;
+}
+#beside_result {
+  width: 8%;
+  float: left;
+  padding: 0px;
+  margin: 0px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: -90px;
+}
+#result {
+  float: right;
+  width: 92%;
+  border: #000000 2px solid;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  padding: 20px;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+h2 {
+  padding-left: 20px;
+  color: #003483;
+}
+.table {
+  width: 140%;
+  margin-left: -160px;
+  margin-top: 40px;
+  padding-top: 1px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding-bottom: 20px;
 }

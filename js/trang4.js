@@ -7,7 +7,7 @@ new Chart(ctx, {
     labels: ["0", "7h", "9h", "11h", "13h", "15h", "17h", "19h", "20h"],
     datasets: [
       {
-        label: "lượng xe vào",
+        label: "lượng xe vào                                                ",
         backgroundColor: "rgba(151,249,190,0.5)",
         borderColor: "rgba(42, 162, 184, 1)",
         pointBackgroundColor: "rgba(42, 162, 184, 1)",
@@ -96,4 +96,44 @@ function formatDate(date) {
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
+}
+
+function getDataTable() {
+  const rows = document.querySelectorAll("#data-table tbody tr");
+  const data = [];
+  for (let i = 0; i < rows.length; i++) {
+    const cells = rows[i].querySelectorAll("td");
+    const obj = {
+      STT: cells[0].innerText,
+      Chuxe: cells[1].innerText,
+      MSV: cells[2].innerText,
+      Bienso: cells[3].innerText,
+      Thoigianvao: cells[4].innerText,
+      Thoigianra: cells[5].innerText,
+      Loaixe: cells[6].innerText,
+    };
+    data.push(obj);
+  }
+  return data;
+}
+
+function SearchIntable() {
+  let find = document.getElementById("search").value.toLowerCase();
+  data = getDataTable();
+
+  const result = data.filter((item) =>
+    Object.values(item).some((val) => val.toLowerCase().includes(find))
+  );
+
+  const resultArea = document.getElementById("result");
+  if (result.length > 0) {
+    resultArea.innerHTML = result
+      .map(
+        (r) =>
+          `STT: ${r.STT} | Chủ xe: ${r.Chuxe} | Biển số: ${r.Bienso} | Thời gian vào: ${r.Thoigianvao} | Thời gian ra: ${r.Thoigianra} | Loại xe: ${r.Loaixe}`
+      )
+      .join("<br>");
+  } else {
+    resultArea.innerText = "❌ Không tìm thấy kết quả phù hợp!";
+  }
 }
