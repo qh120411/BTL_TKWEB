@@ -143,31 +143,26 @@ function SearchIntable() {
     Object.values(item).some((val) => val.toLowerCase().includes(find))
   );
   const resultArea = document.getElementById("result");
-  if (result.length > 0) {
+  if (result.length > 0 && find.length > 0) {
     resultArea.innerHTML = result
       .map((r) => {
+        table.style.display = "none";
+        resultArea.style.display = "block";
+        clear.style.display = "block";
+        button.style.display = "none";
         return `STT: ${r.STT} | Chủ xe: ${r.Chuxe} | Biển số: ${r.Bienso} | Thời gian vào: ${r.Thoigianvao} | Thời gian ra: ${r.Thoigianra} | Loại xe: ${r.Loaixe}`;
       })
       .join("<br>");
+  } else if (find.length == 0) {
+    table.style.display = "table";
+    button.style.display = "block";
+    resultArea.style.display = "none";
+    clear.style.display = "none";
   } else {
     resultArea.innerText = "❌ Không tìm thấy kết quả phù hợp!";
-  }
-  table.style.display = "none";
-  resultArea.style.display = "block";
-  clear.style.display = "block";
-  button.style.display = "none";
-
-  if (find.trim() === "") {
-    table.style.display = "table";
-    button.style.display = "none";
-    resultArea.style.display = "none";
+    table.style.display = "none";
+    resultArea.style.display = "block";
     clear.style.display = "block";
-    return;
+    button.style.display = "none";
   }
-  const searchInput = document.getElementById("search");
-  searchInput.addEventListener("search", () => {
-    if (searchInput.value === "") {
-      resetSearch();
-    }
-  });
 }

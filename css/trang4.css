@@ -168,6 +168,14 @@ h2 {
   font-size: 20px;
   float: right;
 }
+#search-button:hover {
+  background-color: #00ffc8;
+  font-weight: bold;
+}
+#clear:hover {
+  background-color: #ff6e6e;
+  font-weight: bold;
+}
 #clear {
   display: none;
   float: right;
