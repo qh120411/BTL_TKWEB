@@ -1,0 +1,237 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: #DAE2EF;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 67px;
+  height: 807px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+.sidebar-top,
+.sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Nút trong sidebar */
+.sidebar button {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+.header-top {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  height: 50px;
+}
+.notify {
+  cursor: pointer;
+}
+.user-avatar {
+  background: #ffffff;
+  color: #032b64;
+  font-weight: 600;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover + Active */
+.sidebar button:hover {
+  background-color: #e6f0ff;
+  color: #2e6ed3;
+  transform: scale(1.1);
+  box-shadow: 0 2px 6px rgba(46, 110, 211, 0.3);
+}
+
+/* .sidebar button.active {
+  background-color: #2e6ed3;
+  color: white;
+  box-shadow: 0 3px 8px rgba(46, 110, 211, 0.4);
+} */
+
+
+/* Main content */
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+
+
+.date-control {
+  display: flex;
+  /* justify-content: center;    canh giữa ngang */
+  align-items: center;       /*  canh giữa dọc */
+  gap: 10px;
+  margin: 20px auto;         /*  căn giữa theo chiều ngang */
+  width: fit-content;        /*  vừa khít nội dung */
+  background-color: #FDFDFE;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+
+
+.date-control input {
+  width: 130px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+
+/* Biểu đồ thống kê */
+.stats {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  max-width: 420px;
+  margin: 0 auto 30px auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.chart-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 15px;
+}
+
+#pieChart {
+  width: 180px !important;
+  height: 180px !important;
+}
+
+.color-box {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+
+.blue { background-color: #4a90e2; }
+.orange { background-color: #d68910; }
+
+/* Lịch sử giao dịch */
+.history {
+  background-color: #f6f8fc;
+  border: 2px solid #89a8d6;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.history h3 {
+  text-align: center;
+  background-color: white;
+  color: #E49C48;
+  border-radius: 8px;
+  display: inline-block;
+  padding: 5px 15px;
+  margin: 0px auto 15px ;
+  display: block; width: 30%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #e1ebfa;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 70vh; /* Độ cao tối đa của sidebar */
+  background: #ffffff;
+  border-radius: 10px;
+  overflow-y: auto;
+  width: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 6px;
+  border-right: 1px solid rgba(20, 40, 60, 0.06);
+}
+.menu-btn {
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.nav-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+.nav-item {
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.nav-item :hover {
+  background: #cadcf1;
+}
+.spacer {
+  flex: 1;
+}
+
+
