@@ -132,7 +132,7 @@ function getDataTable() {
 function SearchIntable() {
   let find = document.getElementById("search").value.toLowerCase();
   data = getDataTable();
-
+  table = document.getElementById("data-table");
   const result = data.filter((item) =>
     Object.values(item).some((val) => val.toLowerCase().includes(find))
   );

@@ -128,24 +128,13 @@ td {
 tr th {
   font-size: 20px;
 }
-#beside_result {
-  width: 8%;
-  float: left;
-  padding: 0px;
-  margin: 0px;
-  font-size: 18px;
-  font-weight: bold;
-  margin-right: -90px;
-}
+
 #result {
   float: right;
-  width: 92%;
-  border: #000000 2px solid;
   font-size: 18px;
   font-weight: bold;
   background-color: rgb(255, 255, 255);
   color: black;
-  padding: 20px;
   font-size: 15px;
   margin-bottom: 10px;
 }
