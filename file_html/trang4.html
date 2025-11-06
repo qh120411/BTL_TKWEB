@@ -37,7 +37,9 @@
           <canvas id="canvas" height="650px" width="1100"></canvas>
         </div>
         <script src="../js/trang4.js"></script>
+
         <div class="table">
+          <h2>Danh sách xe ra/vào</h2>
           <form action="">
             <input
               type="search"
@@ -46,8 +48,9 @@
               placeholder="Nhập từ khóa..."
             />
             <button type="button" onclick="SearchIntable()">Tìm kiếm</button>
-
-            <div id="result"></div>
+            <p id="result-container">
+            <div id="beside_result">Kết quả:</div>
+            <div id="result"></div></p>
           </form>
           <table id="data-table">
             <thead>

@@ -120,7 +120,8 @@ html body div div div form {
   display: block;
 }
 table {
-  width: 100%;
+  margin: 0px 10px 0px 10px;
+  width: 98%;
   border-collapse: collapse;
   margin-top: 20px;
 }
@@ -133,8 +134,16 @@ td {
   border: 3px solid #000000;
   border-collapse: collapse;
 }
+#beside_result {
+  width: 9%;
+  float: left;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: -90px;
+}
 #result {
-  margin-top: 10px;
+  float: right;
+  width: 88%;
   border: #000000 2px solid;
   font-size: 18px;
   font-weight: bold;
@@ -142,4 +151,18 @@ td {
   color: black;
   padding: 20px;
   font-size: 15px;
+  margin-bottom: 10px;
+}
+h2 {
+  padding-left: 20px;
+  color: #003483;
+}
+.table {
+  width: 140%;
+  margin-left: -160px;
+  margin-top: 40px;
+  padding-top: 1px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding-bottom: 20px;
 }
