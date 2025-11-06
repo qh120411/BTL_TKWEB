@@ -116,11 +116,17 @@ table {
 tr,
 th,
 td {
+  text-align: left;
   color: #003483;
   font-size: 15px;
-  padding: 5px 5px 5px 10px;
-  border: 3px solid #000000;
+  padding: 7px 5px 7px 10px;
+  border: 1px solid #000000;
+  border-left: none;
+  border-right: none;
   border-collapse: collapse;
+}
+tr th {
+  font-size: 20px;
 }
 #beside_result {
   width: 8%;
