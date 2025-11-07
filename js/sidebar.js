@@ -235,6 +235,12 @@ if (management) {
     window.location.href = "management.html";
   });
 }
+if (setting) {
+  setting.addEventListener("click", (e) => {
+    e.stopPropagation();
+    window.location.href = "setting.html";
+  });
+}
 
 if (Logout) {
   Logout.addEventListener("click", (e) => {
