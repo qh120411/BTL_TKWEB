@@ -172,6 +172,10 @@ html body div div div form input {
   background-color: var(--bg-canvas-color);
   color: var(--text-color);
 }
+.date-control button:hover {
+  background-color: var(--button-hover-bg-color);
+  color: var(--button-hover-text-color);
+}
 html body div div div form button {
   margin-top: 7px;
   height: 40px;

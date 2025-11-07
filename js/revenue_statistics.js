@@ -6,7 +6,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     const response = await fetch("../garagedata.json");
     const data = await response.json();
 
-    let xeDap = 0, xeMay = 0, xeDien = 0;
+    let xeDap = 0,
+      xeMay = 0,
+      xeDien = 0;
     let tongDoanhThu = 0;
 
     // Đổ bảng + tính toán
@@ -48,11 +50,11 @@ document.addEventListener("DOMContentLoaded", async function () {
       new Chart(ctx, {
         type: "doughnut",
         data: {
-          
           datasets: [
             {
               data: [xeDap, xeMay, xeDien], // ⚡ Dùng số lượng, không dùng %
-              backgroundColor: ["#DBA362", "#CEDEF2", "#9FD3C7"],
+              backgroundColor: ["#c57a25ff", "#3272c0ff", "#20cea5ff"],
+              hoverBackgroundColor: ["#ff8800ff", "#00aeffff", "#00ffc8ff"],
               borderWidth: 0,
             },
           ],
@@ -95,7 +97,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   let currentDate = new Date("2025-10-15");
 
   function initDatePicker() {
-    const dateInput = document.querySelector('.date-control input[type="date"]');
+    const dateInput = document.querySelector(
+      '.date-control input[type="date"]'
+    );
     const prevBtn = document.querySelector(".date-control button:first-child");
     const nextBtn = document.querySelector(".date-control button:last-child");
 

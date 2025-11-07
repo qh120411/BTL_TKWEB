@@ -1,140 +1,214 @@
+/* :root {
+  --bg-color: rgba(227, 237, 249, 0.95);
+  --text-color: #053370;
+} */
 :root {
-    --bg-color: rgba(227, 237, 249, 0.95);
-    --text-color: #053370;
+  --tr-hover-color: rgb(243, 243, 243);
+  --h2-color: #003483;
+  --bg-color: #e4eef9;
+  --button-hover-bg-color: rgb(123, 159, 226);
+  --button-hover-text-color: gray;
+  --bg-canvas-color: white;
+  --text-color: black;
+  --border-color: #ddd;
+  --result-color: #003483;
+  --chart-in-color: rgba(219, 163, 98, 1);
+  --chart-in-bg-top: rgba(219, 163, 98, 0.1);
+  --chart-in-bg-bottom: rgba(219, 163, 98, 0.02);
+
+  --chart-out-color: rgba(182, 211, 250, 1);
+  --chart-out-bg-top: rgba(182, 211, 250, 0.1);
+  --chart-out-bg-bottom: rgba(182, 211, 250, 0.02);
+
+  --chart-text-color: #111;
+  --chart-grid-color: rgba(0, 0, 0, 0.05);
+  --tooltip-bg: rgba(227, 237, 249, 0.95);
+  --tooltip-text: #000000ff;
+}
+/* Dark mode */
+body.dark-mode {
+  --tr-hover-color: rgb(80, 80, 80);
+  --h2-color: rgb(255, 255, 255);
+  --button-hover-bg-color: rgb(255, 0, 34);
+  --button-hover-text-color: rgb(255, 255, 255);
+  --result-color: red;
+  --bg-color: #02214d;
+  --bg-canvas-color: #101d31;
+  --text-color: white;
+  --border-color: rgb(255, 255, 255);
+  --chart-in-color: rgba(255, 186, 99, 1);
+  --chart-in-bg-top: rgba(255, 186, 99, 0.2);
+  --chart-in-bg-bottom: rgba(255, 186, 99, 0.05);
+
+  --chart-out-color: rgba(119, 165, 250, 1);
+  --chart-out-bg-top: rgba(119, 165, 250, 0.2);
+  --chart-out-bg-bottom: rgba(119, 165, 250, 0.05);
+
+  --chart-text-color: #f5f5f5;
+  --chart-grid-color: rgba(255, 255, 255, 0.1);
+  --tooltip-bg: rgba(50, 50, 50, 0.95);
+  --tooltip-text: #ffffff;
+}
+.dark-mode .app-container {
+  background-color: black;
+}
+canvas {
+  background-color: var(--bg-canvas-color);
+  color: var(--text-color);
+}
+.chart {
+  border-radius: 10px;
+  margin-top: 30px;
+  border: var(--text-color) 1px solid;
+  background-color: var(--bg-canvas-color);
+  color: var(--text-color);
+  padding: 5px 10px 5px 10px;
+  height: 550px;
+  width: 880px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 body {
-    margin: 0;            /* <<< quan trọng */
-    padding: 0;
-    background-color: var(--bg-color);
-    font-family: "inter", sans-serif;
+  margin: 0; /* <<< quan trọng */
+  padding: 0;
+  background-color: var(--bg-color);
+  font-family: "inter", sans-serif;
 }
 
 #sidebar {
-    height: 100vh;
+  height: 100vh;
 }
 
 .app-container {
-    display: flex;
-    height: 100vh;
-    justify-content: flex-start;
-    align-items: stretch;
-
+  display: flex;
+  height: 100vh;
+  background-color: var(--bg-color);
+  justify-content: flex-start;
+  align-items: stretch;
 }
 
 .main-container {
-    flex-direction: column;
-    display:flex;  
-    width: 100%;
-    padding: 40px;
+  background-color: var(--bg-color);
+  flex-direction: column;
+  display: flex;
+  width: 100%;
+  padding: 40px;
 }
 
-#linechart {
-    width: 100%;
-    height: 400px;
+#canvas {
+  width: 100%;
+  height: 400px;
+  border-radius: 16px;
 }
 
 .main-content {
-    position: relative;
-    margin:0 auto 20px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 850px;
-    border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    margin-bottom: 20px;
+  border: var(--text-color) 1px solid;
+  position: relative;
+  margin: 0 auto 20px;
+  background-color: var(--bg-canvas-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 850px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
 }
 
 .main-content h2 {
-    color: var(--text-color);
-    gap: 15px;
-    text-align: center;
+  color: var(--text-color);
+  gap: 15px;
+  text-align: center;
 }
 
-.chart-box{              
-    width:100%;
-    display:flex;
-    justify-content:center;
+.chart-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .chart-link {
-    position: absolute;
-    bottom: 10px;      /* cách đáy 10px */
-    right: 20px;       /* cách lề phải 20px */
-    color: #1e5bd8;    /* xanh giống hình */
-    text-decoration: underline;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 15px;
+  position: absolute;
+  bottom: 10px; /* cách đáy 10px */
+  right: 20px; /* cách lề phải 20px */
+  color: #1e5bd8; /* xanh giống hình */
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
 }
 
 .chart-link:hover {
-    color: #0a3db8;    /* đổi màu khi hover */
+  color: #0a3db8; /* đổi màu khi hover */
 }
-
 
 /* bang goc duoi */
 
 .under-container {
-    display: flex;
-    justify-content: center; /* canh giữa toàn bộ hàng */
-    gap: 10%;
-    align-items: stretch;
-    flex-wrap: wrap; /* để responsive */
+  display: flex;
+  justify-content: center; /* canh giữa toàn bộ hàng */
+  gap: 10%;
+  align-items: stretch;
+  flex-wrap: wrap; /* để responsive */
 }
-
-
+#parking-body {
+  color: var(--text-color);
+}
+tr {
+  background-color: var(--bg-canvas-color);
+  color: var(--text-color);
+}
 .under-left-container {
-    position: relative;
-    background-color: white;
-    font-family: "inter", sans-serif;
-    border: 1.5px solid #d6e4f5;
-    border-radius: 10px;
-    padding: 16px;
-    margin: 24px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    height: auto;
+  position: relative;
+  background-color: var(--bg-canvas-color);
+  color: var(--text-color);
+  font-family: "inter", sans-serif;
+  border: 1.5px solid var(--border-color);
+  border-radius: 10px;
+  padding: 16px;
+  margin: 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  height: auto;
 }
 
 .under-left-container h3 {
-    text-align: center;
-    color: var(--text-color);
-    font-weight: 700;
-    margin-bottom: 12px;
-    width: 100%;
-    margin-left: 24px;
+  text-align: center;
+  color: var(--text-color);
+  font-weight: 700;
+  margin-bottom: 12px;
+  width: 100%;
+  margin-left: 24px;
 }
 
 .table-wrap {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 15px;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
 }
 
 .table-wrap thead th {
-    background: #eef5ff;
-    color: #0f265c;
-    font-weight: 700;
-    text-align: left;
-    padding: 10px 14px;
-    border-bottom: 1px solid #dbe6f7;
+  background: #eef5ff;
+  color: #0f265c;
+  font-weight: 700;
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid #dbe6f7;
 }
 
 .table-wrap tbody td {
-    padding: 10px 14px;
-    border-bottom: 1px solid #eef3fb;
-    color: #2c3e66;
+  padding: 10px 14px;
+  border-bottom: 1px solid #eef3fb;
+  color: var(--text-color);
 }
 
 .table-wrap tbody tr:hover {
-    background: #f9fcff;
+  background: var(--tr-hover-color);
 }
 
 .under-right-container {
-    /* position: relative;
+  /* position: relative;
     background-color: white;
     border-radius: 10px;
     padding: 20px;
@@ -143,22 +217,22 @@ body {
     margin: 24px auto 30px auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); */
 
-    position: relative;
-    background-color: white;
-    font-family: "inter", sans-serif;
-    border: 1.5px solid #d6e4f5;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    margin: 24px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    height: auto;
-    width: 30%;
-
+  position: relative;
+  color: var(--text-color);
+  background-color: var(--bg-canvas-color);
+  font-family: "inter", sans-serif;
+  border: 1.5px solid #d6e4f5;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  margin: 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  height: auto;
+  width: 30%;
 }
 
 .under-right-container h3 {
-    color: var(--text-color)
+  color: var(--text-color);
 }
 
 .chart-container {
@@ -171,7 +245,6 @@ body {
 #piechart {
   width: 220px !important;
   height: 220px !important;
-
 }
 
 .color-box {

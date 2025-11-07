@@ -313,141 +313,6 @@ function formatDate(date) {
 }
 
 // ---------- chart (khởi tạo sau khi DOM sẵn sàng) ----------
-let myChart = null;
-
-async function fetchChartData() {
-  const res = await fetch("../chartdata.json");
-  return await res.json();
-}
-
-function getCSSVar(name) {
-  // lấy theo body để nhận dark-mode variables
-  return getComputedStyle(document.body).getPropertyValue(name).trim();
-}
-
-function getChartColors(ctx) {
-  const gradientIN = ctx.createLinearGradient(0, 0, 0, 400);
-  gradientIN.addColorStop(0, getCSSVar("--chart-in-bg-top"));
-  gradientIN.addColorStop(1, getCSSVar("--chart-in-bg-bottom"));
-
-  const gradientOUT = ctx.createLinearGradient(0, 0, 0, 400);
-  gradientOUT.addColorStop(0, getCSSVar("--chart-out-bg-top"));
-  gradientOUT.addColorStop(1, getCSSVar("--chart-out-bg-bottom"));
-
-  return {
-    inColor: getCSSVar("--chart-in-color"),
-    outColor: getCSSVar("--chart-out-color"),
-    textColor: getCSSVar("--chart-text-color"),
-    gridColor: getCSSVar("--chart-grid-color"),
-    tooltipBg: getCSSVar("--tooltip-bg"),
-    tooltipText: getCSSVar("--tooltip-text"),
-    gradientIN,
-    gradientOUT,
-  };
-}
-
-async function createChartIfCanvasExists() {
-  const canvas = document.getElementById("canvas");
-  if (!canvas) return;
-
-  const ctx = canvas.getContext("2d");
-  const colors = getChartColors(ctx);
-  const data = await fetchChartData();
-
-  // Nếu chart đã tồn tại => update màu, không tạo mới
-  if (myChart) {
-    myChart.data.datasets[0].borderColor = colors.inColor;
-    myChart.data.datasets[0].backgroundColor = colors.gradientIN;
-    myChart.data.datasets[1].borderColor = colors.outColor;
-    myChart.data.datasets[1].backgroundColor = colors.gradientOUT;
-
-    myChart.options.plugins.legend.labels.color = colors.textColor;
-    myChart.options.scales.x.ticks.color = colors.textColor;
-    myChart.options.scales.y.ticks.color = colors.textColor;
-    myChart.options.scales.y.grid.color = colors.gridColor;
-    myChart.options.plugins.tooltip.backgroundColor = colors.tooltipBg;
-    myChart.options.plugins.tooltip.bodyColor = colors.tooltipText;
-    myChart.options.plugins.tooltip.titleColor = colors.tooltipText;
-
-    myChart.update();
-    return;
-  }
-
-  // Nếu chưa có chart, tạo mới
-  myChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: data.timelist,
-      datasets: [
-        {
-          label: "Lượng xe vào",
-          data: data.xevao,
-          borderColor: colors.inColor,
-          backgroundColor: colors.gradientIN,
-          tension: 0.4,
-          pointRadius: 4,
-          pointHoverRadius: 6,
-          pointHoverBackgroundColor: colors.inColor,
-          borderWidth: 2,
-          fill: true,
-        },
-        {
-          label: "Lượng xe ra",
-          data: data.xera,
-          borderColor: colors.outColor,
-          backgroundColor: colors.gradientOUT,
-          tension: 0.4,
-          pointRadius: 4,
-          pointHoverRadius: 6,
-          pointHoverBackgroundColor: colors.outColor,
-          borderWidth: 2,
-          fill: true,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      animation: { duration: 1200, easing: "easeOutQuart" },
-      interaction: { mode: "nearest", axis: "x", intersect: false },
-      plugins: {
-        legend: {
-          position: "bottom",
-          align: "center",
-          labels: {
-            usePointStyle: true,
-            pointStyle: "circle",
-            color: colors.textColor,
-            font: { size: 16, family: "Arial, sans-serif" },
-            padding: 40,
-          },
-        },
-        tooltip: {
-          backgroundColor: colors.tooltipBg,
-          titleColor: colors.tooltipText,
-          bodyColor: colors.tooltipText,
-          borderColor: colors.gridColor,
-          borderWidth: 1,
-          padding: 10,
-          displayColors: true,
-          usePointStyle: true,
-          callbacks: {
-            label: (c) => ` ${c.dataset.label}: ${c.parsed.y.toLocaleString()}`,
-          },
-        },
-      },
-      scales: {
-        y: {
-          ticks: { color: colors.textColor, font: { size: 14 } },
-          grid: { color: colors.gridColor },
-        },
-        x: {
-          ticks: { color: colors.textColor, font: { size: 14 } },
-          grid: { display: false },
-        },
-      },
-    },
-  });
-}
 
 // ---------- load dữ liệu và phân trang ----------
 async function loadGarageData() {
@@ -659,3 +524,138 @@ document.addEventListener("DOMContentLoaded", () => {
   createChartIfCanvasExists();
   loadGarageData();
 });
+let myChart = null;
+
+async function fetchChartData() {
+  const res = await fetch("../chartdata.json");
+  return await res.json();
+}
+
+function getCSSVar(name) {
+  // lấy theo body để nhận dark-mode variables
+  return getComputedStyle(document.body).getPropertyValue(name).trim();
+}
+
+function getChartColors(ctx) {
+  const gradientIN = ctx.createLinearGradient(0, 0, 0, 400);
+  gradientIN.addColorStop(0, getCSSVar("--chart-in-bg-top"));
+  gradientIN.addColorStop(1, getCSSVar("--chart-in-bg-bottom"));
+
+  const gradientOUT = ctx.createLinearGradient(0, 0, 0, 400);
+  gradientOUT.addColorStop(0, getCSSVar("--chart-out-bg-top"));
+  gradientOUT.addColorStop(1, getCSSVar("--chart-out-bg-bottom"));
+
+  return {
+    inColor: getCSSVar("--chart-in-color"),
+    outColor: getCSSVar("--chart-out-color"),
+    textColor: getCSSVar("--chart-text-color"),
+    gridColor: getCSSVar("--chart-grid-color"),
+    tooltipBg: getCSSVar("--tooltip-bg"),
+    tooltipText: getCSSVar("--tooltip-text"),
+    gradientIN,
+    gradientOUT,
+  };
+}
+
+async function createChartIfCanvasExists() {
+  const canvas = document.getElementById("canvas");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  const colors = getChartColors(ctx);
+  const data = await fetchChartData();
+
+  // Nếu chart đã tồn tại => update màu, không tạo mới
+  if (myChart) {
+    myChart.data.datasets[0].borderColor = colors.inColor;
+    myChart.data.datasets[0].backgroundColor = colors.gradientIN;
+    myChart.data.datasets[1].borderColor = colors.outColor;
+    myChart.data.datasets[1].backgroundColor = colors.gradientOUT;
+
+    myChart.options.plugins.legend.labels.color = colors.textColor;
+    myChart.options.scales.x.ticks.color = colors.textColor;
+    myChart.options.scales.y.ticks.color = colors.textColor;
+    myChart.options.scales.y.grid.color = colors.gridColor;
+    myChart.options.plugins.tooltip.backgroundColor = colors.tooltipBg;
+    myChart.options.plugins.tooltip.bodyColor = colors.tooltipText;
+    myChart.options.plugins.tooltip.titleColor = colors.tooltipText;
+
+    myChart.update();
+    return;
+  }
+
+  // Nếu chưa có chart, tạo mới
+  myChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: data.timelist,
+      datasets: [
+        {
+          label: "Lượng xe vào",
+          data: data.xevao,
+          borderColor: colors.inColor,
+          backgroundColor: colors.gradientIN,
+          tension: 0.4,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          pointHoverBackgroundColor: colors.inColor,
+          borderWidth: 2,
+          fill: true,
+        },
+        {
+          label: "Lượng xe ra",
+          data: data.xera,
+          borderColor: colors.outColor,
+          backgroundColor: colors.gradientOUT,
+          tension: 0.4,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          pointHoverBackgroundColor: colors.outColor,
+          borderWidth: 2,
+          fill: true,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      animation: { duration: 1200, easing: "easeOutQuart" },
+      interaction: { mode: "nearest", axis: "x", intersect: false },
+      plugins: {
+        legend: {
+          position: "bottom",
+          align: "center",
+          labels: {
+            usePointStyle: true,
+            pointStyle: "circle",
+            color: colors.textColor,
+            font: { size: 16, family: "Arial, sans-serif" },
+            padding: 40,
+          },
+        },
+        tooltip: {
+          backgroundColor: colors.tooltipBg,
+          titleColor: colors.tooltipText,
+          bodyColor: colors.tooltipText,
+          borderColor: colors.gridColor,
+          borderWidth: 1,
+          padding: 10,
+          displayColors: true,
+          usePointStyle: true,
+          callbacks: {
+            label: (c) => ` ${c.dataset.label}: ${c.parsed.y.toLocaleString()}`,
+          },
+        },
+      },
+      scales: {
+        y: {
+          ticks: { color: colors.textColor, font: { size: 14 } },
+          grid: { color: colors.gridColor },
+        },
+        x: {
+          ticks: { color: colors.textColor, font: { size: 14 } },
+          grid: { display: false },
+        },
+      },
+    },
+  });
+}

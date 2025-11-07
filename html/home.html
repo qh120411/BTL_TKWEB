@@ -42,7 +42,7 @@
           <div class = "main-content">
             <h2>Thống kê lượng xe ra/ vào trong ngày hôm nay</h2>
             <div class = "chart-box">
-                <canvas id ="linechart"></canvas>
+                <canvas id ="canvas"></canvas>
             </div>
             <span id="xemChiTiet" class="chart-link">
                 Nhấn để xem thống kê chi tiết →
@@ -77,13 +77,10 @@
               <h3>Thông kê doanh thu hôm nay</h3>
               <div class="chart-container">
                 <canvas id="piechart"></canvas>
-                <div class="chart-info">
-              <p><span class="color-box orange"></span> Xe đạp</p>
-              <p><span class="color-box blue"></span> Xe máy</p>
-              <p><span class="color-box green"></span> Xe điện</p>
-              <!-- <p><strong>Tổng:</strong> 15M vnd</p> -->
-            </div>
                   <div class="chart-info">
+                    <p><span class="color-box orange"></span> Xe đạp</p>
+                <p><span class="color-box blue"></span> Xe máy</p>
+                <p><span class="color-box green"></span> Xe điện</p>
                     <span id="xemdthu" class="chart-link">
                         Nhấn để xem thống kê doanh thu→
                     </span>
@@ -93,6 +90,7 @@
         
     </div>
     <script src = "../js/home.js" defer></script>
+    <script src="../js/setting.js"></script>
   </body>
   </html>
   
