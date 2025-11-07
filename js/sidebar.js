@@ -20,7 +20,10 @@ const menuStructure = [
   },
   { label: "Tra cứu lịch nhận sự", hasSubmenu: false },
 ];
-
+Home.addEventListener("click", (e) => {
+  e.stopPropagation();
+  window.location.href = "home_page/home.html";
+});
 const bottomMenuStructure = [{ label: "Cài đặt" }, { label: "Đăng xuất" }];
 
 // Xử lý menu items chính (3 items đầu)
