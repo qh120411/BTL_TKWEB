@@ -297,3 +297,15 @@
     display: none !important;
   }
 }
+/* Sidebar */
+.sidebar button:hover {
+  background-color: #e6f0ff;
+  color: #2e6ed3;
+  transform: scale(1.1);
+  box-shadow: 0 2px 6px rgba(46, 110, 211, 0.3);
+}
+
+.sidebar {
+  background-color: #fff;
+  float: left;
+}
