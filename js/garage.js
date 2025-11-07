@@ -22,7 +22,7 @@ async function main() {
       labels: data.timelist,
       datasets: [
         {
-          label: "Luợng xe vào",
+          label: "Lượng xe vào",
           data: data.xevao,
           borderColor: "rgba( 219, 163, 98, 1)",
           backgroundColor: gradientIN,
@@ -35,7 +35,7 @@ async function main() {
         },
 
         {
-          label: "Luợng xe ra",
+          label: "Lượng xe ra",
           data: data.xera,
           borderColor: "rgba( 182, 211, 250, 1)",
           backgroundColor: gradientOUT,
@@ -62,6 +62,7 @@ async function main() {
       plugins: {
         legend: {
           position: "bottom",
+          align: "center",
           labels: {
             usePointStyle: true,
             pointStyle: "circle",
@@ -70,6 +71,7 @@ async function main() {
               size: 16,
               family: "Arial, sans-serif",
             },
+            padding: 40,
           },
         },
         tooltip: {
@@ -274,3 +276,16 @@ function SearchIntable() {
     table.style.display = "none";
   }
 }
+// const body = document.body;
+// const switchModeButton = document.getElementById("switchModeBtn");
+// const mode = document.querySelector(".mode-name");
+// const handleChangeMode = () => {
+//   if (switchModeButton.checked) {
+//     body.classList.add("dark-mode");
+//     mode.innerHTML("dark mode");
+//   } else {
+//     body.classList.remove("dark-mode");
+//     mode.innerHTML = "light mode";
+//   }
+// };
+// switchModeButton.addEventListener("change", handleChangeMode);

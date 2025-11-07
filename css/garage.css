@@ -5,6 +5,35 @@ body {
   margin: 0;
 }
 
+/* body {
+  display: flex;
+  background-color: var(--bg-color);
+  padding: 0px;
+}
+:root {
+  --bg-color: #fff;
+  --text-color: black;
+}
+.dark-mode {
+  --bg-color: black;
+  --text-color: white;
+}
+.toggle-container {
+  width: 300px;
+  height: 300px;
+  background-color: blue;
+  display: flex;
+  align-items: center;
+}
+.toggle {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  transition: transform 0.5s, backgroud-color 0.5s;
+}
+#switchModeBtn:checked + .toggle-container .toggle {
+  transform: translateX(160px);
+} */
 .spacer {
   flex: 1;
 }
@@ -89,10 +118,10 @@ tr,
 th,
 td {
   text-align: left;
-  color: #003483;
+  color: #000000;
   font-size: 15px;
   padding: 7px 5px 7px 10px;
-  border: 1px solid #000000;
+  border: 1px solid #ddd;
   border-left: none;
   border-right: none;
   border-collapse: collapse;
