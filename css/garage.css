@@ -259,6 +259,12 @@ h2 {
   padding-left: 20px;
   color: var(--h2-color);
 }
+th {
+  background-color: #e1ebfa;
+}
+.dark-mode th {
+  background-color: #0f254e;
+}
 
 .table {
   width: 140%;

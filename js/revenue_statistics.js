@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async function () {
           plugins: {
             legend: { display: true, position: "bottom" },
           },
-          cutout: "70%",
+          cutout: "75%",
         },
         plugins: [
           {
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
               ctx.save();
               ctx.font = "bold 16px 'Segoe UI'";
-              ctx.fillStyle = "#06053C";
+              ctx.fillStyle = "#a13333ff";
               ctx.textAlign = "center";
               ctx.textBaseline = "middle";
               ctx.fillText(

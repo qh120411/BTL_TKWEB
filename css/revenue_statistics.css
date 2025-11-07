@@ -157,10 +157,12 @@ html body div div div form input {
 .stats {
   background-color: var(--bg-canvas-color);
   color: var(--text-color);
+  border: var(--border-color) 1px solid;
   border-radius: 10px;
   padding: 20px;
   text-align: center;
-  max-width: 420px;
+  max-width: 600px;
+  height: 300px;
   margin: 0 auto 30px auto;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
@@ -230,8 +232,8 @@ html body div div div form input {
 
 .history h3 {
   text-align: center;
-  background-color: white;
-  color: #e49c48;
+  background-color: var(--bg-canvas-color);
+  color: var(--text-color);
   border-radius: 8px;
   display: inline-block;
   padding: 5px 15px;
@@ -256,7 +258,33 @@ td {
 th {
   background-color: #e1ebfa;
 }
+.dark-mode th {
+  background-color: #0f254e;
+}
 
-tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+tbody tr:hover {
+  background-color: var(--tr-hover-color);
+}
+tr,
+th,
+td {
+  text-align: left;
+  color: var(--text-color);
+  font-size: 18px;
+  padding: 10px 5px 10px 10px;
+  border: 1px solid #ddd;
+  border-left: none;
+  border-right: none;
+  border-collapse: collapse;
+}
+tr th {
+  font-size: 20px;
+}
+#garageTable {
+  color: var(--text-color);
+  background-color: var(--bg-canvas-color);
+}
+.history {
+  color: var(--text-color);
+  background-color: var(--bg-canvas-color);
 }
