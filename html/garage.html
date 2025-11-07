@@ -3,12 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/trang4.css" />
+    <title>Nhà xe</title>
+    <link rel="stylesheet" href="../css/garage.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
+    <div id="sidebar"></div>
+    <script>
+      fetch("sidebar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("sidebar").innerHTML = html;
+
+          // Thêm CSS
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = "../css/sidebar.css";
+          document.head.appendChild(link);
+
+          // Thêm JS
+          const script = document.createElement("script");
+          script.src = "../js/sidebar.js";
+          document.body.appendChild(script);
+        })
+        .catch((err) => console.error("Không tải được sidebar:", err));
+    </script>
     <div id="container">
+      <header class="header-top">
+        <button class="notify">🔔</button>
+        <div class="user-avatar">A</div>
+      </header>
       <!-- <aside class="sidebar">
         <div class="brand">
           <button class="menu-btn" aria-label="menu">
@@ -24,26 +48,7 @@
           <button class="nav-item"><img src="../image/Frame 2.svg" /></button>
         </nav> -->
       <!-- </aside> -->
-      <div id="sidebar"></div>
-      <script>
-        fetch("sidebar.html")
-          .then((res) => res.text())
-          .then((html) => {
-            document.getElementById("sidebar").innerHTML = html;
 
-            // Thêm CSS
-            const link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.href = "../css/sidebar.css";
-            document.head.appendChild(link);
-
-            // Thêm JS
-            const script = document.createElement("script");
-            script.src = "../js/sidebar.js";
-            document.body.appendChild(script);
-          })
-          .catch((err) => console.error("Không tải được sidebar:", err));
-      </script>
       <!--  -->
       <div class="right">
         <div class="buttonbackground">
@@ -57,7 +62,7 @@
           <h1>Thống kê số lượng xe vào/ra</h1>
           <canvas id="canvas" height="400px" width="800"></canvas>
         </div>
-        <script src="../js/trang4.js"></script>
+        <script src="../js/garage.js"></script>
 
         <div class="table">
           <h2>Danh sách xe ra/vào</h2>
@@ -67,14 +72,9 @@
               id="search"
               name="q"
               placeholder="Tìm kiếm theo tên chủ xe, mã sinh viên hoặc biển số xe..."
+              oninput="SearchIntable()"
             />
-            <button id="search-button" type="button" onclick="SearchIntable()">
-              Tìm kiếm
-            </button>
-            <button id="clear" type="button" onclick="location.reload()">
-              clear
-            </button>
-            <div id="result"></div>
+            <div id="result" style="margin-top: 10px"></div>
           </form>
           <table id="data-table">
             <thead>
@@ -88,8 +88,9 @@
                 <th>Loại xe</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
+            <tbody></tbody>
+
+            <!-- <tr>
                 <td>1</td>
                 <td>Nguyễn Văn A</td>
                 <td>24263723</td>
@@ -142,8 +143,7 @@
                 <td>2025-10-15 13:15</td>
                 <td>2025-10-15 15:45</td>
                 <td>Ô tô</td>
-              </tr>
-            </tbody>
+              </tr> -->
           </table>
         </div>
       </div>

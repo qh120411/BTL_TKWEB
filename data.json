@@ -1,0 +1,62 @@
+[
+  {
+    "stt": 1, "chuXe": "Trần Quang Huy", "maSinhVien": "242630944", "bsx": "36AA-140.57", "loaiXe": "Xe máy", "trangThai": "Đã thanh toán"
+  },
+  {
+    "stt": 2, "chuXe": "Nguyễn Văn An", "maSinhVien": "25010001", "bsx": "29A1-123.45", "loaiXe": "Xe máy", "trangThai": "Đã thanh toán"
+  },
+  {
+    "stt": 3, "chuXe": "Trần Thị Bình", "maSinhVien": "25010002", "bsx": "30B2-678.90", "loaiXe": "Xe máy", "trangThai": "Chưa thanh toán"
+  },
+  {
+    "stt": 4, "chuXe": "Lê Quang Minh", "maSinhVien": "25010003", "bsx": "59C3-111.22", "loaiXe": "Xe đạp điện", "trangThai": "Đã thanh toán"
+  },
+  {
+    "stt": 5, "chuXe": "Phạm Mỹ Linh", "maSinhVien": "25010004", "bsx": "98D1-456.78", "loaiXe": "Xe máy", "trangThai": "Đã thanh toán"
+  },
+  {
+    "stt": 6, "chuXe": "Hoàng Minh Tuấn", "maSinhVien": "25010005", "bsx": "36E2-999.88", "loaiXe": "Xe máy", "trangThai": "Đã thanh toán"
+  },
+  {
+    "stt": 7, "chuXe": "Huỳnh Gia Hân", "maSinhVien": "25010006", "bsx": "75F1-234.56", "loaiXe": "Xe máy", "trangThai": "Đã thanh toán"
+  },
+  {
+    "stt": 8, "chuXe": "Võ Thanh Trúc", "maSinhVien": "25010007", "bsx": "43G1-876.54", "loaiXe": "Xe đạp điện", "trangThai": "Đã thanh toán"
+  },
+  {
+    "stt": 9, "chuXe": "Đặng Bảo Ngọc", "maSinhVien": "25010008", "bsx": "51H2-333.44", "loaiXe": "Xe máy", "trangThai": "Chờ xác nhận"
+  },
+  {
+    "stt": 10, "chuXe": "Ngô Tuấn Kiệt", "maSinhVien": "25010009", "bsx": "60K1-555.66", "loaiXe": "Xe máy", "trangThai": "Đã thanh toán"
+  },
+  {
+    "stt": 11, "chuXe": "Lý Ngọc Mai", "maSinhVien": "25010010", "bsx": "29L1-777.88", "loaiXe": "Xe máy", "trangThai": "Đã thanh toán"
+  },
+  {
+    "stt": 12, "chuXe": "Trịnh Minh Khang", "maSinhVien": "25010011", "bsx": "34M1-999.00", "loaiXe": "Xe máy", "trangThai": "Đã thanh toán"
+  },
+  {
+    "stt": 13, "chuXe": "Đỗ Hà Vy", "maSinhVien": "25010012", "bsx": "17N1-121.21", "loaiXe": "Xe máy", "trangThai": "Chưa thanh toán"
+  },
+  {
+    "stt": 14, "chuXe": "Bùi Khánh Linh", "maSinhVien": "25010013", "bsx": "88P1-343.43", "loaiXe": "Xe máy", "trangThai": "Đã thanh toán"
+  },
+  {
+    "stt": 15, "chuXe": "Phan Anh Quân", "maSinhVien": "25010014", "bsx": "99Q1-565.65", "loaiXe": "Xe máy", "trangThai": "Đã thanh toán"
+  },
+  {
+    "stt": 16, "chuXe": "Dương Thùy Dương", "maSinhVien": "25010015", "bsx": "14R1-787.87", "loaiXe": "Xe máy", "trangThai": "Đã thanh toán"
+  },
+  {
+    "stt": 17, "chuXe": "Mai Tiến Dũng", "maSinhVien": "25010016", "bsx": "30S1-909.09", "loaiXe": "Xe máy", "trangThai": "Đã thanh toán"
+  },
+  {
+    "stt": 18, "chuXe": "Tô Ngọc Hân", "maSinhVien": "25010017", "bsx": "29T1-131.31", "loaiXe": "Xe máy", "trangThai": "Đã thanh toán"
+  },
+  {
+    "stt": 19, "chuXe": "Lưu Quang Vinh", "maSinhVien": "25010018", "bsx": "35U1-242.42", "loaiXe": "Xe đạp điện", "trangThai": "Chưa thanh toán"
+  },
+  {
+    "stt": 20, "chuXe": "Châu Anh Thư", "maSinhVien": "25010019", "bsx": "59V1-353.53", "loaiXe": "Xe máy", "trangThai": "Đã thanh toán"
+  }
+]

@@ -2,7 +2,7 @@
 .sidebar {
   position: sticky;
   top: 0;
-  height: 70vh;
+  height: 100vh;
   background: white;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   width: 64px;
@@ -29,7 +29,6 @@
 .menu-btn {
   border: none;
   background: transparent;
-  cursor: pointer;
   flex-shrink: 0;
 }
 

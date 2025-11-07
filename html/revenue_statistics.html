@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thống kê doanh thu</title>
+    <link rel="stylesheet" href="../css/revenue_statistics.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="sidebar"></div>
+
+      <!-- Nội dung chính -->
+      <main class="main">
+        <!-- Top header -->
+        <header class="header-top">
+          <button class="notify">🔔</button>
+          <div class="user-avatar">A</div>
+        </header>
+
+        <div class="date-control">
+          <button>&lt;</button>
+          <input type="date" value="2025-10-15" />
+          <button>&gt;</button>
+        </div>
+
+        <!-- Biểu đồ thống kê -->
+        <section class="stats">
+          <h3>Doanh thu</h3>
+          <div class="chart-container">
+            <canvas id="pieChart"></canvas>
+            <div class="chart-info">
+              <p><span class="color-box blue"></span> Xe máy</p>
+              <p><span class="color-box orange"></span> Xe đạp</p>
+              <!-- <p><strong>Tổng:</strong> 15M vnd</p> -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Lịch sử giao dịch -->
+        <section class="history">
+          <h3>Lịch sử giao dịch</h3>
+          <!-- <table>
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Chủ xe</th>
+      <th>Mã sinh viên</th>
+      <th>BSX</th>
+      <th>Loại xe</th>
+      <th>Trạng thái</th>
+      <th>Doanh thu</th>
+    </tr>
+  <tbody>
+    <tr><td>1</td><td>Nguyễn Văn A</td><td>242631001</td><td>29A1-12345</td><td>Xe máy</td><td>Vé ngày</td><td>+3.000đ</td></tr>
+    <tr><td>2</td><td>Trần Thị B</td><td>242631002</td><td>36B2-45678</td><td>Xe đạp</td><td>Vé tháng</td><td>+30.000đ</td></tr>
+    <tr><td>3</td><td>Phạm Minh C</td><td>242631003</td><td>37C3-78910</td><td>Xe máy</td><td>Vé ngày</td><td>+3.000đ</td></tr>
+    <tr><td>4</td><td>Hoàng Văn D</td><td>242631004</td><td>29D1-56789</td><td>Xe đạp điện</td><td>Vé tháng</td><td>+50.000đ</td></tr>
+    <tr><td>5</td><td>Lê Thị E</td><td>242631005</td><td>38E2-91234</td><td>Xe máy</td><td>Vé ngày</td><td>+3.000đ</td></tr>
+    <tr><td>6</td><td>Đặng Văn F</td><td>242631006</td><td>30F1-65432</td><td>Xe đạp</td><td>Vé ngày</td><td>+2.000đ</td></tr>
+    <tr><td>7</td><td>Phan Thị G</td><td>242631007</td><td>31G1-98765</td><td>Xe máy</td><td>Vé tháng</td><td>+60.000đ</td></tr>
+    <tr><td>8</td><td>Ngô Văn H</td><td>242631008</td><td>33H2-34567</td><td>Xe đạp điện</td><td>Vé ngày</td><td>+4.000đ</td></tr>
+    <tr><td>9</td><td>Vũ Thị I</td><td>242631009</td><td>29I1-22222</td><td>Xe máy</td><td>Vé ngày</td><td>+3.000đ</td></tr>
+    <tr><td>10</td><td>Bùi Văn K</td><td>242631010</td><td>35K3-88888</td><td>Xe đạp</td><td>Vé tháng</td><td>+30.000đ</td></tr>
+    <tr><td>11</td><td>Nguyễn Thị L</td><td>242631011</td><td>36L2-66666</td><td>Xe máy</td><td>Vé ngày</td><td>+3.000đ</td></tr>
+    <tr><td>12</td><td>Đỗ Văn M</td><td>242631012</td><td>29M1-44444</td><td>Xe máy</td><td>Vé tháng</td><td>+60.000đ</td></tr>
+    <tr><td>13</td><td>Trịnh Thị N</td><td>242631013</td><td>37N3-77777</td><td>Xe đạp điện</td><td>Vé ngày</td><td>+4.000đ</td></tr>
+    <tr><td>14</td><td>Hoàng Anh O</td><td>242631014</td><td>38O2-55555</td><td>Xe máy</td><td>Vé ngày</td><td>+3.000đ</td></tr>
+    <tr><td>15</td><td>Phạm Thị P</td><td>242631015</td><td>30P1-11111</td><td>Xe đạp</td><td>Vé ngày</td><td>+2.000đ</td></tr>
+  </tbody>
+</table> -->
+
+ <table id="garageTable">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Chủ xe</th>
+        <th>Mã sinh viên</th>
+        <th>BSX</th>
+        <th>Loại xe</th>
+        <th>Trạng thái</th>
+        <th>Doanh thu</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Hàng dữ liệu từ JSON sẽ được JS render -->
+    </tbody>
+  </table>
+
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/revenue_statistics.js"></script>
+
+    <script>
+      fetch("sidebar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("sidebar").innerHTML = html;
+
+          // Thêm CSS
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = "../css/sidebar.css";
+          document.head.appendChild(link);
+
+          // Thêm JS
+          const script = document.createElement("script");
+          script.src = "../js/sidebar.js";
+          document.body.appendChild(script);
+        })
+        .catch((err) => console.error("Không tải được sidebar:", err));
+    </script>
+  </body>
+</html>

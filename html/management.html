@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Phân ca làm việc</title>
-    <link rel="stylesheet" href="../css/trang5.css" />
+    <link rel="stylesheet" href="../css/management.css" />
   </head>
   <body>
     <div class="app">
@@ -17,27 +17,42 @@
           <div class="user-avatar">A</div>
         </header>
 
-        <!-- Section title + filters (moved down) -->
+        <!-- Section title + filters -->
         <div class="content">
           <div class="section-header">
             <h1>Phân ca làm việc</h1>
             <div class="date-control">
-              <button>&lt;</button>
-              <input type="date" value="2025-10-15" />
-              <button>&gt;</button>
+              <button id="prevDay">&lt;</button>
+              <input type="date" id="dateInput" value="2025-10-15" />
+              <button id="nextDay">&gt;</button>
             </div>
             <div class="search-add">
-              <input type="text" placeholder="Tên nhân viên..." />
-              <button>Thêm</button>
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Tên nhân viên..."
+              />
+              <button id="addBtn">Thêm</button>
             </div>
           </div>
 
+          <!-- Employee panel - sẽ được render bởi JS -->
+          <div class="employee-panel">
+            <h3>📋 Danh sách nhân viên</h3>
+            <div class="employee-list" id="employeeList"></div>
+          </div>
+
           <!-- Work shifts board -->
-          <section class="board">
-            <div class="group">
+          <section class="board" id="shiftsBoard">
+            <!-- Các nhà xe và ca làm việc -->
+            <div class="group" data-garage="A1">
               <h2 class="group-title">Nhà xe A1</h2>
               <div class="shifts">
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 1"
+                  data-time="06:00 - 09:00"
+                >
                   <div class="shift-title">Ca 1</div>
                   <div class="shift-time">06:00 - 09:00</div>
                   <div class="placeholder-lines">
@@ -46,7 +61,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 2"
+                  data-time="09:00 - 12:00"
+                >
                   <div class="shift-title">Ca 2</div>
                   <div class="shift-time">09:00 - 12:00</div>
                   <div class="placeholder-lines">
@@ -55,7 +74,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 3"
+                  data-time="12:00 - 15:00"
+                >
                   <div class="shift-title">Ca 3</div>
                   <div class="shift-time">12:00 - 15:00</div>
                   <div class="placeholder-lines">
@@ -64,7 +87,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 4"
+                  data-time="15:00 - 18:00"
+                >
                   <div class="shift-title">Ca 4</div>
                   <div class="shift-time">15:00 - 18:00</div>
                   <div class="placeholder-lines">
@@ -73,7 +100,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 5"
+                  data-time="18:00 - 21:00"
+                >
                   <div class="shift-title">Ca 5</div>
                   <div class="shift-time">18:00 - 21:00</div>
                   <div class="placeholder-lines">
@@ -85,10 +116,14 @@
               </div>
             </div>
 
-            <div class="group">
+            <div class="group" data-garage="A2">
               <h2 class="group-title">Nhà xe A2</h2>
               <div class="shifts">
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 1"
+                  data-time="06:00 - 09:00"
+                >
                   <div class="shift-title">Ca 1</div>
                   <div class="shift-time">06:00 - 09:00</div>
                   <div class="placeholder-lines">
@@ -97,7 +132,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 2"
+                  data-time="09:00 - 12:00"
+                >
                   <div class="shift-title">Ca 2</div>
                   <div class="shift-time">09:00 - 12:00</div>
                   <div class="placeholder-lines">
@@ -106,7 +145,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 3"
+                  data-time="12:00 - 15:00"
+                >
                   <div class="shift-title">Ca 3</div>
                   <div class="shift-time">12:00 - 15:00</div>
                   <div class="placeholder-lines">
@@ -115,7 +158,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 4"
+                  data-time="15:00 - 18:00"
+                >
                   <div class="shift-title">Ca 4</div>
                   <div class="shift-time">15:00 - 18:00</div>
                   <div class="placeholder-lines">
@@ -124,7 +171,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 5"
+                  data-time="18:00 - 21:00"
+                >
                   <div class="shift-title">Ca 5</div>
                   <div class="shift-time">18:00 - 21:00</div>
                   <div class="placeholder-lines">
@@ -136,10 +187,14 @@
               </div>
             </div>
 
-            <div class="group">
+            <div class="group" data-garage="A4">
               <h2 class="group-title">Nhà xe A4</h2>
               <div class="shifts">
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 1"
+                  data-time="06:00 - 09:00"
+                >
                   <div class="shift-title">Ca 1</div>
                   <div class="shift-time">06:00 - 09:00</div>
                   <div class="placeholder-lines">
@@ -148,7 +203,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 2"
+                  data-time="09:00 - 12:00"
+                >
                   <div class="shift-title">Ca 2</div>
                   <div class="shift-time">09:00 - 12:00</div>
                   <div class="placeholder-lines">
@@ -157,7 +216,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 3"
+                  data-time="12:00 - 15:00"
+                >
                   <div class="shift-title">Ca 3</div>
                   <div class="shift-time">12:00 - 15:00</div>
                   <div class="placeholder-lines">
@@ -166,7 +229,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 4"
+                  data-time="15:00 - 18:00"
+                >
                   <div class="shift-title">Ca 4</div>
                   <div class="shift-time">15:00 - 18:00</div>
                   <div class="placeholder-lines">
@@ -175,7 +242,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 5"
+                  data-time="18:00 - 21:00"
+                >
                   <div class="shift-title">Ca 5</div>
                   <div class="shift-time">18:00 - 21:00</div>
                   <div class="placeholder-lines">
@@ -187,10 +258,14 @@
               </div>
             </div>
 
-            <div class="group">
+            <div class="group" data-garage="A8">
               <h2 class="group-title">Nhà xe A8</h2>
               <div class="shifts">
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 1"
+                  data-time="06:00 - 09:00"
+                >
                   <div class="shift-title">Ca 1</div>
                   <div class="shift-time">06:00 - 09:00</div>
                   <div class="placeholder-lines">
@@ -199,7 +274,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 2"
+                  data-time="09:00 - 12:00"
+                >
                   <div class="shift-title">Ca 2</div>
                   <div class="shift-time">09:00 - 12:00</div>
                   <div class="placeholder-lines">
@@ -208,7 +287,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 3"
+                  data-time="12:00 - 15:00"
+                >
                   <div class="shift-title">Ca 3</div>
                   <div class="shift-time">12:00 - 15:00</div>
                   <div class="placeholder-lines">
@@ -217,7 +300,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 4"
+                  data-time="15:00 - 18:00"
+                >
                   <div class="shift-title">Ca 4</div>
                   <div class="shift-time">15:00 - 18:00</div>
                   <div class="placeholder-lines">
@@ -226,7 +313,11 @@
                   </div>
                   <div class="drop-hint">Kéo nhân viên vào đây</div>
                 </div>
-                <div class="shift-card">
+                <div
+                  class="shift-card"
+                  data-shift="Ca 5"
+                  data-time="18:00 - 21:00"
+                >
                   <div class="shift-title">Ca 5</div>
                   <div class="shift-time">18:00 - 21:00</div>
                   <div class="placeholder-lines">
@@ -241,7 +332,8 @@
         </div>
       </main>
     </div>
-    <script src="../js/trang5.js"></script>
+
+    <script src="../js/management.js"></script>
 
     <script>
       fetch("sidebar.html")
@@ -249,13 +341,11 @@
         .then((html) => {
           document.getElementById("sidebar").innerHTML = html;
 
-          // Thêm CSS
           const link = document.createElement("link");
           link.rel = "stylesheet";
           link.href = "../css/sidebar.css";
           document.head.appendChild(link);
 
-          // Thêm JS
           const script = document.createElement("script");
           script.src = "../js/sidebar.js";
           document.body.appendChild(script);

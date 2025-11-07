@@ -1,3 +1,4 @@
+
 // biểu đồ js
 const linectx = document.getElementById("linechart").getContext("2d");
 
@@ -10,6 +11,7 @@ gradientOUT.addColorStop(0, "rgba( 182, 211, 250, 0.1)");
 gradientOUT.addColorStop(1, "rgba( 182, 211, 250, 0.02)");
 
 const myChart = new Chart(linectx, {
+
   type: "line",
   data: {
     labels: ["0h", "7h", "9h", "11h", "13h", "15h", "17h", "19h", "21h", "22h"],
@@ -44,6 +46,7 @@ const myChart = new Chart(linectx, {
   options: {
     responsive: true,
     maintainAspectRatio: false,
+
     animation: {
       duration: 1200,
       easing: "easeOutQuart",
@@ -169,7 +172,7 @@ document.getElementById('xemds').onclick = function () {
 //js 
 
 // Vẽ biểu đồ tròn với Chart.js
-const piectx = document.getElementById("piehart").getContext("2d");
+const piectx = document.getElementById("piechart").getContext("2d");
 new Chart(piectx, {
   type: "doughnut",
   data: {
@@ -207,6 +210,3 @@ new Chart(piectx, {
     },
   ],
 });
-
-
-

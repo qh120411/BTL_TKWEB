@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
+  font-family: "inter", sans-serif;
 }
 
 body {
@@ -13,41 +13,6 @@ body {
   display: flex;
   min-height: 100vh;
 }
-
-/* Sidebar */
-/* .sidebar {
-  width: 67px;
-  height: 807px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 0;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  overflow-x: hidden;
-}
-
-.sidebar-top,
-.sidebar-bottom {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-} */
-
-/* Nút trong sidebar */
-/* .sidebar button {
-  background: none;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  transition: all 0.25s ease;
-} */
 
 .header-top {
   display: flex;
@@ -71,13 +36,6 @@ body {
   justify-content: center;
 }
 
-/* Hover + Active
-.sidebar button:hover {
-  background-color: #e6f0ff;
-  color: #2e6ed3;
-  transform: scale(1.1);
-  box-shadow: 0 2px 6px rgba(46, 110, 211, 0.3);
-} */
 
 /* Main content */
 .main {
@@ -143,6 +101,31 @@ body {
   background-color: #d68910;
 }
 
+.chart-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.chart-info p {
+  display: flex;
+  align-items: center; /* căn giữa theo chiều dọc */
+  gap: 8px;            /* khoảng cách giữa ô màu và chữ */
+  margin: 0;           /* bỏ margin mặc định */
+  font-size: 14px;
+}
+
+
+
+.chart-info p {
+  display: flex;
+  align-items: center; /* căn giữa theo chiều dọc */
+  gap: 8px;            /* khoảng cách giữa ô màu và chữ */
+  margin: 0;           /* bỏ margin mặc định */
+  font-size: 15px;
+}
+
 /* Lịch sử giao dịch */
 .history {
   background-color: #f6f8fc;
@@ -161,7 +144,7 @@ body {
   padding: 5px 15px;
   margin: 0px auto 15px;
   display: block;
-  width: 20%;
+  width: fit-content;
 }
 
 table {
@@ -184,3 +167,4 @@ th {
 tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+

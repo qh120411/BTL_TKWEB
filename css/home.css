@@ -151,7 +151,7 @@ body {
     margin: 24px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     height: auto;
-    width: 0%;
+    width: 30%;
     
 }
 
@@ -167,8 +167,9 @@ body {
 }
 
 #piechart {
-  width: 180px !important;
-  height: 180px !important;
+  width: 220px !important;
+  height: 220px !important;
+
 }
 
 .color-box {
