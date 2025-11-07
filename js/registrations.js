@@ -9,24 +9,31 @@ document.addEventListener('DOMContentLoaded', () => {
     let cancelBtn = document.getElementById('cancel-btn');
     let registerForm = document.getElementById('register-form');
     let downloadBtn = document.getElementById('download-btn');
+    let searchInput = document.getElementById('search-input');
 
-    let allData = []; 
+    let allData = [];
+    let filteredData = [];
     let currentPage = 1;
     let itemsPerPage = 10;
     let totalPages = 0;
-    
     let storageKey = 'danhSachDangKyXe';
 
+    let reindexData = () => {
+        allData.forEach((item, index) => {
+            item.stt = index + 1;
+        });
+    };
 
     let renderTable = () => {
-        tableBody.innerHTML = ''; 
+        tableBody.innerHTML = '';
 
         let startIndex = (currentPage - 1) * itemsPerPage;
         let endIndex = startIndex + itemsPerPage;
-        let pageData = allData.slice(startIndex, endIndex);
+        let pageData = filteredData.slice(startIndex, endIndex);
 
         pageData.forEach(item => {
-            let row = document.createElement('tr'); 
+            let row = document.createElement('tr');
+            row.dataset.id = item.id;
             row.innerHTML = `
                 <td>${item.stt}</td>
                 <td>${item.chuXe}</td>
@@ -34,49 +41,75 @@ document.addEventListener('DOMContentLoaded', () => {
                 <td>${item.bsx}</td>
                 <td>${item.loaiXe}</td>
                 <td>${item.trangThai}</td>
+                <td><button class="btn-delete" data-id="${item.id}">Xóa</button></td>
             `;
             tableBody.appendChild(row);
         });
     };
 
-
     let updatePaginationUI = () => {
-        totalPages = Math.ceil(allData.length / itemsPerPage) || 1;
+        totalPages = Math.ceil(filteredData.length / itemsPerPage) || 1;
         pageInfo.textContent = `Trang ${currentPage}/${totalPages}`;
         prevBtn.disabled = (currentPage === 1);
         nextBtn.disabled = (currentPage === totalPages);
     };
 
+    let runSearch = () => {
+        let searchTerm = searchInput.value.toLowerCase().trim();
+
+        if (searchTerm === '') {
+            filteredData = [...allData];
+        } else {
+            filteredData = allData.filter(item =>
+                (item.chuXe && item.chuXe.toLowerCase().includes(searchTerm)) ||
+                (item.maSinhVien && item.maSinhVien.toLowerCase().includes(searchTerm)) ||
+                (item.bsx && item.bsx.toLowerCase().includes(searchTerm))
+            );
+        }
+
+        currentPage = 1;
+        renderTable();
+        updatePaginationUI();
+    };
+
+    let handleDelete = (id) => {
+        if (confirm('Bạn có chắc chắn muốn xóa đăng ký này không?')) {
+            allData = allData.filter(item => item.id !== id);
+            reindexData();
+            saveDataToStorage();
+            runSearch();
+
+            totalPages = Math.ceil(filteredData.length / itemsPerPage) || 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+
+            renderTable();
+            updatePaginationUI();
+        }
+    };
 
     let saveDataToStorage = () => {
         localStorage.setItem(storageKey, JSON.stringify(allData));
     };
 
-
     let exportToCsv = (filename, data) => {
         let headers = ['STT', 'Chủ xe', 'Mã sinh viên', 'BSX', 'Loại xe', 'Trạng thái'];
-
-        let csvRows = [headers.join(',')]; 
+        let csvRows = [headers.join(',')];
 
         for (let item of data) {
             let values = [
                 item.stt,
-                item.chuXe,
-                item.maSinhVien,
-                item.bsx,
-                item.loaiXe,
-                item.trangThai
-            ].map(value => {
-                let escaped = ('' + value).replace(/"/g, '""');
-                return `"${escaped}"`;
-            });
+                `"${(item.chuXe || '').replace(/"/g, '""')}"`,
+                `"${(item.maSinhVien || '').replace(/"/g, '""')}"`,
+                `"${(item.bsx || '').replace(/"/g, '""')}"`,
+                `"${(item.loaiXe || '').replace(/"/g, '""')}"`,
+                `"${(item.trangThai || '').replace(/"/g, '""')}"`
+            ];
             csvRows.push(values.join(','));
         }
 
         let csvString = csvRows.join('\n');
-        
-        let blob = new Blob([`\uFEFF${csvString}`], { type: 'text/csv;charset=utf-8;' }); 
-        
+        let blob = new Blob([`\uFEFF${csvString}`], { type: 'text/csv;charset=utf-8;' });
+
         let link = document.createElement('a');
         if (link.download !== undefined) {
             let url = URL.createObjectURL(blob);
@@ -89,22 +122,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-
-    let showModal = () => {
-        registerModal.classList.remove('hidden');
-    };
-
+    let showModal = () => registerModal.classList.remove('hidden');
     let hideModal = () => {
         registerModal.classList.add('hidden');
-        registerForm.reset(); 
+        registerForm.reset();
     };
 
     openModalBtn.addEventListener('click', showModal);
     cancelBtn.addEventListener('click', hideModal);
     registerModal.addEventListener('click', (event) => {
-        if (event.target === registerModal) {
-            hideModal();
-        }
+        if (event.target === registerModal) hideModal();
     });
 
     nextBtn.addEventListener('click', () => {
@@ -124,14 +151,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     downloadBtn.addEventListener('click', () => {
-        exportToCsv('DanhSachDangKyXe.csv', allData);
+        exportToCsv('DanhSachDangKyXe.csv', filteredData);
     });
 
+    searchInput.addEventListener('input', runSearch);
+
     registerForm.addEventListener('submit', (event) => {
-        event.preventDefault(); 
+        event.preventDefault();
 
         let newEntry = {
-            stt: allData.length + 1, 
+            id: Date.now(),
+            stt: -1,
             chuXe: document.getElementById('ho-ten').value,
             maSinhVien: document.getElementById('ma-sinh-vien').value,
             bsx: document.getElementById('bien-so-xe').value,
@@ -140,44 +170,54 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         allData.push(newEntry);
-        
+        reindexData();
         saveDataToStorage();
-
-        currentPage = Math.ceil(allData.length / itemsPerPage);
-        renderTable();        
-        updatePaginationUI(); 
-        hideModal();          
+        runSearch();
+        currentPage = Math.ceil(filteredData.length / itemsPerPage);
+        renderTable();
+        updatePaginationUI();
+        hideModal();
     });
 
+    tableBody.addEventListener('click', (event) => {
+        if (event.target.classList.contains('btn-delete')) {
+            let idToDelete = Number(event.target.dataset.id);
+            handleDelete(idToDelete);
+        }
+    });
 
-    let initialize = () => {
+    let initialize = async () => {
         let savedDataString = localStorage.getItem(storageKey);
-        
+
         if (savedDataString) {
             console.log("Tìm thấy dữ liệu trong localStorage. Đang tải...");
-            allData = JSON.parse(savedDataString);
-            updatePaginationUI();
-            renderTable();
+            let parsedData = JSON.parse(savedDataString);
+            allData = parsedData.map((item, index) => ({
+                ...item,
+                id: item.id || (Date.now() + index)
+            }));
         } else {
             console.log("Không tìm thấy localStorage. Đang tải từ data.json...");
-            fetch('../data.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Không thể tải file data.json");
-                    }
-                    return response.json(); 
-                })
-                .then(data_from_json => {
-                    allData = data_from_json;
-                    saveDataToStorage(); 
-                    updatePaginationUI();
-                    renderTable();
-                })
-                .catch(error => {
-                    console.error("Lỗi khi tải JSON:", error);
-                    tableBody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: red;">Lỗi: Không thể tải dữ liệu gốc.</td></tr>`;
-                });
+            try {
+                const response = await fetch('data.json');
+                if (!response.ok) throw new Error("Không thể tải file data.json");
+                const data_from_json = await response.json();
+                allData = data_from_json.map((item, index) => ({
+                    ...item,
+                    id: Date.now() + index
+                }));
+                saveDataToStorage();
+            } catch (error) {
+                console.error("Lỗi khi tải JSON:", error);
+                tableBody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: red;">Lỗi: Không thể tải dữ liệu gốc.</td></tr>`;
+                allData = [];
+            }
         }
+
+        reindexData();
+        filteredData = [...allData];
+        updatePaginationUI();
+        renderTable();
     };
 
     initialize();
