@@ -21,10 +21,58 @@ const menuStructure = [
       { label: "Doanh Thu", link: "revenue_statistics.html" },
     ],
   },
-  { label: "Tra cứu lịch nhận sự", hasSubmenu: false, link: "trang5.html" },
+  { label: "Tra cứu lịch nhận sự", hasSubmenu: false, link: "management.html" },
 ];
 
 const bottomMenuStructure = [{ label: "Cài đặt" }, { label: "Đăng xuất" }];
+
+// Hàm lấy tên file hiện tại
+function getCurrentPage() {
+  const path = window.location.pathname;
+  const page = path.split("/").pop() || "home.html";
+  return page;
+}
+
+// Hàm set active cho trang hiện tại
+function setActivePage() {
+  const currentPage = getCurrentPage();
+
+  // Xóa tất cả active states
+  document.querySelectorAll(".nav-item").forEach((item) => {
+    item.classList.remove("active");
+  });
+  document.querySelectorAll(".submenu-item").forEach((item) => {
+    item.classList.remove("active");
+  });
+
+  // Kiểm tra submenu items trước
+  const submenuItems = document.querySelectorAll(".submenu-item");
+  let foundInSubmenu = false;
+
+  submenuItems.forEach((subItem) => {
+    const subItemLink = subItem.getAttribute("data-link");
+    if (subItemLink === currentPage) {
+      subItem.classList.add("active");
+      // Mở parent submenu
+      const parentNavItem = subItem.closest(".submenu").previousElementSibling;
+      if (parentNavItem) {
+        parentNavItem.classList.add("open");
+        subItem.closest(".submenu").classList.add("show");
+      }
+      foundInSubmenu = true;
+    }
+  });
+
+  // Nếu không tìm thấy trong submenu, kiểm tra main menu
+  if (!foundInSubmenu) {
+    navItems.forEach((navItem, index) => {
+      const itemData = menuStructure[index];
+      if (itemData && itemData.link === currentPage) {
+        navItem.classList.add("active");
+      }
+    });
+  }
+}
 
 // Xử lý menu items chính
 menuStructure.forEach((item, index) => {
@@ -64,6 +112,7 @@ menuStructure.forEach((item, index) => {
     item.submenu.forEach((subItem) => {
       const submenuItem = document.createElement("button");
       submenuItem.className = "submenu-item";
+      submenuItem.setAttribute("data-link", subItem.link); // Lưu link để check active
 
       const bullet = document.createElement("span");
       bullet.className = "submenu-bullet";
@@ -75,10 +124,6 @@ menuStructure.forEach((item, index) => {
 
       submenuItem.addEventListener("click", (e) => {
         e.stopPropagation();
-        document
-          .querySelectorAll(".submenu-item")
-          .forEach((si) => si.classList.remove("active"));
-        submenuItem.classList.add("active");
 
         if (subItem.link) {
           window.location.href = subItem.link;
@@ -110,9 +155,6 @@ menuStructure.forEach((item, index) => {
   } else {
     // Không có submenu
     navItem.addEventListener("click", () => {
-      navItems.forEach((i) => i.classList.remove("active"));
-      navItem.classList.add("active");
-
       if (item.link) {
         window.location.href = item.link;
       }
@@ -124,16 +166,25 @@ menuStructure.forEach((item, index) => {
 sidebar.addEventListener("mouseenter", () => sidebar.classList.add("expanded"));
 sidebar.addEventListener("mouseleave", () => {
   sidebar.classList.remove("expanded");
-  document
-    .querySelectorAll(".nav-item.open")
-    .forEach((i) => i.classList.remove("open"));
-  document
-    .querySelectorAll(".submenu.show")
-    .forEach((s) => s.classList.remove("show"));
-});
+  // Không đóng submenu nếu đang ở trang trong submenu đó
+  const currentPage = getCurrentPage();
+  let shouldKeepOpen = false;
 
-// Active mặc định
-if (navItems[0]) navItems[0].classList.add("active");
+  document.querySelectorAll(".submenu-item").forEach((item) => {
+    if (item.getAttribute("data-link") === currentPage) {
+      shouldKeepOpen = true;
+    }
+  });
+
+  if (!shouldKeepOpen) {
+    document
+      .querySelectorAll(".nav-item.open")
+      .forEach((i) => i.classList.remove("open"));
+    document
+      .querySelectorAll(".submenu.show")
+      .forEach((s) => s.classList.remove("show"));
+  }
+});
 
 // Xử lý bottom menu items (Cài đặt, Đăng xuất)
 const bottomItemsStartIndex = 3; // Sau spacer
@@ -163,38 +214,31 @@ bottomMenuStructure.forEach((item, index) => {
   }
 });
 
-// Xử lý hover để mở rộng sidebar
-sidebar.addEventListener("mouseenter", () => {
-  sidebar.classList.add("expanded");
-});
+// Set active page khi load trang
+setActivePage();
 
-sidebar.addEventListener("mouseleave", () => {
-  sidebar.classList.remove("expanded");
+// Thêm chức năng chuyển trang cho nút button
+const Home = document.getElementById("Home");
+const management = document.getElementById("management");
+const Logout = document.getElementById("Logout");
 
-  // Đóng tất cả submenu khi rời khỏi sidebar
-  document.querySelectorAll(".nav-item.open").forEach((item) => {
-    item.classList.remove("open");
+if (Home) {
+  Home.addEventListener("click", (e) => {
+    e.stopPropagation();
+    window.location.href = "home.html";
   });
-  document.querySelectorAll(".submenu.show").forEach((sub) => {
-    sub.classList.remove("show");
-  });
-});
-
-// Set trang chủ active mặc định
-if (navItems[0]) {
-  navItems[0].classList.add("active");
 }
-// thêm chức năng chuyển trang cho nút button
-Home.addEventListener("click", (e) => {
-  e.stopPropagation();
-  window.location.href = "home.html";
-});
 
-management.addEventListener("click", (e) => {
-  e.stopPropagation();
-  window.location.href = "management.html";
-});
-Logout.addEventListener("click", (e) => {
-  e.stopPropagation();
-  window.location.href = "../index.html";
-});
+if (management) {
+  management.addEventListener("click", (e) => {
+    e.stopPropagation();
+    window.location.href = "management.html";
+  });
+}
+
+if (Logout) {
+  Logout.addEventListener("click", (e) => {
+    e.stopPropagation();
+    window.location.href = "../index.html";
+  });
+}
