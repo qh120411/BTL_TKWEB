@@ -13,7 +13,7 @@ body {
   --text-color: white;
 }
 .toggle-container {
-  border: black 3px solid;
+  border: var(--text-color) 3px solid;
   border-radius: 60px;
   margin-left: auto;
   margin-right: auto;
@@ -27,9 +27,19 @@ body {
   border-radius: 200px;
   width: 100px;
   height: 100px;
-  background-color: black;
+  background-color: var(--text-color);
   transition: transform 0.5s, backgroud-color 0.5s;
 }
 #switchModeBtn:checked + .toggle-container .toggle {
   transform: translateX(200px);
+}
+h1 {
+  font-size: 90px;
+  margin-right: 40px;
+  color: var(--text-color);
+}
+.container {
+  margin-left: 200px;
+  display: flex;
+  align-items: center;
 }
