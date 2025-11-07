@@ -16,9 +16,9 @@ const menuStructure = [
     label: "Thống kê",
     hasSubmenu: true,
     submenu: [
-      { label: "Nhà xe", link: "trang4.html" },
+      { label: "Nhà xe", link: "garage.html" },
       { label: "Đăng kí vé Tháng", link: "registrations.html" },
-      { label: "Doanh Thu", link: "trang6.html" },
+      { label: "Doanh Thu", link: "revenue_statistics.html" },
     ],
   },
   { label: "Tra cứu lịch nhận sự", hasSubmenu: false, link: "trang5.html" },
@@ -190,7 +190,7 @@ Home.addEventListener("click", (e) => {
   window.location.href = "home.html";
 });
 
-trang5.addEventListener("click", (e) => {
+management.addEventListener("click", (e) => {
   e.stopPropagation();
-  window.location.href = "trang5.html";
+  window.location.href = "management.html";
 });
