@@ -1,13 +1,24 @@
-const body = document.body;
 const switchModeButton = document.getElementById("switchModeBtn");
-const mode = document.querySelector(".mode-name");
-const handleChangeMode = () => {
-  if (switchModeButton.checked) {
-    body.classList.add("dark-mode");
-    mode.innerHTML("dark mode");
+
+// Khi trang load, gán trạng thái nút đúng với localStorage
+window.addEventListener("DOMContentLoaded", () => {
+  const theme = localStorage.getItem("theme");
+  if (theme === "dark") {
+    switchModeButton.checked = true;
+    document.body.classList.add("dark-mode");
   } else {
-    body.classList.remove("dark-mode");
-    mode.innerHTML = "light mode";
+    switchModeButton.checked = false;
+    document.body.classList.remove("dark-mode");
   }
-};
-switchModeButton.addEventListener("change", handleChangeMode);
+});
+
+// Khi người dùng bật/tắt công tắc
+switchModeButton.addEventListener("change", () => {
+  if (switchModeButton.checked) {
+    document.body.classList.add("dark-mode");
+    localStorage.setItem("theme", "dark");
+  } else {
+    document.body.classList.remove("dark-mode");
+    localStorage.setItem("theme", "light");
+  }
+});
