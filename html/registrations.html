@@ -1,135 +1,127 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách đăng ký gửi xe</title>
-    <link rel="stylesheet" href="../css/registrations.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="registrations.css">
+</head>
+<body>
     <div class="app-container">
-      <div id="sidebar"></div>
+        <div id="sidebar"></div>
 
-      <div class="main-content">
-        <header class="header-top">
-          <button class="notify">🔔</button>
-          <div class="user-avatar">A</div>
-        </header>
+        <div class="main-content">
+            <header class="header-top">
+                <button class="notify">🔔</button>
+                <div class="user-avatar">A</div>
+            </header>
 
-        <div class="content-wrapper">
-          <div class="content-header">
-            <h1>Danh sách đăng ký gửi xe Tháng</h1>
-            <div class="actions">
-              <button id="open-modal-btn" class="btn btn-primary">
-                Đăng kí
-              </button>
-              <button id="download-btn" class="btn btn-secondary">
-                Tải về danh sách
-              </button>
+            <div class="content-wrapper">
+                <div class="content-header">
+                    <h1>Danh sách đăng ký gửi xe Tháng</h1>
+                    <div class="actions">
+                        <button id="open-modal-btn" class="btn btn-primary">Đăng kí</button>
+                        <button id="download-btn" class="btn btn-secondary">Tải về danh sách</button>
+                    </div>
+                </div>
+
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Tìm kiếm theo Chủ xe, MSV, BSX...">
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Chủ xe</th>
+                                <th>Mã sinh viên</th>
+                                <th>BSX</th>
+                                <th>Loại xe</th>
+                                <th>Trạng thái</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination">
+                    <button id="prev-btn" class="btn btn-tertiary">Quay lại</button>
+                    <span id="page-info" class="page-info"></span>
+                    <button id="next-btn" class="btn btn-tertiary">Chuyển tiếp</button>
+                </div>
             </div>
-          </div>
-
-          <div class="table-container">
-            <table>
-              <thead>
-                <tr>
-                  <th>STT</th>
-                  <th>Chủ xe</th>
-                  <th>Mã sinh viên</th>
-                  <th>BSX</th>
-                  <th>Loại xe</th>
-                  <th>Trạng thái</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-
-          <div class="pagination">
-            <button id="prev-btn" class="btn btn-tertiary">Quay lại</button>
-            <span id="page-info" class="page-info"></span>
-            <button id="next-btn" class="btn btn-tertiary">Chuyển tiếp</button>
-          </div>
         </div>
-      </div>
     </div>
 
+    <!-- Modal đăng ký -->
     <div id="register-modal" class="modal-overlay hidden">
-      <div class="modal-content">
-        <h2>Đăng ký</h2>
-        <form id="register-form">
-          <div class="form-group">
-            <label for="ho-ten">Họ và tên</label>
-            <input type="text" id="ho-ten" placeholder="Họ và tên" required />
-          </div>
+        <div class="modal-content">
+            <h2>Đăng ký</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="ho-ten">Họ và tên</label>
+                    <input type="text" id="ho-ten" placeholder="Họ và tên" required>
+                </div>
 
-          <div class="form-group">
-            <label for="ma-sinh-vien">Mã sinh viên</label>
-            <input
-              type="text"
-              id="ma-sinh-vien"
-              placeholder="Mã sinh viên"
-              required
-            />
-          </div>
+                <div class="form-group">
+                    <label for="ma-sinh-vien">Mã sinh viên</label>
+                    <input type="text" id="ma-sinh-vien" placeholder="Mã sinh viên" required>
+                </div>
 
-          <div class="form-group">
-            <label for="bien-so-xe">Biển số xe</label>
-            <input
-              type="text"
-              id="bien-so-xe"
-              placeholder="Biển số xe"
-              required
-            />
-          </div>
+                <div class="form-group">
+                    <label for="bien-so-xe">Biển số xe</label>
+                    <input type="text" id="bien-so-xe" placeholder="Biển số xe" required>
+                </div>
 
-          <div class="form-group">
-            <label for="loai-xe">Loại xe</label>
-            <select id="loai-xe" required>
-              <option value="" disabled selected>Chọn loại xe</option>
-              <option value="Xe máy">Xe máy</option>
-              <option value="Xe đạp điện">Xe đạp điện</option>
-              <option value="Xe đạp">Xe đạp</option>
-            </select>
-          </div>
+                <div class="form-group">
+                    <label for="loai-xe">Loại xe</label>
+                    <select id="loai-xe" required>
+                        <option value="" disabled selected>Chọn loại xe</option>
+                        <option value="Xe máy">Xe máy</option>
+                        <option value="Xe đạp điện">Xe đạp điện</option>
+                        <option value="Xe đạp">Xe đạp</option>
+                    </select>
+                </div>
 
-          <div class="form-group">
-            <label for="tinh-trang">Tình trạng</label>
-            <select id="tinh-trang" required>
-              <option value="" disabled selected>Chọn tình trạng</option>
-              <option value="Đã thanh toán">Đã thanh toán</option>
-              <option value="Chưa thanh toán">Chưa thanh toán</option>
-            </select>
-          </div>
+                <div class="form-group">
+                    <label for="tinh-trang">Tình trạng</label>
+                    <select id="tinh-trang" required>
+                        <option value="" disabled selected>Chọn tình trạng</option>
+                        <option value="Đã thanh toán">Đã thanh toán</option>
+                        <option value="Chưa thanh toán">Chưa thanh toán</option>
+                    </select>
+                </div>
 
-          <div class="modal-actions">
-            <button type="button" id="cancel-btn" class="btn btn-secondary">
-              Hoàn tác
-            </button>
-            <button type="submit" class="btn btn-primary">Đăng kí</button>
-          </div>
-        </form>
-      </div>
+                <div class="modal-actions">
+                    <button type="button" id="cancel-btn" class="btn btn-secondary">Hoàn tác</button>
+                    <button type="submit" class="btn btn-primary">Đăng kí</button>
+                </div>
+            </form>
+        </div>
     </div>
 
-    <script src="../js/registrations.js"></script>
+    <script src="registrations.js"></script>
 
     <script>
-      fetch("sidebar.html")
-        .then((res) => res.text())
-        .then((html) => {
-          document.getElementById("sidebar").innerHTML = html;
+        fetch("sidebar.html")
+            .then((res) => res.text())
+            .then((html) => {
+                document.getElementById("sidebar").innerHTML = html;
 
-          const link = document.createElement("link");
-          link.rel = "stylesheet";
-          link.href = "../css/sidebar.css";
-          document.head.appendChild(link);
+                const link = document.createElement("link");
+                link.rel = "stylesheet";
+                link.href = "sidebar.css";
+                document.head.appendChild(link);
 
-          const script = document.createElement("script");
-          script.src = "../js/sidebar.js";
-          document.body.appendChild(script);
-        })
-        .catch((err) => console.error("Không tải được sidebar:", err));
+                const script = document.createElement("script");
+                script.src = "sidebar.js";
+                document.body.appendChild(script);
+            })
+            .catch((err) => console.error("Không tải được sidebar:", err));
     </script>
-  </body>
+</body>
 </html>
