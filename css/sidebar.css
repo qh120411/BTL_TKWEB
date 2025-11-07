@@ -11,6 +11,64 @@
   transition: width 0.3s ease-in-out;
   border-radius: 10px;
 }
+/* Màu mặc định (light) */
+.sidebar {
+  background-color: #ffffff;
+  color: black;
+}
+.dark-mode .nav-item.open {
+  background: #474747;
+}
+.sidebar .nav-item img {
+  filter: none;
+}
+
+.sidebar .nav-label,
+.sidebar .brand-title {
+  color: black;
+}
+
+.dark-mode .sidebar {
+  background-color: #353535;
+  color: white;
+}
+
+.dark-mode .nav-label,
+.dark-mode .brand-title {
+  color: white;
+}
+.dark-mode .submenu-item {
+  color: #cccccc;
+}
+
+.dark-mode .submenu-item {
+  color: #dddddd;
+}
+
+.dark-mode .submenu-item:hover {
+  background: #3a3a3a;
+  color: #ffffff;
+}
+
+.dark-mode .submenu-item.active {
+  background: #1f3b66;
+  color: #7cb8ff;
+}
+
+.dark-mode .submenu-bullet {
+  background: #888;
+}
+
+.dark-mode .submenu-item.active .submenu-bullet {
+  background: #7cb8ff;
+}
+
+.dark-mode .sidebar .nav-item img {
+  filter: invert(1) brightness(2);
+}
+img {
+  filter: invert(1) brightness(2);
+}
 
 /* Sidebar mở rộng khi hover */
 .sidebar.expanded {
@@ -102,7 +160,9 @@
 .nav-item:hover {
   background: #f3f4f6;
 }
-
+.dark-mode .nav-item:hover {
+  background: #474747;
+}
 /* Active state cho Trang chủ */
 .nav-item.active {
   background: #eff6ff;
