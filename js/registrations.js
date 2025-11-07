@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderTable();
         } else {
             console.log("Không tìm thấy localStorage. Đang tải từ data.json...");
-            fetch('data.json')
+            fetch('../data.json')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("Không thể tải file data.json");
