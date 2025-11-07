@@ -125,7 +125,7 @@ div .table {
   border: #89a8d6 1px solid;
 }
 table {
-  margin: 0px 10px 0px -2px;
+  margin: 0px 10px 0px 0px;
   width: 100%;
   border-collapse: collapse;
   margin-top: 50px;
