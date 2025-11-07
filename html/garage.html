@@ -8,6 +8,26 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
+    <div id="sidebar"></div>
+    <script>
+      fetch("sidebar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("sidebar").innerHTML = html;
+
+          // Thêm CSS
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = "../css/sidebar.css";
+          document.head.appendChild(link);
+
+          // Thêm JS
+          const script = document.createElement("script");
+          script.src = "../js/sidebar.js";
+          document.body.appendChild(script);
+        })
+        .catch((err) => console.error("Không tải được sidebar:", err));
+    </script>
     <div id="container">
       <!-- <aside class="sidebar">
         <div class="brand">
@@ -24,26 +44,7 @@
           <button class="nav-item"><img src="../image/Frame 2.svg" /></button>
         </nav> -->
       <!-- </aside> -->
-      <div id="sidebar"></div>
-      <script>
-        fetch("sidebar.html")
-          .then((res) => res.text())
-          .then((html) => {
-            document.getElementById("sidebar").innerHTML = html;
 
-            // Thêm CSS
-            const link = document.createElement("link");
-            link.rel = "stylesheet";
-            link.href = "../css/sidebar.css";
-            document.head.appendChild(link);
-
-            // Thêm JS
-            const script = document.createElement("script");
-            script.src = "../js/sidebar.js";
-            document.body.appendChild(script);
-          })
-          .catch((err) => console.error("Không tải được sidebar:", err));
-      </script>
       <!--  -->
       <div class="right">
         <div class="buttonbackground">
