@@ -7,9 +7,30 @@
     <title>Document</title>
   </head>
   <body>
+    <div id="sidebar"></div>
+    <script>
+      fetch("sidebar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("sidebar").innerHTML = html;
+
+          // Thêm CSS
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = "../css/sidebar.css";
+          document.head.appendChild(link);
+
+          // Thêm JS
+          const script = document.createElement("script");
+          script.src = "../js/sidebar.js";
+          document.body.appendChild(script);
+        })
+        .catch((err) => console.error("Không tải được sidebar:", err));
+    </script>
     <input type="checkbox" id="switchModeBtn" hidden />
     <label for="switchModeBtn" class="toggle-container">
       <div class="toggle"></div>
     </label>
+    <script src="../js/setting.js"></script>
   </body>
 </html>
