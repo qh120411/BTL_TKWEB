@@ -1,24 +1,21 @@
 const switchModeButton = document.getElementById("switchModeBtn");
+const body = document.body;
 
-// Khi trang load, gán trạng thái nút đúng với localStorage
-window.addEventListener("DOMContentLoaded", () => {
-  const theme = localStorage.getItem("theme");
-  if (theme === "dark") {
-    switchModeButton.checked = true;
-    document.body.classList.add("dark-mode");
-  } else {
-    switchModeButton.checked = false;
-    document.body.classList.remove("dark-mode");
-  }
-});
+// Khi load trang: đọc trạng thái dark mode từ localStorage
+if (localStorage.getItem("theme") === "dark") {
+  body.classList.add("dark-mode");
+  if (switchModeButton) switchModeButton.checked = true;
+}
 
-// Khi người dùng bật/tắt công tắc
-switchModeButton.addEventListener("change", () => {
-  if (switchModeButton.checked) {
-    document.body.classList.add("dark-mode");
-    localStorage.setItem("theme", "dark");
-  } else {
-    document.body.classList.remove("dark-mode");
-    localStorage.setItem("theme", "light");
-  }
-});
+// Khi toggle nút
+if (switchModeButton) {
+  switchModeButton.addEventListener("change", () => {
+    if (switchModeButton.checked) {
+      body.classList.add("dark-mode");
+      localStorage.setItem("theme", "dark");
+    } else {
+      body.classList.remove("dark-mode");
+      localStorage.setItem("theme", "light");
+    }
+  });
+}

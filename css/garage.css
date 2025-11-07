@@ -4,7 +4,18 @@ body {
   padding: 0;
   margin: 0;
 }
-
+:root {
+  --bg-color: #fff;
+  --text-color: black;
+  --border-color: #ddd;
+  --result-color: #003483;
+}
+.dark-mode {
+  --result-color: red;
+  --bg-color: black;
+  --text-color: white;
+  --border-color: rgb(59, 228, 228);
+}
 /* body {
   display: flex;
   background-color: var(--bg-color);
@@ -41,7 +52,7 @@ body {
 .chart {
   border-radius: 10px;
   margin-top: 30px;
-  background-color: #fff;
+  background-color: var(--bg-color);
   padding: 5px 10px 5px 10px;
   height: 550px;
   width: 880px;
@@ -67,8 +78,8 @@ html body div div div form input {
 }
 /* Nút trái phải */
 .date-control button {
-  background: #edf0f6;
-  border: 1px solid #cdd5e0;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   cursor: pointer;
   padding: 4px 10px;
@@ -94,7 +105,7 @@ html body div div div form input {
   height: 46px;
   display: inline-flex;
   display: flex;
-  background-color: #fff;
+  background-color: var(--bg-color);
   justify-content: center;
 }
 
