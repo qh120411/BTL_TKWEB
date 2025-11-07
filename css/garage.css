@@ -120,6 +120,10 @@ html body div div div form {
   justify-content: center;
   display: block;
 }
+div .table {
+  margin-bottom: 15px;
+  border: #89a8d6 1px solid;
+}
 table {
   margin: 0px 10px 0px -2px;
   width: 100%;
@@ -131,8 +135,8 @@ th,
 td {
   text-align: left;
   color: #000000;
-  font-size: 15px;
-  padding: 7px 5px 7px 10px;
+  font-size: 18px;
+  padding: 10px 5px 10px 10px;
   border: 1px solid #ddd;
   border-left: none;
   border-right: none;
