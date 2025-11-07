@@ -281,7 +281,7 @@
 //   }
 // }
 
-/////1
+////////////////////////1
 // const body = document.body;
 // const switchModeButton = document.getElementById("switchModeBtn");
 // const mode = document.querySelector(".mode-name");
@@ -296,7 +296,7 @@
 // };
 // switchModeButton.addEventListener("change", handleChangeMode);
 // garage.js (thay toàn bộ phần JS hiện tại bằng đoạn này)
-
+////////////////////////2
 // biến toàn cục
 let currentDate = new Date("2025-10-15");
 let currentPage = 1;
