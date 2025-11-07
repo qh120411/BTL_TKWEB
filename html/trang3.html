@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng ký vé tháng</title>
+    <link rel="stylesheet" href="../css/trang3.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+      <div id="sidebar"></div>
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Header -->
+        <header class="header-top">
+          <button class="notify">🔔</button>
+          <div class="user-avatar">A</div>
+        </header>
+
+        <!-- Content -->
+        <div class="content">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">
+                <h1>Danh sách đăng ký gửi xe Tháng</h1>
+                <span class="count-badge" id="countBadge"></span>
+              </div>
+              <div class="card-actions">
+                <button class="btn btn-primary" onclick="openModal()">
+                  Đăng kí
+                </button>
+                <button class="btn btn-secondary">Tải về danh sách</button>
+              </div>
+            </div>
+
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>STT</th>
+                    <th>Chủ xe</th>
+                    <th>Mã sinh viên</th>
+                    <th>BSX</th>
+                    <th>Loại xe</th>
+                    <th>Trạng thái</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+              </table>
+            </div>
+
+            <div class="pagination">
+              <button onclick="previousPage()">Quay lại</button>
+              <span id="pageInfo">Trang 1/100</span>
+              <button onclick="nextPage()">Chuyển tiếp</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal-overlay"
+      id="modalOverlay"
+      onclick="closeModalOnOverlay(event)"
+    >
+      <div class="modal" onclick="event.stopPropagation()">
+        <h2>Đăng ký</h2>
+
+        <div class="form-group">
+          <label>Họ và tên</label>
+          <input type="text" id="name" placeholder="Họ và tên" />
+        </div>
+
+        <div class="form-group">
+          <label>Mã sinh viên</label>
+          <input type="text" id="studentId" placeholder="Mã sinh viên" />
+        </div>
+
+        <div class="form-group">
+          <label>Biển số xe</label>
+          <input type="text" id="licensePlate" placeholder="Biển số xe" />
+        </div>
+
+        <div class="form-group">
+          <label>Loại xe</label>
+          <select id="vehicleType">
+            <option value="">Chọn loại xe</option>
+            <option value="Xe máy">Xe máy</option>
+            <option value="Xe đạp">Xe đạp</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Tình trạng</label>
+          <select id="status">
+            <option value="">Chọn tình trạng</option>
+            <option value="Đã thanh toán">Đã đóng phí</option>
+            <option value="Chưa thanh toán">Chưa đóng phí</option>
+          </select>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn btn-secondary" onclick="closeModal()">
+            Hoàn tác
+          </button>
+          <button class="btn btn-primary" onclick="submitForm()">
+            Đăng kí
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="../js/trang3.js"></script>
+    <script>
+      fetch("sidebar.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("sidebar").innerHTML = html;
+
+          // Thêm CSS
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = "../css/sidebar.css";
+          document.head.appendChild(link);
+
+          // Thêm JS
+          const script = document.createElement("script");
+          script.src = "../js/sidebar.js";
+          document.body.appendChild(script);
+        })
+        .catch((err) => console.error("Không tải được sidebar:", err));
+    </script>
+  </body>
+</html>
