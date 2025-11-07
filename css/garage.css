@@ -117,10 +117,10 @@ tr,
 th,
 td {
   text-align: left;
-  color: #003483;
+  color: #000000;
   font-size: 15px;
   padding: 7px 5px 7px 10px;
-  border: 1px solid #000000;
+  border: 1px solid #ddd;
   border-left: none;
   border-right: none;
   border-collapse: collapse;

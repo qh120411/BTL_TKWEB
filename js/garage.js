@@ -22,7 +22,7 @@ async function main() {
       labels: data.timelist,
       datasets: [
         {
-          label: "Luợng xe vào",
+          label: "Lượng xe vào",
           data: data.xevao,
           borderColor: "rgba( 219, 163, 98, 1)",
           backgroundColor: gradientIN,
@@ -35,7 +35,7 @@ async function main() {
         },
 
         {
-          label: "Luợng xe ra",
+          label: "Lượng xe ra",
           data: data.xera,
           borderColor: "rgba( 182, 211, 250, 1)",
           backgroundColor: gradientOUT,
@@ -62,6 +62,7 @@ async function main() {
       plugins: {
         legend: {
           position: "bottom",
+          align: "center",
           labels: {
             usePointStyle: true,
             pointStyle: "circle",
@@ -70,6 +71,7 @@ async function main() {
               size: 16,
               family: "Arial, sans-serif",
             },
+            padding: 40,
           },
         },
         tooltip: {
