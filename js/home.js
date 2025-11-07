@@ -117,7 +117,7 @@ const myChart = new Chart(linectx, {
 //link ấn trên chart 1
 document.getElementById('xemChiTiet').onclick = function () {
   setTimeout(() => {
-    window.location.href = "../html/management.html";
+    window.location.href = "../html/garage.html";
   }, 500);
 };
 
@@ -210,3 +210,10 @@ new Chart(piectx, {
     },
   ],
 });
+
+//link ấn doanhthu
+document.getElementById('xemdthu').onclick = function () {
+  setTimeout(() => {
+    window.location.href = "../html/revenue_statistics.html";
+  }, 500);
+};
