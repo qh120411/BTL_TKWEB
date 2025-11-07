@@ -479,18 +479,28 @@ function SearchIntable() {
   const query = document.getElementById("search").value.trim().toLowerCase();
   const table = document.getElementById("data-table");
   const resultArea = document.getElementById("result");
+  const paginationControls = document.querySelector(".pagination-controls"); //** */
 
   if (!query) {
     // hiển thị lại table với phân trang
-    if (resultArea) resultArea.style.display = "none";
+    /*if (resultArea) resultArea.style.display = "none";
     if (table) table.style.display = "table";
+    renderPage(currentPage);
+    return;*/
+
+    if (resultArea) {
+      resultArea.style.display = "none";
+      resultArea.innerHTML = "";
+    }
+    if (table) table.style.display = "table";
+    if (paginationControls) paginationControls.style.display = "flex";
     renderPage(currentPage);
     return;
   }
 
   // tìm trong toàn bộ garageData
-  const result = garageData.filter((item) =>
-    [
+  const result = garageData.filter((item) => {
+    /*[
       item.STT,
       item.Chuxe,
       item.MSV,
@@ -502,17 +512,40 @@ function SearchIntable() {
       .join(" ")
       .toLowerCase()
       .includes(query)
-  );
+  );*/
+    const searchString = [
+      item.Chuxe,
+      item.MSV,
+      item.Bienso,
+      item.Thoigianvao,
+      item.Thoigianra,
+      item.Loaixe,
+    ]
+      .filter((val) => val) // loại bỏ giá trị null/undefined
+      .join(" ")
+      .toLowerCase();
+
+    return searchString.includes(query);
+  });
+
+  if (table) table.style.display = "none";
+  if (paginationControls) paginationControls.style.display = "none";
 
   if (resultArea) {
     if (result.length > 0) {
-      table.style.display = "none";
+      /*table.style.display = "none";*/
       resultArea.style.display = "block";
       resultArea.innerHTML = `
-        <table>
+         <table>
           <thead>
             <tr>
-              <th>STT</th><th>Chủ xe</th><th>MSV</th><th>Biển số xe</th><th>Thời gian vào</th><th>Thời gian ra</th><th>Loại xe</th>
+              <th>STT</th>
+              <th>Chủ xe</th>
+              <th>MSV</th>
+              <th>Biển số xe</th>
+              <th>Thời gian vào</th>
+              <th>Thời gian ra</th>
+              <th>Loại xe</th>
             </tr>
           </thead>
           <tbody>
@@ -535,8 +568,10 @@ function SearchIntable() {
       `;
     } else {
       resultArea.style.display = "block";
-      resultArea.innerText = "❌ Không tìm thấy kết quả phù hợp!";
-      table.style.display = "none";
+      //resultArea.innerText = "❌ Không tìm thấy kết quả phù hợp!";
+      //table.style.display = "none";
+      resultArea.innerHTML =
+        '<p class="no-result">❌ Không tìm thấy kết quả phù hợp!</p>';
     }
   }
 }

@@ -78,9 +78,8 @@
               id="search"
               name="q"
               placeholder="Tìm kiếm theo tên chủ xe, mã sinh viên hoặc biển số xe..."
-              oninput="SearchIntable()"
             />
-            <div id="result" style="margin-top: 10px"></div>
+            <div id="result"></div>
           </form>
           <table id="data-table">
             <thead>
@@ -151,9 +150,11 @@
                 <td>Ô tô</td>
               </tr> -->
           </table>
-          <button id="prev-btn" class="btn btn-tertiary">Quay lại</button>
-          <span id="page-info" class="page-info"></span>
-          <button id="next-btn" class="btn btn-tertiary">Chuyển tiếp</button>
+          <div class="pagination-controls">
+            <button id="prev-btn" class="btn btn-tertiary">Quay lại</button>
+            <span id="page-info" class="page-info"></span>
+            <button id="next-btn" class="btn btn-tertiary">Chuyển tiếp</button>
+          </div>
         </div>
       </div>
     </div>
