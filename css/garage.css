@@ -100,7 +100,7 @@ body.dark-mode {
 .chart {
   border-radius: 10px;
   margin-top: 30px;
-  border: var(--text-color) 2px solid;
+  border: var(--text-color) 1px solid;
   background-color: var(--bg-canvas-color);
   color: var(--text-color);
   padding: 5px 10px 5px 10px;
@@ -163,12 +163,12 @@ html body div div div form input {
   justify-content: center;
 }
 .date-control button {
-  border: var(--text-color) 2px solid;
+  border: var(--text-color) 1px solid;
   background-color: var(--bg-canvas-color);
   color: var(--text-color);
 }
 .date-control input {
-  border: var(--text-color) 2px solid;
+  border: var(--text-color) 1px solid;
   background-color: var(--bg-canvas-color);
   color: var(--text-color);
 }
