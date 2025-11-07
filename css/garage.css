@@ -151,3 +151,27 @@ h2 {
   width: 9.6%;
   font-size: 20px;
 }
+.header-top {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 20px;
+  gap: 16px;
+  height: 50px;
+}
+
+.notify {
+  cursor: pointer;
+}
+
+.user-avatar {
+  background: #ffffff;
+  color: #032b64;
+  font-weight: 600;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
