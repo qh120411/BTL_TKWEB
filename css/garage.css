@@ -130,6 +130,9 @@ table {
   border-collapse: collapse;
   margin-top: 50px;
 }
+tbody tr:hover {
+  background-color: rgb(243, 243, 243);
+}
 tr,
 th,
 td {
