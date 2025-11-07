@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "inter", sans-serif;
+  /* font-family: "inter", sans-serif; */
 }
 
 body {
@@ -100,6 +100,11 @@ body {
 .orange {
   background-color: #d68910;
 }
+
+.green {
+  background-color: #7ed6a3;
+}
+
 
 .chart-info {
   display: flex;
