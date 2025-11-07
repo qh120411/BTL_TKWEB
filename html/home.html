@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Liên kết CSS -->
+    <link rel="stylesheet" href="/css/home.css" />
+    <!-- Icon FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Trang chính</title>
+  </head>
+  
+  <script>
+    fetch("sidebar.html")
+    .then((res) => res.text())
+    .then((html) => {
+      document.getElementById("sidebar").innerHTML = html;
+      
+      // Thêm CSS
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "../css/sidebar.css";
+      document.head.appendChild(link);
+      
+      // Thêm JS
+      const script = document.createElement("script");
+      script.src = "../js/sidebar.js";
+      document.body.appendChild(script);
+    })
+    .catch((err) => console.error("Không tải được sidebar:", err));
+  </script>
+
+  <body>
+
+    <div class="app-container">
+      <!-- Sidebar -->
+        <div id = "sidebar"></div>
+        <!-- Nội dung chính -->
+        <div class = "main-content">
+            <h2>Thống kê lượng xe ra/ vào trong ngày hôm nay</h2>
+            <div class = "chart-box">
+                <canvas id ="canvas"></canvas>
+            </div>
+            <span id="xemChiTiet" class="chart-link">Nhấn để xem thống kê chi tiết →</span>
+        </div>
+    </div>
+
+    <div class = ""></div>
+        <div class = "left-container">
+          <h3>Danh sách xe ra/ vào ngày hôm nay</h3>
+          <table class = "table-wrap">
+            <thead>
+              <tr>
+                <th>Chủ xe</th>
+                <th>MSV</th>
+                <th>BSX</th>
+                <th>Loại xe</th>
+                <th>Trạng thái</th>
+                <th>Nhà xe</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <!--phần của js-->
+            </tbody>
+          </table>
+        </div>
+    
+    <script src = "/js/home.js" defer></script>
+  </body>
+  </html>
+  
