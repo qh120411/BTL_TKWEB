@@ -194,3 +194,7 @@ management.addEventListener("click", (e) => {
   e.stopPropagation();
   window.location.href = "management.html";
 });
+Logout.addEventListener("click", (e) => {
+  e.stopPropagation();
+  window.location.href = "../index.html";
+});
