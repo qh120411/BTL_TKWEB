@@ -288,3 +288,13 @@ tr th {
   color: var(--text-color);
   background-color: var(--bg-canvas-color);
 }
+@media (max-width: 720px) {
+  .employee-list {
+    gap: 8px;
+  }
+
+  .employee-item {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}
