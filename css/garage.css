@@ -1,11 +1,56 @@
 body {
   font-family: "inter", sans-serif;
   display: flex;
-  background-color: #e3edf9;
+  background-color: var(--bg-color);
   padding: 0;
   margin: 0;
 }
 :root {
+  --h2-color: #003483;
+  --bg-color: #e4eef9;
+  --button-hover-bg-color: rgb(123, 159, 226);
+  --button-hover-text-color: gray;
+  --bg-canvas-color: white;
+  --text-color: black;
+  --border-color: #ddd;
+  --result-color: #003483;
+  --chart-in-color: rgba(219, 163, 98, 1);
+  --chart-in-bg-top: rgba(219, 163, 98, 0.1);
+  --chart-in-bg-bottom: rgba(219, 163, 98, 0.02);
+
+  --chart-out-color: rgba(182, 211, 250, 1);
+  --chart-out-bg-top: rgba(182, 211, 250, 0.1);
+  --chart-out-bg-bottom: rgba(182, 211, 250, 0.02);
+
+  --chart-text-color: #111;
+  --chart-grid-color: rgba(0, 0, 0, 0.05);
+  --tooltip-bg: rgba(227, 237, 249, 0.95);
+  --tooltip-text: #000000ff;
+}
+/* Dark mode */
+body.dark-mode {
+  --h2-color: rgb(0, 255, 234);
+  --button-hover-bg-color: rgb(255, 0, 34);
+  --button-hover-text-color: rgb(255, 255, 255);
+  --result-color: red;
+  --bg-color: rgb(0, 0, 0);
+  --bg-canvas-color: rgb(29, 29, 29);
+  --text-color: white;
+  --border-color: rgb(59, 228, 228);
+  --chart-in-color: rgba(255, 186, 99, 1);
+  --chart-in-bg-top: rgba(255, 186, 99, 0.2);
+  --chart-in-bg-bottom: rgba(255, 186, 99, 0.05);
+
+  --chart-out-color: rgba(119, 165, 250, 1);
+  --chart-out-bg-top: rgba(119, 165, 250, 0.2);
+  --chart-out-bg-bottom: rgba(119, 165, 250, 0.05);
+
+  --chart-text-color: #f5f5f5;
+  --chart-grid-color: rgba(255, 255, 255, 0.1);
+  --tooltip-bg: rgba(50, 50, 50, 0.95);
+  --tooltip-text: #ffffff;
+}
+/* :root {
   --bg-color: #fff;
   --text-color: black;
   --border-color: #ddd;
@@ -16,7 +61,7 @@ body {
   --bg-color: black;
   --text-color: white;
   --border-color: rgb(59, 228, 228);
-}
+} */
 /* body {
   display: flex;
   background-color: var(--bg-color);
@@ -53,7 +98,8 @@ body {
 .chart {
   border-radius: 10px;
   margin-top: 30px;
-  background-color: var(--bg-color);
+  border: var(--text-color) 2px solid;
+  background-color: var(--bg-canvas-color);
   color: var(--text-color);
   padding: 5px 10px 5px 10px;
   height: 550px;
@@ -62,7 +108,7 @@ body {
   margin-right: auto;
 }
 canvas {
-  background-color: var(--bg-color);
+  background-color: var(--bg-canvas-color);
   color: var(--text-color);
 }
 #container {
@@ -114,7 +160,16 @@ html body div div div form input {
   background-color: var(--bg-color);
   justify-content: center;
 }
-
+.date-control button {
+  border: var(--text-color) 2px solid;
+  background-color: var(--bg-canvas-color);
+  color: var(--text-color);
+}
+.date-control input {
+  border: var(--text-color) 2px solid;
+  background-color: var(--bg-canvas-color);
+  color: var(--text-color);
+}
 html body div div div form button {
   margin-top: 7px;
   height: 40px;
@@ -127,7 +182,8 @@ html body div div div form {
 }
 div .table {
   margin-bottom: 15px;
-  border: #89a8d6 1px solid;
+  border: var(--border-color) 2px solid;
+  background-color: var(--bg-canvas-color);
 }
 table {
   margin: 0px 10px 0px 0px;
@@ -142,7 +198,7 @@ tr,
 th,
 td {
   text-align: left;
-  color: #000000;
+  color: var(--text-color);
   font-size: 18px;
   padding: 10px 5px 10px 10px;
   border: 1px solid #ddd;
@@ -195,7 +251,7 @@ tr th {
 }
 h2 {
   padding-left: 20px;
-  color: #003483;
+  color: var(--h2-color);
 }
 
 .table {
@@ -203,14 +259,15 @@ h2 {
   margin-left: -160px;
   margin-top: 40px;
   padding-top: 1px;
-  background-color: #fff;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   border-radius: 10px;
   padding-bottom: 20px;
 }
 #search {
   width: 100%;
   height: 40px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--text-color);
   border-radius: 5px;
   padding: 0 10px;
   font-size: 16px;
@@ -259,15 +316,32 @@ h2 {
   justify-content: center;
 }
 .btn {
+  color: var(--text-color);
+  background-color: var(--bg-color);
   padding: 10px 20px;
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
-
+/* #prev-btn {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+#next-btn {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+} */
+/* #prev-btn {
+  background-color: var(--button-hover-bg-color);
+  color: var(--button-hovertext-color);
+}
+#next-btn:hover {
+  background-color: var(--button-hover-bg-color);
+  color: var(--button-hovertext-color);
+} */
 .btn-primary {
   background-color: var(--primary-blue);
   color: white;
@@ -280,11 +354,11 @@ h2 {
 .btn-secondary {
   background-color: white;
   color: var(--text-primary);
-  border: 1px solid var(--border-color);
+  border: 2px solid var(--border-color);
 }
 
 .btn-secondary:hover {
-  background-color: #f8f9fa;
+  background-color: #0a6ed3;
 }
 .page-info {
   font-size: 14px;
@@ -292,13 +366,14 @@ h2 {
 }
 
 .btn-tertiary {
-  background-color: #f8f9fa;
-  color: var(--text-primary);
+  background-color: var(--bg-color);
+  color: var(--text-color);
   border: 1px solid var(--border-color);
 }
 
 .btn-tertiary:hover {
-  background-color: #e9ecef;
+  background-color: var(--button-hover-bg-color);
+  color: var(--button-hovertext-color);
 }
 
 .btn:disabled {
