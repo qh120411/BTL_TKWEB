@@ -35,8 +35,8 @@ body.dark-mode {
   --button-hover-bg-color: rgb(255, 0, 34);
   --button-hover-text-color: rgb(255, 255, 255);
   --result-color: red;
-  --bg-color: rgb(0, 0, 0);
-  --bg-canvas-color: rgb(29, 29, 29);
+  --bg-color: #02214d;
+  --bg-canvas-color: #0f1c30;
   --text-color: white;
   --border-color: rgb(59, 228, 228);
   --chart-in-color: rgba(255, 186, 99, 1);

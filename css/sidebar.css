@@ -17,7 +17,7 @@
   color: black;
 }
 .dark-mode .nav-item.open {
-  background: #474747;
+  background: #32527e;
 }
 .sidebar .nav-item img {
   filter: none;
@@ -29,7 +29,7 @@
 }
 
 .dark-mode .sidebar {
-  background-color: #353535;
+  background-color: #32527e;
   color: white;
 }
 
@@ -46,12 +46,12 @@
 }
 
 .dark-mode .submenu-item:hover {
-  background: #3a3a3a;
+  background: #557bb1;
   color: #ffffff;
 }
 
 .dark-mode .submenu-item.active {
-  background: #1f3b66;
+  background: #557bb1;
   color: #7cb8ff;
 }
 
@@ -66,7 +66,7 @@
 .dark-mode .sidebar .nav-item img {
   filter: invert(1) brightness(2);
 }
-img {
+.dark-mode img {
   filter: invert(1) brightness(2);
 }
 
@@ -161,7 +161,7 @@ img {
   background: #f3f4f6;
 }
 .dark-mode .nav-item:hover {
-  background: #474747;
+  background: #557bb1;
 }
 /* Active state cho Trang chủ */
 .nav-item.active {

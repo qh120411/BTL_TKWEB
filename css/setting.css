@@ -10,7 +10,7 @@ body {
   --border-color: #ddd;
 }
 .dark-mode {
-  --bg-color: black;
+  --bg-color: #02214d;
   --text-color: white;
   --border-color: #lightblue;
 }
@@ -42,6 +42,7 @@ h1 {
 }
 .container {
   margin-left: 200px;
+  margin-top: -600px;
   display: flex;
   align-items: center;
 }
