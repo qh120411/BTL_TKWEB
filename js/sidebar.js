@@ -17,7 +17,7 @@ const menuStructure = [
     hasSubmenu: true,
     submenu: [
       { label: "Nhà xe", link: "thongke-nhaxe.html" },
-      { label: "Đăng kí vé Tháng", link: "trang3.html" },
+      { label: "Đăng kí vé Tháng", link: "registrations.html" },
       { label: "Doanh Thu", link: "trang6.html" },
     ],
   },
