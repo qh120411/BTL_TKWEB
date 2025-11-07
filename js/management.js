@@ -133,23 +133,24 @@ function renderEmployeeList() {
 }
 
 // ==================== DRAG & DROP ====================
+// *** THAY ĐỔI: Bỏ phần đổi background và transform, chỉ thêm/xóa class ***
 function initDragDrop() {
   document.querySelectorAll(".shift-card").forEach((card) => {
     card.ondragover = (e) => {
       e.preventDefault();
-      e.currentTarget.style.background = "#d0e4f7";
-      e.currentTarget.style.transform = "scale(1.02)";
+      // *** THAY ĐỔI: Chỉ thêm class để hiển thị border, không đổi màu nền ***
+      e.currentTarget.classList.add("drag-over");
     };
 
     card.ondragleave = (e) => {
-      e.currentTarget.style.background = "#e6eef8";
-      e.currentTarget.style.transform = "scale(1)";
+      // *** THAY ĐỔI: Chỉ xóa class ***
+      e.currentTarget.classList.remove("drag-over");
     };
 
     card.ondrop = (e) => {
       e.preventDefault();
-      e.currentTarget.style.background = "#e6eef8";
-      e.currentTarget.style.transform = "scale(1)";
+      // *** THAY ĐỔI: Xóa class khi drop ***
+      e.currentTarget.classList.remove("drag-over");
 
       if (!draggedEmployee) return;
 
@@ -258,10 +259,9 @@ function removeEmployee(btn) {
   const shiftCard = employeeCard.closest(".shift-card");
 
   if (confirm(`Xóa ${empName} khỏi ca làm việc này?`)) {
+    const parentLine = employeeCard.parentElement;
     employeeCard.remove();
-    employeeCard.parentElement.innerHTML = "";
-
-    // Hiện hint nếu còn trống
+    parentLine.innerHTML = "";
     const filled = shiftCard.querySelectorAll(".assigned-employee").length;
     if (filled === 0) {
       shiftCard.querySelector(".drop-hint").style.display = "block";

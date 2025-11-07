@@ -1,10 +1,50 @@
 :root {
-  --bg: #e3edf9;
-  --panel: #ffffff;
-  --accent: #dfeef8;
-  --muted: #5d6679;
+  --tr-hover-color: rgb(243, 243, 243);
+  --h2-color: #003483;
+  --bg-color: #e3edf9;
+  --button-hover-bg-color: rgb(123, 159, 226);
+  --button-hover-text-color: gray;
+  --bg-canvas-color: white;
+  --text-color: #143a56;
+  --border-color: #ddd;
+  --result-color: #003483;
+  --panel-color: #ffffff;
+  --accent-color: #dfeef8;
+  --muted-color: #5d6679;
   --shadow: 0 6px 12px rgba(30, 60, 90, 0.06);
-  --blue: #2f7dbb;
+  --blue-color: #2f7dbb;
+  --primary-blue: #3a5ba0;
+  --card-bg: #e6eef8;
+  --line-bg: #fff;
+  --employee-item-bg: #f0f4f9;
+  --employee-item-hover: #e0ebf5;
+  --assigned-emp-bg: #e8f0ff;
+  --assigned-emp-border: #b0d0ff;
+}
+
+/* Dark mode */
+body.dark-mode {
+  --tr-hover-color: rgb(80, 80, 80);
+  --h2-color: rgb(255, 255, 255);
+  --button-hover-bg-color: rgb(255, 0, 34);
+  --button-hover-text-color: rgb(255, 255, 255);
+  --result-color: red;
+  --bg-color: #02214d;
+  --bg-canvas-color: #101d31;
+  --text-color: white;
+  --border-color: rgb(255, 255, 255);
+  --panel-color: #1a2942;
+  --accent-color: #1e3a5f;
+  --muted-color: #a8b3c5;
+  --shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  --blue-color: #5b9bd5;
+  --primary-blue: #5b9bd5;
+  --card-bg: #2a3f5f;
+  --line-bg: #1e3a5f;
+  --employee-item-bg: #2a3f5f;
+  --employee-item-hover: #3a5ba0;
+  --assigned-emp-bg: #2a4470;
+  --assigned-emp-border: #4a6fa5;
 }
 
 * {
@@ -12,11 +52,13 @@
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background: #e3edf9;
-  color: #143a56;
+  background: var(--bg-color);
+  color: var(--text-color);
 }
+
 .app {
   display: flex;
   min-height: 100vh;
@@ -38,12 +80,15 @@ body {
   gap: 16px;
   height: 50px;
 }
+
 .notify {
   cursor: pointer;
+  color: var(--text-color);
 }
+
 .user-avatar {
-  background: var(--panel);
-  color: #032b64;
+  background: var(--bg-canvas-color);
+  color: var(--primary-blue);
   font-weight: 600;
   border-radius: 50%;
   width: 34px;
@@ -52,20 +97,21 @@ body {
   align-items: center;
   justify-content: center;
 }
+
 .content {
-  background: var(--panel);
+  background: var(--panel-color);
   margin: 0 20px;
   border-radius: 10px;
   padding: 20px;
   box-shadow: var(--shadow);
 }
+
 /* Section header  */
 .section-header {
   margin-top: 10px;
-  background: var(--panel);
+  background: var(--panel-color);
   padding: 16px 20px;
   border-radius: 10px;
-
   display: flex;
   gap: 15px;
   justify-content: space-between;
@@ -75,6 +121,7 @@ body {
 .section-header h1 {
   font-size: 24px;
   font-weight: 600;
+  color: var(--text-color);
 }
 
 /* Cụm ngày ở giữa */
@@ -87,35 +134,46 @@ body {
 
 /* Nút trái phải */
 .section-header .date-control button {
-  background: #edf0f6;
-  border: 1px solid #cdd5e0;
+  background: var(--accent-color);
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   cursor: pointer;
   padding: 4px 10px;
+  color: var(--text-color);
+}
+
+.section-header .date-control button:hover {
+  background-color: var(--button-hover-bg-color);
+  color: var(--button-hover-text-color);
 }
 
 .section-header .date-control input {
   padding: 5px 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
+  background-color: var(--bg-canvas-color);
+  color: var(--text-color);
 }
 
 .section-header .search-add input {
   padding: 6px 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border-color);
   border-radius: 6px;
+  background-color: var(--bg-canvas-color);
+  color: var(--text-color);
 }
 
 .section-header .search-add button {
-  background-color: #3a5ba0;
+  background-color: var(--primary-blue);
   color: white;
   border-radius: 6px;
   padding: 6px 14px;
   cursor: pointer;
+  border: none;
 }
 
 .section-header .search-add button:hover {
-  background-color: #2c478a;
+  background-color: var(--button-hover-bg-color);
 }
 
 /* Board */
@@ -125,26 +183,31 @@ body {
   flex-direction: column;
   gap: 20px;
 }
+
 .group {
   border-radius: 5px;
 }
+
 .shift-time {
   text-align: center;
-  color: #5d6679;
+  color: var(--muted-color);
 }
+
 .group-title {
-  color: #1f77a3;
+  color: var(--blue-color);
   font-size: 16px;
   font-weight: 700;
   margin-bottom: 10px;
 }
+
 .shifts {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 14px;
 }
+
 .shift-card {
-  background: #e6eef8;
+  background: var(--card-bg);
   border-radius: 10px;
   padding: 14px;
   height: 140px;
@@ -152,16 +215,24 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid rgba(30, 60, 90, 0.04);
+  border: 1px solid var(--border-color);
+  transition: border-color 0.2s ease;
 }
+.shift-card.drag-over {
+  border: 2px dashed var(--primary-blue);
+}
+
 .shift-title {
   font-weight: bold;
   font-size: 14px;
+  color: var(--text-color);
 }
+
 .shift-time {
   font-size: 12px;
-  color: var(--muted);
+  color: var(--muted-color);
 }
+
 .placeholder-lines {
   display: flex;
   flex-direction: column;
@@ -169,19 +240,21 @@ body {
   margin-top: 10px;
   height: 100px;
 }
+
 .line {
   height: 20px;
-  background: #fff;
-  border: 1px solid rgba(30, 60, 90, 0.04);
+  background: var(--line-bg);
+  border: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   padding: 0;
   position: relative;
   overflow: hidden;
 }
+
 .drop-hint {
   font-size: 12px;
-  color: var(--muted);
+  color: var(--muted-color);
   text-align: center;
   padding-top: 6px;
 }
@@ -191,6 +264,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
 @media (max-width: 720px) {
   .app {
     flex-direction: column;
@@ -201,7 +275,7 @@ body {
 
 /* Panel danh sách nhân viên */
 .employee-panel {
-  background: var(--panel);
+  background: var(--panel-color);
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -212,7 +286,7 @@ body {
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 15px;
-  color: #1f77a3;
+  color: var(--blue-color);
 }
 
 .employee-list {
@@ -226,7 +300,7 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #f0f4f9;
+  background: var(--employee-item-bg);
   padding: 8px 12px;
   border-radius: 8px;
   cursor: grab;
@@ -236,8 +310,8 @@ body {
 }
 
 .employee-item:hover {
-  background: #e0ebf5;
-  border-color: #3a5ba0;
+  background: var(--employee-item-hover);
+  border-color: var(--primary-blue);
   transform: translateY(-2px);
 }
 
@@ -259,7 +333,7 @@ body {
   border-radius: 50%;
   background: #ff4444;
   color: white;
-  border: 2px solid white;
+  border: 2px solid var(--panel-color);
   font-size: 12px;
   display: flex;
   align-items: center;
@@ -280,7 +354,7 @@ body {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #3a5ba0;
+  background: var(--primary-blue);
   color: white;
   display: flex;
   align-items: center;
@@ -292,6 +366,7 @@ body {
 .employee-name {
   font-size: 14px;
   font-weight: 500;
+  color: var(--text-color);
 }
 
 /* Nhân viên đã được phân công - hiển thị trong line */
@@ -299,10 +374,10 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #e8f0ff;
+  background: var(--assigned-emp-bg);
   padding: 4px 8px;
   border-radius: 4px;
-  border: 1px solid #b0d0ff;
+  border: 1px solid var(--assigned-emp-border);
   font-size: 12px;
   width: 100%;
   height: 100%;
@@ -312,7 +387,7 @@ body {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #3a5ba0;
+  background: var(--primary-blue);
   color: white;
   display: flex;
   align-items: center;
@@ -329,6 +404,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: 500;
+  color: var(--text-color);
 }
 
 .remove-emp {
