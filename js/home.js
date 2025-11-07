@@ -172,44 +172,85 @@ document.getElementById('xemds').onclick = function () {
 //js 
 
 // Vẽ biểu đồ tròn với Chart.js
-const piectx = document.getElementById("piechart").getContext("2d");
-new Chart(piectx, {
-  type: "doughnut",
-  data: {
-    labels: ["Xe đạp", "Xe máy"],
-    datasets: [
-      {
-        data: [10, 90],
-        backgroundColor: ["#DBA362", "#CEDEF2"],
-        borderWidth: 0,
-      },
-    ],
-  },
-  options: {
-    plugins: {
-      legend: { display: false },
-    },
-    cutout: "70%", // tạo lỗ tròn ở giữa
-  },
-  plugins: [
-    {
+(async function renderPieChart() {
+  const canvas = document.getElementById("piechart");
+  if (!canvas) return; // không có canvas thì bỏ qua
+  const piectx = canvas.getContext("2d");
+
+  try {
+    const response = await fetch("../garagedata.json");
+    const data = await response.json();
+
+    let xeDap = 0, xeMay = 0, xeDien = 0;
+    let tongDoanhThu = 0;
+
+    // (tuỳ trang) nếu không có bảng thì bỏ qua phần đổ bảng
+    const garageTbody = document.querySelector("#garageTable tbody");
+
+    data.forEach((item, index) => {
+      const loaixe = (item.Loaixe || item["Loại xe"] || "").toLowerCase();
+      let doanhThu = 0;
+
+      if (loaixe.includes("điện")) { doanhThu = 3000; xeDien++; }
+      else if (loaixe.includes("máy")) { doanhThu = 3000; xeMay++; }
+      else if (loaixe.includes("đạp")) { doanhThu = 2000; xeDap++; }
+
+      tongDoanhThu += doanhThu;
+
+      if (garageTbody) {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${item.Chuxe || item["Chủ xe"] || "Không rõ"}</td>
+          <td>${item.MSV || item["Mã sinh viên"] || "Không rõ"}</td>
+          <td>${item.Bienso || item["BSX"] || "Không rõ"}</td>
+          <td>${item.Loaixe || item["Loại xe"] || "Không rõ"}</td>
+          <td>${item.Trangthai || item["Trạng thái"] || "Vé ngày"}</td>
+          <td>+${doanhThu.toLocaleString("vi-VN")}đ</td>
+        `;
+        garageTbody.appendChild(row);
+      }
+    });
+
+    const centerTextPlugin = {
       id: "centerText",
       afterDraw(chart) {
         const { ctx, chartArea } = chart;
-        const x = chartArea.left + (chartArea.right - chartArea.left) / 2;
-        const y = chartArea.top + (chartArea.bottom - chartArea.top) / 2;
+        if (!chartArea) return;
+        const x = (chartArea.left + chartArea.right) / 2;
+        const y = (chartArea.top + chartArea.bottom) / 2;
 
-        piectx.save();
-        piectx.font = "bold 16px 'Segoe UI'";
-        piectx.fillStyle = "#06053C"; // màu chữ
-        piectx.textAlign = "center";
-        piectx.textBaseline = "middle";
-        piectx.fillText("Tổng: 15M VND", x, y); // Vẽ chữ ở giữa
-        piectx.restore();
+        ctx.save();
+        ctx.font = "bold 16px 'Segoe UI'";
+        ctx.fillStyle = "#06053C";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(`Tổng: ${tongDoanhThu.toLocaleString("vi-VN")} đ`, x, y);
+        ctx.restore();
+      }
+    };
+
+    new Chart(piectx, {
+      type: "doughnut",
+      data: {
+        labels: ["Xe đạp", "Xe máy", "Xe điện"],
+        datasets: [{
+          data: [xeDap, xeMay, xeDien],
+          backgroundColor: ["#DBA362", "#CEDEF2", "#9FD3C7"],
+          borderWidth: 0
+        }]
       },
-    },
-  ],
-});
+      options: {
+        plugins: { legend: { display: true, position: "bottom" } },
+        cutout: "70%"
+      },
+      plugins: [centerTextPlugin]
+    });
+
+  } catch (error) {
+    console.error("Lỗi khi tải JSON hoặc vẽ biểu đồ:", error);
+  }
+})();
 
 //link ấn doanhthu
 document.getElementById('xemdthu').onclick = function () {
