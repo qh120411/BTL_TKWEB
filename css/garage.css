@@ -6,6 +6,7 @@ body {
   margin: 0;
 }
 :root {
+  --tr-hover-color: rgb(243, 243, 243);
   --h2-color: #003483;
   --bg-color: #e4eef9;
   --button-hover-bg-color: rgb(123, 159, 226);
@@ -29,6 +30,7 @@ body {
 }
 /* Dark mode */
 body.dark-mode {
+  --tr-hover-color: rgb(80, 80, 80);
   --h2-color: rgb(0, 255, 234);
   --button-hover-bg-color: rgb(255, 0, 34);
   --button-hover-text-color: rgb(255, 255, 255);
@@ -192,7 +194,7 @@ table {
   margin-top: 50px;
 }
 tbody tr:hover {
-  background-color: rgb(243, 243, 243);
+  background-color: var(--tr-hover-color);
 }
 tr,
 th,
