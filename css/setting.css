@@ -7,10 +7,12 @@ body {
 :root {
   --bg-color: #fff;
   --text-color: black;
+  --border-color: #ddd;
 }
 .dark-mode {
   --bg-color: black;
   --text-color: white;
+  --border-color: #lightblue;
 }
 .toggle-container {
   border: var(--text-color) 3px solid;
