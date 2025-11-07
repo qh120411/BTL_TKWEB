@@ -1,6 +1,3 @@
-/* --- Phông chữ và Biến màu --- */
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
-
 :root {
     --primary-blue: #367BF5;
     --dark-blue: #182B4E;
@@ -10,7 +7,7 @@
     --text-primary: #343A40;
     --text-secondary: #6C757D;
     --border-color: #E9ECEF;
-    --font-family: 'Be Vietnam Pro', sans-serif;
+    --font-family: 'inter', sans-serif;
 }
 
 * {
