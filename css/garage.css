@@ -120,8 +120,8 @@ html body div div div form {
   display: block;
 }
 table {
-  margin: 0px 10px 0px 10px;
-  width: 98%;
+  margin: 0px 10px 0px 0px;
+  width: 100%;
   border-collapse: collapse;
   margin-top: 50px;
 }
@@ -142,16 +142,16 @@ tr th {
 }
 
 #result {
-  /* margin: 0px 0px 0px -30px;
+  margin: 0px 0px 0px -30px;
   width: 104.3%;
   margin-top: 50px;
   display: none;
   text-align: left;
   color: #003483;
-  font-size: 15px; */
-  margin: 0px 30px;
+  font-size: 15px;
+  /* margin: 0px 30px;
   margin-top: 50px;
-  display: none;
+  display: none; */
 }
 
 #result table {
