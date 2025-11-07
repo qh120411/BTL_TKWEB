@@ -156,6 +156,34 @@ function formatDate(date) {
   const day = String(date.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
+async function loadGarageData() {
+  try {
+    const response = await fetch("../garagedata.json");
+    const data = await response.json();
+
+    const tbody = document.querySelector("#data-table tbody");
+    tbody.innerHTML = "";
+
+    data.forEach((item) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${item.STT}</td>
+        <td>${item.Chuxe}</td>
+        <td>${item.MSV}</td>
+        <td>${item.Bienso}</td>
+        <td>${item.Thoigianvao}</td>
+        <td>${item.Thoigianra}</td>
+        <td>${item.Loaixe}</td>
+      `;
+      tbody.appendChild(row);
+    });
+  } catch (error) {
+    console.error("Lỗi khi tải dữ liệu:", error);
+  }
+}
+
+// Gọi hàm khi trang load
+document.addEventListener("DOMContentLoaded", loadGarageData);
 
 function getDataTable() {
   const rows = document.querySelectorAll("#data-table tbody tr");
@@ -188,15 +216,24 @@ function SearchIntable() {
   );
   const resultArea = document.getElementById("result");
   if (result.length > 0 && find.length > 0) {
+    table.style.display = "none";
+    resultArea.style.display = "block";
+    clear.style.display = "block";
+    button.style.display = "none";
+
     resultArea.innerHTML = result
-      .map((r) => {
-        table.style.display = "none";
-        resultArea.style.display = "block";
-        clear.style.display = "block";
-        button.style.display = "none";
-        return `STT: ${r.STT} | Chủ xe: ${r.Chuxe} | Biển số: ${r.Bienso} | Thời gian vào: ${r.Thoigianvao} | Thời gian ra: ${r.Thoigianra} | Loại xe: ${r.Loaixe}`;
-      })
-      .join("<br>");
+      .map(
+        (r) => `
+        <div style="margin-bottom: 8px; padding-bottom: 8px;padding-left: 10px; border-bottom: 1px solid #ccc;">
+          <span style="display: inline-block; min-width: 250px; margin:5px 30px 5px 30px;"><strong>Chủ xe:</strong> ${r.Chuxe}</span>
+          <span style="display: inline-block; min-width: 120px;margin:5px 30px 5px 30px;"><strong>Biển số:</strong> ${r.Bienso}</span>
+          <span style="display: inline-block; min-width: 180px;margin:5px 30px 5px 30px;"><strong>Thời gian vào:</strong> ${r.Thoigianvao}</span>
+          <span style="display: inline-block; min-width: 180px;margin:5px 30px 5px 30px;"><strong>Thời gian ra:</strong> ${r.Thoigianra}</span>
+          <span style="display: inline-block; min-width: 100px;margin:5px 30px 5px 30px;"><strong>Loại xe:</strong> ${r.Loaixe}</span>
+        </div>
+      `
+      )
+      .join("");
   } else if (find.length == 0) {
     table.style.display = "table";
     button.style.display = "block";
