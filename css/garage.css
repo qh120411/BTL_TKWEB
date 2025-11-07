@@ -1,4 +1,5 @@
 body {
+  font-family: "inter", sans-serif;
   display: flex;
   background-color: #e3edf9;
   padding: 0;
@@ -120,7 +121,7 @@ html body div div div form {
   display: block;
 }
 table {
-  margin: 0px 10px 0px 0px;
+  margin: 0px 10px 0px -2px;
   width: 100%;
   border-collapse: collapse;
   margin-top: 50px;
