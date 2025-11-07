@@ -23,27 +23,28 @@
           <button class="nav-item"><img src="../image/Group 2.svg" /></button>
           <button class="nav-item"><img src="../image/Frame 2.svg" /></button>
         </nav> -->
-        <div id="sidebar"></div>
-            <script>
-      fetch("sidebar.html")
-        .then((res) => res.text())
-        .then((html) => {
-          document.getElementById("sidebar").innerHTML = html;
+      <!-- </aside> -->
+      <div id="sidebar"></div>
+      <script>
+        fetch("sidebar.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("sidebar").innerHTML = html;
 
-          // Thêm CSS
-          const link = document.createElement("link");
-          link.rel = "stylesheet";
-          link.href = "../css/sidebar.css";
-          document.head.appendChild(link);
+            // Thêm CSS
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = "../css/sidebar.css";
+            document.head.appendChild(link);
 
-          // Thêm JS
-          const script = document.createElement("script");
-          script.src = "../js/sidebar.js";
-          document.body.appendChild(script);
-        })
-        .catch((err) => console.error("Không tải được sidebar:", err));
-    </script>
-      </aside>
+            // Thêm JS
+            const script = document.createElement("script");
+            script.src = "../js/sidebar.js";
+            document.body.appendChild(script);
+          })
+          .catch((err) => console.error("Không tải được sidebar:", err));
+      </script>
+      <!--  -->
       <div class="right">
         <div class="buttonbackground">
           <div class="date-control">
@@ -67,8 +68,12 @@
               name="q"
               placeholder="Tìm kiếm theo tên chủ xe, mã sinh viên hoặc biển số xe..."
             />
-            <button id="search-button" type="button" onclick="SearchIntable()">Tìm kiếm</button>
-          <button id="clear" type="button" onclick="location.reload()">clear</button>
+            <button id="search-button" type="button" onclick="SearchIntable()">
+              Tìm kiếm
+            </button>
+            <button id="clear" type="button" onclick="location.reload()">
+              clear
+            </button>
             <div id="result"></div>
           </form>
           <table id="data-table">
