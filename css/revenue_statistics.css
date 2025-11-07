@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #dae2ef;
+  background-color: #e4eef9;
 }
 
 .container {
@@ -35,7 +35,6 @@ body {
   align-items: center;
   justify-content: center;
 }
-
 
 /* Main content */
 .main {
@@ -105,7 +104,6 @@ body {
   background-color: #7ed6a3;
 }
 
-
 .chart-info {
   display: flex;
   flex-direction: column;
@@ -116,18 +114,16 @@ body {
 .chart-info p {
   display: flex;
   align-items: center; /* căn giữa theo chiều dọc */
-  gap: 8px;            /* khoảng cách giữa ô màu và chữ */
-  margin: 0;           /* bỏ margin mặc định */
+  gap: 8px; /* khoảng cách giữa ô màu và chữ */
+  margin: 0; /* bỏ margin mặc định */
   font-size: 14px;
 }
-
-
 
 .chart-info p {
   display: flex;
   align-items: center; /* căn giữa theo chiều dọc */
-  gap: 8px;            /* khoảng cách giữa ô màu và chữ */
-  margin: 0;           /* bỏ margin mặc định */
+  gap: 8px; /* khoảng cách giữa ô màu và chữ */
+  margin: 0; /* bỏ margin mặc định */
   font-size: 15px;
 }
 
@@ -172,4 +168,3 @@ th {
 tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
-
