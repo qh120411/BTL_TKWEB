@@ -2,6 +2,8 @@
 ![Project](https://img.shields.io/badge/Project-Nhóm_1-blue)  
 ![Status](https://img.shields.io/badge/Status-Đang_thực_hiện-green)  
 
+**Link demo**: [Demo](https://qh120411.github.io/BTL_TKWEB/) 
+
 *Bài tập lớn của **nhóm 1** với đề tài: Thiết kế giao diện quản lí cho **nhà xe trường UTC*** 🚍
 
 **HƯỚNG DẪN SỬ DỤNG GIT** --- [Link Github](https://gist.github.com/antruongnguyen/6bb4ebbcb8ad3608eeddff97ca615c47)
@@ -51,16 +53,19 @@
     ├── index.html
     │
     ├── folder css
-    │           └── các folder cho từng chức năng 
+    │           └── các file cho từng chức năng 
     ├── folder js
-    │           └── các folder cho từng chức năng 
+    │           └── các file cho từng chức năng 
     ├── folder html
-    │           └── các folder cho từng chức năng 
+    │           └── các file cho từng chức năng
+    ├── các file .json
+    │
     └── README.md
    ```
 
 
    
+
 
 
 
