@@ -233,7 +233,7 @@ document.getElementById('xemds').onclick = function () {
     new Chart(piectx, {
       type: "doughnut",
       data: {
-        labels: ["Xe đạp", "Xe máy", "Xe điện"],
+        // labels: ["Xe đạp", "Xe máy", "Xe điện"],xấu quá nên đã thay bằng html
         datasets: [{
           data: [xeDap, xeMay, xeDien],
           backgroundColor: ["#DBA362", "#CEDEF2", "#9FD3C7"],
