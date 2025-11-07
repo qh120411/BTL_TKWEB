@@ -29,7 +29,7 @@ submit.addEventListener("click", function (e) {
       message.innerText = "✅ Đăng nhập thành công!";
     }, 1000);
     delay(1500).then(() => {
-      window.location.href = "../html/home.html";
+      window.location.href = "home.html";
     });
     return;
   } else {
