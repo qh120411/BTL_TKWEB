@@ -20,12 +20,18 @@ const menuStructure = [
   },
   { label: "Tra cứu lịch nhận sự", hasSubmenu: false },
 ];
+// thêm chức năng chuyển trang cho nút button
 Home.addEventListener("click", (e) => {
   e.stopPropagation();
   window.location.href = "home_page/home.html";
 });
-const bottomMenuStructure = [{ label: "Cài đặt" }, { label: "Đăng xuất" }];
 
+trang5.addEventListener("click", (e) => {
+  e.stopPropagation();
+  window.location.href = "trang5.html";
+});
+
+const bottomMenuStructure = [{ label: "Cài đặt" }, { label: "Đăng xuất" }];
 // Xử lý menu items chính (3 items đầu)
 menuStructure.forEach((item, index) => {
   if (navItems[index]) {
