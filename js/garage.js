@@ -224,8 +224,9 @@ function SearchIntable() {
     resultArea.innerHTML = result
       .map(
         (r) => `
-        <div style="margin-bottom: 8px; padding-bottom: 8px;padding-left: 10px; border-bottom: 1px solid #ccc;">
-          <span style="display: inline-block; min-width: 250px; margin:5px 30px 5px 30px;"><strong>Chủ xe:</strong> ${r.Chuxe}</span>
+        <div style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ccc;">
+        <span style="display: inline-block; min-width: 60px; margin:5px 0px 5px 5px;"><strong>STT:</strong> ${r.STT}</span>
+          <span style="display: inline-block; min-width: 200px; margin:5px 30px 5px 30px;"><strong>Chủ xe:</strong> ${r.Chuxe}</span>
           <span style="display: inline-block; min-width: 120px;margin:5px 30px 5px 30px;"><strong>Biển số:</strong> ${r.Bienso}</span>
           <span style="display: inline-block; min-width: 180px;margin:5px 30px 5px 30px;"><strong>Thời gian vào:</strong> ${r.Thoigianvao}</span>
           <span style="display: inline-block; min-width: 180px;margin:5px 30px 5px 30px;"><strong>Thời gian ra:</strong> ${r.Thoigianra}</span>
