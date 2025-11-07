@@ -10,130 +10,130 @@ brandTitle.className = "brand-title";
 brandTitle.textContent = "QUẢN LÝ NHÀ XE";
 brand.appendChild(brandTitle);
 
-// Cấu trúc menu
 const menuStructure = [
-  { label: "Trang chủ", hasSubmenu: false },
+  { label: "Trang chủ", hasSubmenu: false, link: "home.html" },
   {
     label: "Thống kê",
     hasSubmenu: true,
-    submenu: ["Nhà xe", "Đăng kí vé Tháng", "Doanh Thu"],
+    submenu: [
+      { label: "Nhà xe", link: "thongke-nhaxe.html" },
+      { label: "Đăng kí vé Tháng", link: "trang3.html" },
+      { label: "Doanh Thu", link: "trang6.html" },
+    ],
   },
-  { label: "Tra cứu lịch nhận sự", hasSubmenu: false },
+  { label: "Tra cứu lịch nhận sự", hasSubmenu: false, link: "trang5.html" },
 ];
-// thêm chức năng chuyển trang cho nút button
-Home.addEventListener("click", (e) => {
-  e.stopPropagation();
-  window.location.href = "home.html";
-});
-
-trang5.addEventListener("click", (e) => {
-  e.stopPropagation();
-  window.location.href = "trang5.html";
-});
 
 const bottomMenuStructure = [{ label: "Cài đặt" }, { label: "Đăng xuất" }];
-// Xử lý menu items chính (3 items đầu)
+
+// Xử lý menu items chính
 menuStructure.forEach((item, index) => {
-  if (navItems[index]) {
-    const navItem = navItems[index];
+  const navItem = navItems[index];
+  if (!navItem) return;
 
-    // Thêm wrapper cho content
-    const wrapper = document.createElement("div");
-    wrapper.className = "nav-item-wrapper";
+  // Wrapper
+  const wrapper = document.createElement("div");
+  wrapper.className = "nav-item-wrapper";
 
-    // Di chuyển img vào wrapper
-    const img = navItem.querySelector("img");
-    if (img) {
-      wrapper.appendChild(img);
-    }
+  // Icon (nếu có)
+  const img = navItem.querySelector("img");
+  if (img) wrapper.appendChild(img);
 
-    // Thêm label
-    const label = document.createElement("span");
-    label.className = "nav-label";
-    label.textContent = item.label;
-    wrapper.appendChild(label);
+  // Label
+  const label = document.createElement("span");
+  label.className = "nav-label";
+  label.textContent = item.label;
+  wrapper.appendChild(label);
 
-    // Nếu có submenu, thêm chevron
-    if (item.hasSubmenu) {
-      const chevron = document.createElement("span");
-      chevron.className = "nav-chevron";
-      chevron.innerHTML = "▼";
-      wrapper.appendChild(chevron);
+  // Nếu có submenu, thêm ▼
+  if (item.hasSubmenu) {
+    const chevron = document.createElement("span");
+    chevron.className = "nav-chevron";
+    chevron.innerHTML = "▼";
+    wrapper.appendChild(chevron);
+    navItem.classList.add("has-submenu");
+  }
 
-      navItem.classList.add("has-submenu");
-    }
+  navItem.appendChild(wrapper);
 
-    navItem.appendChild(wrapper);
+  // Nếu có submenu
+  if (item.hasSubmenu && item.submenu) {
+    const submenuContainer = document.createElement("div");
+    submenuContainer.className = "submenu";
 
-    // Tạo submenu nếu có
-    if (item.hasSubmenu && item.submenu) {
-      const submenuContainer = document.createElement("div");
-      submenuContainer.className = "submenu";
+    item.submenu.forEach((subItem) => {
+      const submenuItem = document.createElement("button");
+      submenuItem.className = "submenu-item";
 
-      item.submenu.forEach((subLabel) => {
-        const submenuItem = document.createElement("button");
-        submenuItem.className = "submenu-item";
+      const bullet = document.createElement("span");
+      bullet.className = "submenu-bullet";
+      submenuItem.appendChild(bullet);
 
-        const bullet = document.createElement("span");
-        bullet.className = "submenu-bullet";
-        submenuItem.appendChild(bullet);
+      const text = document.createElement("span");
+      text.textContent = subItem.label;
+      submenuItem.appendChild(text);
 
-        const text = document.createElement("span");
-        text.textContent = subLabel;
-        submenuItem.appendChild(text);
-
-        submenuItem.addEventListener("click", (e) => {
-          e.stopPropagation();
-          // Xóa active từ tất cả submenu items
-          document
-            .querySelectorAll(".submenu-item")
-            .forEach((si) => si.classList.remove("active"));
-          submenuItem.classList.add("active");
-          console.log(`Clicked submenu: ${subLabel}`);
-        });
-
-        submenuContainer.appendChild(submenuItem);
-      });
-
-      navItem.parentElement.insertBefore(submenuContainer, navItem.nextSibling);
-
-      // Xử lý click để toggle submenu
-      navItem.addEventListener("click", (e) => {
+      submenuItem.addEventListener("click", (e) => {
         e.stopPropagation();
-        const isCurrentlyOpen = navItem.classList.contains("open");
+        document
+          .querySelectorAll(".submenu-item")
+          .forEach((si) => si.classList.remove("active"));
+        submenuItem.classList.add("active");
 
-        // Đóng tất cả submenu khác
-        document.querySelectorAll(".nav-item.open").forEach((item) => {
-          item.classList.remove("open");
-        });
-        document.querySelectorAll(".submenu.show").forEach((sub) => {
-          sub.classList.remove("show");
-        });
-
-        // Toggle submenu hiện tại
-        if (!isCurrentlyOpen) {
-          navItem.classList.add("open");
-          submenuContainer.classList.add("show");
+        if (subItem.link) {
+          window.location.href = subItem.link;
         }
       });
-    } else {
-      // Menu items không có submenu
-      navItem.addEventListener("click", () => {
-        // Xóa active từ tất cả nav items
-        navItems.forEach((item) => item.classList.remove("active"));
-        navItem.classList.add("active");
 
-        // Đóng tất cả submenu
-        document.querySelectorAll(".nav-item.open").forEach((item) => {
-          item.classList.remove("open");
-        });
-        document.querySelectorAll(".submenu.show").forEach((sub) => {
-          sub.classList.remove("show");
-        });
-      });
-    }
+      submenuContainer.appendChild(submenuItem);
+    });
+
+    navItem.insertAdjacentElement("afterend", submenuContainer);
+
+    // Toggle submenu khi click
+    navItem.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = navItem.classList.contains("open");
+
+      document
+        .querySelectorAll(".nav-item.open")
+        .forEach((i) => i.classList.remove("open"));
+      document
+        .querySelectorAll(".submenu.show")
+        .forEach((s) => s.classList.remove("show"));
+
+      if (!isOpen) {
+        navItem.classList.add("open");
+        submenuContainer.classList.add("show");
+      }
+    });
+  } else {
+    // Không có submenu
+    navItem.addEventListener("click", () => {
+      navItems.forEach((i) => i.classList.remove("active"));
+      navItem.classList.add("active");
+
+      if (item.link) {
+        window.location.href = item.link;
+      }
+    });
   }
 });
+
+// Xử lý hover sidebar
+sidebar.addEventListener("mouseenter", () => sidebar.classList.add("expanded"));
+sidebar.addEventListener("mouseleave", () => {
+  sidebar.classList.remove("expanded");
+  document
+    .querySelectorAll(".nav-item.open")
+    .forEach((i) => i.classList.remove("open"));
+  document
+    .querySelectorAll(".submenu.show")
+    .forEach((s) => s.classList.remove("show"));
+});
+
+// Active mặc định
+if (navItems[0]) navItems[0].classList.add("active");
 
 // Xử lý bottom menu items (Cài đặt, Đăng xuất)
 const bottomItemsStartIndex = 3; // Sau spacer
@@ -184,3 +184,13 @@ sidebar.addEventListener("mouseleave", () => {
 if (navItems[0]) {
   navItems[0].classList.add("active");
 }
+// thêm chức năng chuyển trang cho nút button
+Home.addEventListener("click", (e) => {
+  e.stopPropagation();
+  window.location.href = "home.html";
+});
+
+trang5.addEventListener("click", (e) => {
+  e.stopPropagation();
+  window.location.href = "trang5.html";
+});
