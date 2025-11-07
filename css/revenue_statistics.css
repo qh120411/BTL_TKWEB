@@ -101,12 +101,22 @@ body {
   background-color: #d68910;
 }
 
-.chart-info {  
+.chart-info {
   display: flex;
-  flex-direction: column; /* sắp xếp theo cột */
-  gap: 6px;             /* khoảng cách giữa các dòng */
+  flex-direction: column;
+  gap: 6px;
   text-align: left;
 }
+
+.chart-info p {
+  display: flex;
+  align-items: center; /* căn giữa theo chiều dọc */
+  gap: 8px;            /* khoảng cách giữa ô màu và chữ */
+  margin: 0;           /* bỏ margin mặc định */
+  font-size: 14px;
+}
+
+
 
 .chart-info p {
   display: flex;
