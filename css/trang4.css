@@ -12,23 +12,29 @@ body {
   border-radius: 10px;
   margin-top: 30px;
   background-color: #fff;
-
-  height: 750px;
-  width: 1100px;
-  padding: 10px 20px 10px 20px;
+  padding: 5px 10px 5px 10px;
+  height: 550px;
+  width: 880px;
+  margin-left: auto;
+  margin-right: auto;
 }
 #container {
   width: 100%;
   float: left;
 }
 /* Cụm ngày ở giữa */
+
+html body div div div form input {
+  margin-top: 7px;
+  height: 40px;
+  width: 600px;
+}
 .date-control {
   display: flex;
   padding: auto;
   gap: 10px;
   justify-content: center; /* Giúp cụm ngày ra giữa */
 }
-
 /* Nút trái phải */
 .date-control button {
   background: #edf0f6;
@@ -61,11 +67,7 @@ body {
   background-color: #fff;
   justify-content: center;
 }
-html body div div div form input {
-  margin-top: 7px;
-  height: 40px;
-  width: 600px;
-}
+
 html body div div div form button {
   margin-top: 7px;
   height: 40px;
