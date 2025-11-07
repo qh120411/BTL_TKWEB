@@ -1,164 +1,119 @@
-// ==================== DỮ LIỆU ====================
+// Dữ liệu và biến toàn cục
 let employees = [];
+let shifts = {};
 let currentDate = new Date("2025-10-15");
 let draggedEmployee = null;
 
-// ==================== KHỞI TẠO ====================
-document.addEventListener("DOMContentLoaded", function () {
-  console.log("Trang đã load xong");
-  loadEmployees(); // Tải danh sách nhân viên từ localStorage
-  initDatePicker();
-  initSearch();
-  initAddButton();
+// Khởi tạo khi trang load
+document.addEventListener("DOMContentLoaded", () => {
+  loadDataFromStorage();
+  initControls();
   renderEmployeeList();
-  addDragDropHandlers();
+  initDragDrop();
+  restoreShiftAssignments();
 });
 
-// ==================== LƯU TRỮ NHÂN VIÊN ====================
-function saveEmployees() {
+// ==================== LƯU TRỮ DỮ LIỆU ====================
+function saveDataToStorage() {
   try {
     localStorage.setItem("employees", JSON.stringify(employees));
-    console.log("Đã lưu danh sách nhân viên");
+    localStorage.setItem("shifts", JSON.stringify(shifts));
+    localStorage.setItem("currentDate", currentDate.toISOString());
   } catch (e) {
     console.error("Lỗi khi lưu dữ liệu:", e);
   }
 }
 
-function loadEmployees() {
+function loadDataFromStorage() {
   try {
     const savedEmployees = localStorage.getItem("employees");
-    if (savedEmployees) {
-      employees = JSON.parse(savedEmployees);
-      console.log("Đã tải danh sách nhân viên:", employees.length);
-    } else {
-      // Dữ liệu mặc định nếu chưa có
-      employees = [
-        { id: 1, name: "Lê Minh Đức", avatar: "LMĐ" },
-        { id: 2, name: "Trần Quang Huy", avatar: "TQH" },
-        { id: 3, name: "Nguyễn Hoàng Anh", avatar: "NHA" },
-        { id: 4, name: "Đỗ Văn Đạt", avatar: "ĐVĐ" },
-        { id: 5, name: "Nguyễn Văn Hùng", avatar: "NVH" },
-      ];
-      saveEmployees(); // Lưu dữ liệu mặc định
-    }
+    employees = savedEmployees
+      ? JSON.parse(savedEmployees)
+      : [
+          { id: 1, name: "Lê Minh Đức", avatar: "LMĐ" },
+          { id: 2, name: "Trần Quang Huy", avatar: "TQH" },
+          { id: 3, name: "Nguyễn Hoàng Anh", avatar: "NHA" },
+          { id: 4, name: "Đỗ Văn Đạt", avatar: "ĐVĐ" },
+          { id: 5, name: "Nguyễn Văn Hùng", avatar: "NVH" },
+        ];
+
+    const savedShifts = localStorage.getItem("shifts");
+    if (savedShifts) shifts = JSON.parse(savedShifts);
+
+    const savedDate = localStorage.getItem("currentDate");
+    if (savedDate) currentDate = new Date(savedDate);
   } catch (e) {
     console.error("Lỗi khi tải dữ liệu:", e);
   }
 }
 
-// ==================== XỬ LÝ NGÀY THÁNG ====================
-function initDatePicker() {
-  const dateInput = document.querySelector('input[type="date"]');
-  const prevBtn = document.querySelector(".date-control button:first-child");
-  const nextBtn = document.querySelector(".date-control button:last-child");
+// ==================== KHỞI TẠO CONTROLS ====================
+function initControls() {
+  const dateInput = document.getElementById("dateInput");
+  const prevBtn = document.getElementById("prevDay");
+  const nextBtn = document.getElementById("nextDay");
+  const searchInput = document.getElementById("searchInput");
+  const addBtn = document.getElementById("addBtn");
 
-  // Nút lùi ngày
-  prevBtn.addEventListener("click", () => {
-    currentDate.setDate(currentDate.getDate() - 1);
-    dateInput.value = formatDate(currentDate);
-  });
+  dateInput.value = formatDate(currentDate);
 
-  // Nút tiến ngày
-  nextBtn.addEventListener("click", () => {
-    currentDate.setDate(currentDate.getDate() + 1);
-    dateInput.value = formatDate(currentDate);
-  });
-
-  // Khi người dùng chọn ngày
-  dateInput.addEventListener("change", (e) => {
+  // Xử lý ngày tháng
+  prevBtn.onclick = () => changeDate(-1);
+  nextBtn.onclick = () => changeDate(1);
+  dateInput.onchange = (e) => {
     currentDate = new Date(e.target.value);
-  });
+    saveDataToStorage();
+    clearAndRestoreShifts();
+  };
+
+  // Tìm kiếm
+  searchInput.oninput = (e) => {
+    const keyword = e.target.value.toLowerCase();
+    document.querySelectorAll(".employee-item").forEach((item) => {
+      item.style.display = item.dataset.name.toLowerCase().includes(keyword)
+        ? "flex"
+        : "none";
+    });
+  };
+
+  // Thêm nhân viên
+  addBtn.onclick = () => {
+    const name = prompt("Nhập tên nhân viên mới:");
+    if (name && name.trim()) {
+      const words = name.trim().split(" ");
+      const avatar = words
+        .map((w) => w[0])
+        .join("")
+        .toUpperCase()
+        .slice(0, 3);
+      employees.push({ id: Date.now(), name: name.trim(), avatar });
+      saveDataToStorage();
+      renderEmployeeList();
+    }
+  };
+}
+
+function changeDate(days) {
+  currentDate.setDate(currentDate.getDate() + days);
+  document.getElementById("dateInput").value = formatDate(currentDate);
+  saveDataToStorage();
+  clearAndRestoreShifts();
 }
 
 function formatDate(date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(
+    2,
+    "0"
+  )}-${String(date.getDate()).padStart(2, "0")}`;
 }
 
-// ==================== TÌM KIẾM NHÂN VIÊN ====================
-function initSearch() {
-  const searchInput = document.querySelector('.search-add input[type="text"]');
-
-  searchInput.addEventListener("input", (e) => {
-    const keyword = e.target.value.toLowerCase().trim();
-    filterEmployees(keyword);
-  });
-}
-
-function filterEmployees(keyword) {
-  const employeeItems = document.querySelectorAll(".employee-item");
-
-  employeeItems.forEach((item) => {
-    const name = item.dataset.name.toLowerCase();
-    if (name.includes(keyword)) {
-      item.style.display = "flex";
-    } else {
-      item.style.display = "none";
-    }
-  });
-}
-
-// ==================== THÊM NHÂN VIÊN MỚI ====================
-function initAddButton() {
-  const addBtn = document.querySelector(".search-add button");
-  addBtn.addEventListener("click", showAddEmployeeModal);
-}
-
-function showAddEmployeeModal() {
-  const name = prompt("Nhập tên nhân viên mới:");
-
-  if (name && name.trim()) {
-    // Tạo avatar từ chữ cái đầu
-    const words = name.trim().split(" ");
-    const avatar = words
-      .map((w) => w[0])
-      .join("")
-      .toUpperCase()
-      .slice(0, 3);
-
-    const newEmployee = {
-      id: Date.now(), // Sử dụng timestamp để đảm bảo ID duy nhất
-      name: name.trim(),
-      avatar: avatar,
-    };
-
-    employees.push(newEmployee);
-    saveEmployees(); // Lưu ngay sau khi thêm
-    renderEmployeeList();
-  }
-}
-
-// ==================== HIỂN THỊ DANH SÁCH NHÂN VIÊN ====================
+// ==================== HIỂN THỊ NHÂN VIÊN ====================
 function renderEmployeeList() {
-  let employeePanel = document.querySelector(".employee-panel");
-
-  // Tạo panel
-  if (!employeePanel) {
-    employeePanel = document.createElement("div");
-    employeePanel.className = "employee-panel";
-    employeePanel.innerHTML = `
-      <h3>📋 Danh sách nhân viên</h3>
-      <div class="employee-list"></div>
-    `;
-
-    const board = document.querySelector(".board");
-    if (board) {
-      board.parentElement.insertBefore(employeePanel, board);
-    }
-  }
-
-  const employeeList = employeePanel.querySelector(".employee-list");
-
-  // Render từng nhân viên
+  const employeeList = document.getElementById("employeeList");
   employeeList.innerHTML = employees
     .map(
       (emp) => `
-    <div class="employee-item" 
-         draggable="true" 
-         data-id="${emp.id}" 
-         data-name="${emp.name}">
+    <div class="employee-item" draggable="true" data-id="${emp.id}" data-name="${emp.name}">
       <div class="employee-avatar">${emp.avatar}</div>
       <div class="employee-name">${emp.name}</div>
       <button class="delete-employee-btn" onclick="deleteEmployee(${emp.id})" title="Xóa nhân viên">×</button>
@@ -167,171 +122,182 @@ function renderEmployeeList() {
     )
     .join("");
 
-  // Thêm sự kiện drag
-  addEmployeeDragHandlers();
-}
-
-// ==================== DRAG & DROP NHÂN VIÊN ====================
-function addEmployeeDragHandlers() {
-  const employeeItems = document.querySelectorAll(".employee-item");
-
-  employeeItems.forEach((item) => {
-    item.addEventListener("dragstart", handleDragStart);
-    item.addEventListener("dragend", handleDragEnd);
+  // Thêm drag handlers
+  document.querySelectorAll(".employee-item").forEach((item) => {
+    item.ondragstart = (e) => {
+      const emp = employees.find((emp) => emp.id == e.currentTarget.dataset.id);
+      draggedEmployee = emp;
+    };
+    item.ondragend = () => (draggedEmployee = null);
   });
 }
 
-function handleDragStart(e) {
-  const empId = parseInt(e.currentTarget.dataset.id);
-  const empName = e.currentTarget.dataset.name;
-  const empAvatar =
-    e.currentTarget.querySelector(".employee-avatar").textContent;
+// ==================== DRAG & DROP ====================
+function initDragDrop() {
+  document.querySelectorAll(".shift-card").forEach((card) => {
+    card.ondragover = (e) => {
+      e.preventDefault();
+      e.currentTarget.style.background = "#d0e4f7";
+      e.currentTarget.style.transform = "scale(1.02)";
+    };
 
-  draggedEmployee = {
-    id: empId,
-    name: empName,
-    avatar: empAvatar,
-  };
-}
+    card.ondragleave = (e) => {
+      e.currentTarget.style.background = "#e6eef8";
+      e.currentTarget.style.transform = "scale(1)";
+    };
 
-function handleDragEnd(e) {
-  e.currentTarget.style.opacity = "1";
-}
+    card.ondrop = (e) => {
+      e.preventDefault();
+      e.currentTarget.style.background = "#e6eef8";
+      e.currentTarget.style.transform = "scale(1)";
 
-// ==================== DRAG & DROP VÀO CA LÀM VIỆC ====================
-function addDragDropHandlers() {
-  const shiftCards = document.querySelectorAll(".shift-card");
+      if (!draggedEmployee) return;
 
-  shiftCards.forEach((card) => {
-    card.addEventListener("dragover", handleDragOver);
-    card.addEventListener("drop", handleDrop);
-    card.addEventListener("dragleave", handleDragLeave);
+      const placeholderLines =
+        e.currentTarget.querySelector(".placeholder-lines");
+
+      // Kiểm tra trùng
+      if (
+        placeholderLines.querySelector(`[data-emp-id="${draggedEmployee.id}"]`)
+      ) {
+        alert(`Nhân viên ${draggedEmployee.name} đã có trong ca này!`);
+        return;
+      }
+
+      // Tìm line trống
+      const emptyLine = Array.from(
+        placeholderLines.querySelectorAll(".line")
+      ).find((line) => !line.querySelector(".assigned-employee"));
+
+      if (!emptyLine) {
+        alert("Ca này đã đầy! Không thể thêm nhân viên.");
+        return;
+      }
+
+      // Thêm nhân viên
+      emptyLine.innerHTML = `
+        <div class="assigned-employee" data-emp-id="${draggedEmployee.id}">
+          <div class="emp-avatar">${draggedEmployee.avatar}</div>
+          <div class="emp-name">${draggedEmployee.name}</div>
+          <button class="remove-emp" onclick="removeEmployee(this)" title="Xóa khỏi ca">×</button>
+        </div>
+      `;
+
+      // Ẩn hint nếu đầy
+      const lines = placeholderLines.querySelectorAll(".line");
+      const filled =
+        placeholderLines.querySelectorAll(".assigned-employee").length;
+      if (filled >= lines.length) {
+        e.currentTarget.querySelector(".drop-hint").style.display = "none";
+      }
+
+      saveShiftAssignment(e.currentTarget);
+    };
   });
 }
 
-function handleDragOver(e) {
-  e.preventDefault();
-  e.currentTarget.style.background = "#d0e4f7";
-  e.currentTarget.style.transform = "scale(1.02)";
+// ==================== LƯU & KHÔI PHỤC CA ====================
+function getShiftKey(shiftCard) {
+  const garage = shiftCard.closest(".group").dataset.garage;
+  const shift = shiftCard.dataset.shift;
+  return `${formatDate(currentDate)}_${garage}_${shift}`;
 }
 
-function handleDragLeave(e) {
-  e.currentTarget.style.background = "#e6eef8";
-  e.currentTarget.style.transform = "scale(1)";
+function saveShiftAssignment(shiftCard) {
+  const shiftKey = getShiftKey(shiftCard);
+  const assignedEmployees = Array.from(
+    shiftCard.querySelectorAll(".assigned-employee")
+  ).map((emp) => parseInt(emp.dataset.empId));
+
+  shifts[shiftKey] = assignedEmployees;
+  saveDataToStorage();
 }
 
-function handleDrop(e) {
-  e.preventDefault();
-  e.currentTarget.style.background = "#e6eef8";
-  e.currentTarget.style.transform = "scale(1)";
+function restoreShiftAssignments() {
+  document.querySelectorAll(".shift-card").forEach((card) => {
+    const shiftKey = getShiftKey(card);
+    const assignedEmployees = shifts[shiftKey] || [];
+    const lines = card.querySelectorAll(".line");
 
-  if (!draggedEmployee) {
-    console.error("Không có nhân viên được kéo");
-    return;
-  }
+    assignedEmployees.forEach((empId, index) => {
+      if (index < lines.length) {
+        const employee = employees.find((emp) => emp.id === empId);
+        if (employee) {
+          lines[index].innerHTML = `
+            <div class="assigned-employee" data-emp-id="${employee.id}">
+              <div class="emp-avatar">${employee.avatar}</div>
+              <div class="emp-name">${employee.name}</div>
+              <button class="remove-emp" onclick="removeEmployee(this)" title="Xóa khỏi ca">×</button>
+            </div>
+          `;
+        }
+      }
+    });
 
-  const shiftCard = e.currentTarget;
-  const placeholderLines = shiftCard.querySelector(".placeholder-lines");
-
-  // Kiểm tra nhân viên đã có trong ca chưa
-  const existingEmployee = placeholderLines.querySelector(
-    `[data-emp-id="${draggedEmployee.id}"]`
-  );
-  if (existingEmployee) {
-    alert("Nhân viên " + draggedEmployee.name + " đã có trong ca này!");
-    return;
-  }
-
-  // Tìm line trống đầu tiên
-  const emptyLine = Array.from(placeholderLines.querySelectorAll(".line")).find(
-    (line) => {
-      return !line.querySelector(".assigned-employee");
+    // Ẩn hint nếu đầy
+    const filled = card.querySelectorAll(".assigned-employee").length;
+    if (filled >= lines.length) {
+      card.querySelector(".drop-hint").style.display = "none";
     }
-  );
-
-  if (!emptyLine) {
-    alert("Ca này đã đầy! Không thể thêm nhân viên.");
-    return;
-  }
-
-  // Tạo card nhân viên trong line
-  const employeeCard = document.createElement("div");
-  employeeCard.className = "assigned-employee";
-  employeeCard.dataset.empId = draggedEmployee.id;
-  employeeCard.innerHTML = `
-    <div class="emp-avatar">${draggedEmployee.avatar}</div>
-    <div class="emp-name">${draggedEmployee.name}</div>
-    <button class="remove-emp" onclick="removeEmployee(this)" title="Xóa khỏi ca">×</button>
-  `;
-
-  emptyLine.appendChild(employeeCard);
-
-  // Ẩn drop hint nếu tất cả line đã có nhân viên
-  const dropHint = shiftCard.querySelector(".drop-hint");
-  const filledLines = placeholderLines.querySelectorAll(
-    ".line .assigned-employee"
-  ).length;
-  const totalLines = placeholderLines.querySelectorAll(".line").length;
-
-  if (filledLines >= totalLines) {
-    dropHint.style.display = "none";
-  }
-
-  console.log("Đã thêm", draggedEmployee.name, "vào ca làm việc");
+  });
 }
 
-// ==================== XÓA NHÂN VIÊN KHỎI CA ====================
+function clearAndRestoreShifts() {
+  document.querySelectorAll(".shift-card").forEach((card) => {
+    card.querySelectorAll(".assigned-employee").forEach((emp) => emp.remove());
+    card.querySelectorAll(".line").forEach((line) => (line.innerHTML = ""));
+    card.querySelector(".drop-hint").style.display = "block";
+  });
+  restoreShiftAssignments();
+}
+
+// ==================== XÓA NHÂN VIÊN ====================
 function removeEmployee(btn) {
   const employeeCard = btn.parentElement;
   const empName = employeeCard.querySelector(".emp-name").textContent;
   const shiftCard = employeeCard.closest(".shift-card");
-  const placeholderLines = shiftCard.querySelector(".placeholder-lines");
-  const dropHint = shiftCard.querySelector(".drop-hint");
 
-  // Xác nhận xóa
   if (confirm(`Xóa ${empName} khỏi ca làm việc này?`)) {
     employeeCard.remove();
+    employeeCard.parentElement.innerHTML = "";
 
-    // Hiện lại drop hint nếu có line trống
-    const filledLines = placeholderLines.querySelectorAll(
-      ".line .assigned-employee"
-    ).length;
-    if (filledLines === 0) {
-      dropHint.style.display = "block";
+    // Hiện hint nếu còn trống
+    const filled = shiftCard.querySelectorAll(".assigned-employee").length;
+    if (filled === 0) {
+      shiftCard.querySelector(".drop-hint").style.display = "block";
     }
+
+    saveShiftAssignment(shiftCard);
   }
 }
 
 function deleteEmployee(empId) {
   const employee = employees.find((emp) => emp.id === empId);
-
-  if (!employee) {
-    alert("Không tìm thấy nhân viên");
-    return;
-  }
+  if (!employee) return;
 
   if (confirm(`Bạn xác nhận xóa nhân viên "${employee.name}"?`)) {
     employees = employees.filter((emp) => emp.id !== empId);
 
-    // Xóa nhân viên khỏi tất cả các ca
-    const assignedCards = document.querySelectorAll(`[data-emp-id="${empId}"]`);
-    assignedCards.forEach((card) => {
+    // Xóa khỏi tất cả ca
+    document.querySelectorAll(`[data-emp-id="${empId}"]`).forEach((card) => {
       const shiftCard = card.closest(".shift-card");
-      const dropHint = shiftCard.querySelector(".drop-hint");
       card.remove();
+      card.parentElement.innerHTML = "";
 
-      const placeholderLines = shiftCard.querySelector(".placeholder-lines");
-      const filledLines = placeholderLines.querySelectorAll(
-        ".line .assigned-employee"
-      ).length;
-      if (filledLines === 0) {
-        dropHint.style.display = "block";
+      const filled = shiftCard.querySelectorAll(".assigned-employee").length;
+      if (filled === 0) {
+        shiftCard.querySelector(".drop-hint").style.display = "block";
       }
+
+      saveShiftAssignment(shiftCard);
     });
 
-    saveEmployees(); // Lưu sau khi xóa
-    renderEmployeeList();
+    // Xóa khỏi shifts
+    Object.keys(shifts).forEach((shiftKey) => {
+      shifts[shiftKey] = shifts[shiftKey].filter((id) => id !== empId);
+    });
 
-    console.log(`Đã xóa nhân viên: ${employee.name}`);
+    saveDataToStorage();
+    renderEmployeeList();
   }
 }
