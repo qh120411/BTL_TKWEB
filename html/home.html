@@ -30,44 +30,69 @@
     })
     .catch((err) => console.error("Không tải được sidebar:", err));
   </script>
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <body>
 
     <div class="app-container">
-      <!-- Sidebar -->
+        <!-- Sidebar -->
         <div id = "sidebar"></div>
+
         <!-- Nội dung chính -->
-        <div class = "main-content">
+        <div class = "main-container">
+          <div class = "main-content">
             <h2>Thống kê lượng xe ra/ vào trong ngày hôm nay</h2>
             <div class = "chart-box">
-                <canvas id ="canvas"></canvas>
+                <canvas id ="linechart"></canvas>
             </div>
-            <span id="xemChiTiet" class="chart-link">Nhấn để xem thống kê chi tiết →</span>
-        </div>
+            <span id="xemChiTiet" class="chart-link">
+                Nhấn để xem thống kê chi tiết →
+            </span>
+          </div>
+        
+        <div class = "under-container">
+          <div class = "under-left-container">
+              <h3>Danh sách xe ra/ vào ngày hôm nay</h3>
+              <table class = "table-wrap">
+                <thead>
+                  <tr>
+                    <th>Chủ xe</th>
+                    <th>MSV</th>
+                    <th>BSX</th>
+                    <th>Loại xe</th>
+                    <th>Trạng thái</th>
+                    <th>Nhà xe</th>
+                  </tr>
+                </thead>
+            
+                <tbody id = "parking-body">
+                  <!--phần của js-->
+                </tbody>
+              </table>
+              <span id="xemds" class="chart-link">
+                  Nhấn để xem toàn bộ danh sách→
+              </span>
+            </div>
+
+          <div class = "under-right-container">
+              <h3>Thông kê doanh thu hôm nay</h3>
+              <div class="chart-container">
+                <canvas id="piechart"></canvas>
+                <div class="chart-info">
+                  <p><span class="color-box blue"></span> Xe máy</p>
+                  <p><span class="color-box orange"></span> Xe đạp</p>
+                  <p><strong>Tổng:</strong> 15M vnd</p>
+                </div>
+              </div>
+              <span id="xemds" class="chart-link">
+                  Nhấn để xem thống kê doanh thu→
+              </span>
+          </div>
+        
     </div>
-
-    <div class = ""></div>
-        <div class = "left-container">
-          <h3>Danh sách xe ra/ vào ngày hôm nay</h3>
-          <table class = "table-wrap">
-            <thead>
-              <tr>
-                <th>Chủ xe</th>
-                <th>MSV</th>
-                <th>BSX</th>
-                <th>Loại xe</th>
-                <th>Trạng thái</th>
-                <th>Nhà xe</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <!--phần của js-->
-            </tbody>
-          </table>
-        </div>
-    
     <script src = "/js/home.js" defer></script>
+
   </body>
   </html>
   
+
+

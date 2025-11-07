@@ -1,16 +1,15 @@
 // biểu đồ js
+const linectx = document.getElementById("linechart").getContext("2d");
 
-const ctx = document.getElementById("canvas").getContext("2d");
-
-const gradientIN = ctx.createLinearGradient(0, 0, 0, 400);
+const gradientIN = linectx.createLinearGradient(0, 0, 0, 400);
 gradientIN.addColorStop(0, "rgba(219, 163, 98, 0.1)");
 gradientIN.addColorStop(1, "rgba(219, 163, 98, 0.02)");
 
-const gradientOUT = ctx.createLinearGradient(0, 0, 0, 400);
+const gradientOUT = linectx.createLinearGradient(0, 0, 0, 400);
 gradientOUT.addColorStop(0, "rgba( 182, 211, 250, 0.1)");
 gradientOUT.addColorStop(1, "rgba( 182, 211, 250, 0.02)");
 
-const myChart = new Chart(ctx, {
+const myChart = new Chart(linectx, {
   type: "line",
   data: {
     labels: ["0h", "7h", "9h", "11h", "13h", "15h", "17h", "19h", "21h", "22h"],
@@ -44,8 +43,7 @@ const myChart = new Chart(ctx, {
   },
   options: {
     responsive: true,
-  maintainAspectRatio: false,
-
+    maintainAspectRatio: false,
     animation: {
       duration: 1200,
       easing: "easeOutQuart",
@@ -116,6 +114,99 @@ const myChart = new Chart(ctx, {
 //link ấn trên chart 1
 document.getElementById('xemChiTiet').onclick = function () {
   setTimeout(() => {
-    window.location.href = "../html/trang5.html";
+    window.location.href = "../html/management.html";
   }, 500);
 };
+
+// ===== Danh sách xe ra/vào hôm nay (lấy 4 người đầu từ data.json) =====
+(function loadTop4FromJSON() {
+  // chỉnh đường dẫn phù hợp dự án của bạn: "../data.json" hoặc "./data.json"
+  const CANDIDATE_PATHS = ["../data.json", "./data.json", "/data.json"];
+
+  const tryFetch = (paths) => {
+    if (!paths.length) {
+      console.error("Không tìm thấy file data.json ở các đường dẫn đã thử.");
+      document.getElementById("parking-body").innerHTML =
+        `<tr><td colspan="6" style="text-align:center;color:red">Không thể tải dữ liệu.</td></tr>`;
+      return;
+    }
+    const p = paths[0];
+    fetch(p)
+      .then(r => { if (!r.ok) throw new Error(p + " not ok"); return r.json(); })
+      .then(data => {
+        const top4 = (Array.isArray(data) ? data : []).slice(0, 4);
+        const tbody = document.getElementById("parking-body");
+        if (!tbody) return;
+
+        tbody.innerHTML = top4.map(item => `
+          <tr>
+            <td>${item.chuXe ?? ""}</td>
+            <td>${item.maSinhVien ?? ""}</td>
+            <td>${item.bsx && item.bsx.trim() !== "" ? item.bsx : "—"}</td>
+            <td>${item.loaiXe ?? ""}</td>
+            <td>
+              <span class="time in">${item.gioVao ?? ""}</span>
+              <span class="time out">${item.gioRa ?? ""}</span>
+            </td>
+            <td>${item.nhaXe ?? ""}</td>
+          </tr>
+        `).join("");
+      })
+      .catch(() => tryFetch(paths.slice(1))); // thử path khác nếu fail
+  };
+
+  tryFetch(CANDIDATE_PATHS);
+})();
+
+//link ấn ds
+document.getElementById('xemds').onclick = function () {
+  setTimeout(() => {
+    window.location.href = "../html/garage.html";
+  }, 500);
+};
+
+
+//js 
+
+// Vẽ biểu đồ tròn với Chart.js
+const piectx = document.getElementById("piehart").getContext("2d");
+new Chart(piectx, {
+  type: "doughnut",
+  data: {
+    labels: ["Xe đạp", "Xe máy"],
+    datasets: [
+      {
+        data: [10, 90],
+        backgroundColor: ["#DBA362", "#CEDEF2"],
+        borderWidth: 0,
+      },
+    ],
+  },
+  options: {
+    plugins: {
+      legend: { display: false },
+    },
+    cutout: "70%", // tạo lỗ tròn ở giữa
+  },
+  plugins: [
+    {
+      id: "centerText",
+      afterDraw(chart) {
+        const { ctx, chartArea } = chart;
+        const x = chartArea.left + (chartArea.right - chartArea.left) / 2;
+        const y = chartArea.top + (chartArea.bottom - chartArea.top) / 2;
+
+        piectx.save();
+        piectx.font = "bold 16px 'Segoe UI'";
+        piectx.fillStyle = "#06053C"; // màu chữ
+        piectx.textAlign = "center";
+        piectx.textBaseline = "middle";
+        piectx.fillText("Tổng: 15M VND", x, y); // Vẽ chữ ở giữa
+        piectx.restore();
+      },
+    },
+  ],
+});
+
+
+
