@@ -277,6 +277,7 @@ document.getElementById("xemds").onclick = function () {
             backgroundColor: ["#c57a25ff", "#3272c0ff", "#20cea5ff"],
             hoverBackgroundColor: ["#ff8800ff", "#00aeffff", "#00ffc8ff"],
             borderWidth: 0,
+            hoverOffset: 20,
           },
         ],
       },
