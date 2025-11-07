@@ -29,7 +29,6 @@
 .menu-btn {
   border: none;
   background: transparent;
-  cursor: pointer;
   flex-shrink: 0;
 }
 
