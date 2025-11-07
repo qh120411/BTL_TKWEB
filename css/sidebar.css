@@ -167,7 +167,12 @@
 .nav-item.active {
   background: #eff6ff;
 }
-
+.dark-mode .nav-item.active {
+  background: #557bb1;
+}
+.dark-mode .nav-item.active .nav-label {
+  color: #ffffff;
+}
 .nav-item.active .nav-label {
   color: #2563eb;
 }
