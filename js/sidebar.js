@@ -23,7 +23,7 @@ const menuStructure = [
 // thêm chức năng chuyển trang cho nút button
 Home.addEventListener("click", (e) => {
   e.stopPropagation();
-  window.location.href = "home_page/home.html";
+  window.location.href = "home.html";
 });
 
 trang5.addEventListener("click", (e) => {
