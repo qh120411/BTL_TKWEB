@@ -207,44 +207,62 @@ function getDataTable() {
 
 function SearchIntable() {
   let find = document.getElementById("search").value.toLowerCase();
-  data = getDataTable();
-  table = document.getElementById("data-table");
-  clear = document.getElementById("clear");
-  button = document.getElementById("search-button");
+  let data = getDataTable();
+  let table = document.getElementById("data-table");
+  let resultArea = document.getElementById("result");
+
+  // Nếu không nhập gì thì hiện lại bảng gốc
+  if (find.trim().length === 0) {
+    table.style.display = "table";
+    resultArea.style.display = "none";
+    return;
+  }
+
+  // Lọc dữ liệu
   const result = data.filter((item) =>
     Object.values(item).some((val) => val.toLowerCase().includes(find))
   );
-  const resultArea = document.getElementById("result");
-  if (result.length > 0 && find.length > 0) {
+
+  // Nếu có kết quả
+  if (result.length > 0) {
     table.style.display = "none";
     resultArea.style.display = "block";
-    clear.style.display = "block";
-    button.style.display = "none";
-
-    resultArea.innerHTML = result
-      .map(
-        (r) => `
-        <div style="margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px solid #ccc;">
-        <span style="display: inline-block; min-width: 60px; margin:5px 0px 5px 5px;"><strong>STT:</strong> ${r.STT}</span>
-          <span style="display: inline-block; min-width: 200px; margin:5px 30px 5px 30px;"><strong>Chủ xe:</strong> ${r.Chuxe}</span>
-          <span style="display: inline-block; min-width: 120px;margin:5px 30px 5px 30px;"><strong>Biển số:</strong> ${r.Bienso}</span>
-          <span style="display: inline-block; min-width: 180px;margin:5px 30px 5px 30px;"><strong>Thời gian vào:</strong> ${r.Thoigianvao}</span>
-          <span style="display: inline-block; min-width: 180px;margin:5px 30px 5px 30px;"><strong>Thời gian ra:</strong> ${r.Thoigianra}</span>
-          <span style="display: inline-block; min-width: 100px;margin:5px 30px 5px 30px;"><strong>Loại xe:</strong> ${r.Loaixe}</span>
-        </div>
+    resultArea.innerHTML = `
+  <table>
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Chủ xe</th>
+        <th>MSV</th>
+        <th>Biển số xe</th>
+        <th>Thời gian vào</th>
+        <th>Thời gian ra</th>
+        <th>Loại xe</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${result
+        .map(
+          (r) => `
+        <tr>
+          <td>${r.STT}</td>
+          <td>${r.Chuxe}</td>
+          <td>${r.MSV}</td>
+          <td>${r.Bienso}</td>
+          <td>${r.Thoigianvao}</td>
+          <td>${r.Thoigianra}</td>
+          <td>${r.Loaixe}</td>
+        </tr>
       `
-      )
-      .join("");
-  } else if (find.length == 0) {
-    table.style.display = "table";
-    button.style.display = "block";
-    resultArea.style.display = "none";
-    clear.style.display = "none";
+        )
+        .join("")}
+    </tbody>
+  </table>
+`;
   } else {
+    // Không tìm thấy
+    resultArea.style.display = "block";
     resultArea.innerText = "❌ Không tìm thấy kết quả phù hợp!";
     table.style.display = "none";
-    resultArea.style.display = "block";
-    clear.style.display = "block";
-    button.style.display = "none";
   }
 }

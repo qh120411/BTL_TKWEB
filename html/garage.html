@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Nhà xe</title>
     <link rel="stylesheet" href="../css/garage.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
@@ -72,14 +72,9 @@
               id="search"
               name="q"
               placeholder="Tìm kiếm theo tên chủ xe, mã sinh viên hoặc biển số xe..."
+              oninput="SearchIntable()"
             />
-            <button id="search-button" type="button" onclick="SearchIntable()">
-              Tìm kiếm
-            </button>
-            <button id="clear" type="button" onclick="location.reload()">
-              clear
-            </button>
-            <div id="result"></div>
+            <div id="result" style="margin-top: 10px"></div>
           </form>
           <table id="data-table">
             <thead>
