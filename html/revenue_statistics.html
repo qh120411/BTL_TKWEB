@@ -29,39 +29,37 @@
           <h3>Doanh thu</h3>
           <div id="tester">
             <div class="chart-container">
-            <canvas id="pieChart"></canvas>
-            <div class="chart-info">
-              <p><span class="color-box orange"></span> Xe đạp</p>
-              <p><span class="color-box blue"></span> Xe máy</p>
-              <p><span class="color-box green"></span> Xe đạp điện</p>
-              <!-- <p><strong>Tổng:</strong> 15M vnd</p> -->
+              <canvas id="pieChart"></canvas>
+              <div class="chart-info">
+                <p><span class="color-box orange"></span> Xe đạp</p>
+                <p><span class="color-box blue"></span> Xe máy</p>
+                <p><span class="color-box green"></span> Xe đạp điện</p>
+                <!-- <p><strong>Tổng:</strong> 15M vnd</p> -->
+              </div>
             </div>
           </div>
-          </div>
-          
         </section>
 
         <!-- Lịch sử giao dịch -->
         <section class="history">
           <h3>Lịch sử giao dịch</h3>
 
- <table id="garageTable">
-    <thead>
-      <tr>
-        <th>STT</th>
-        <th>Chủ xe</th>
-        <th>Mã sinh viên</th>
-        <th>BSX</th>
-        <th>Loại xe</th>
-        <th>Trạng thái</th>
-        <th>Doanh thu</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Hàng dữ liệu từ JSON sẽ được JS render -->
-    </tbody>
-  </table>
-
+          <table id="garageTable">
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>Chủ xe</th>
+                <th>Mã sinh viên</th>
+                <th>BSX</th>
+                <th>Loại xe</th>
+                <th>Trạng thái</th>
+                <th>Doanh thu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Hàng dữ liệu từ JSON sẽ được JS render -->
+            </tbody>
+          </table>
         </section>
       </main>
     </div>
@@ -88,5 +86,6 @@
         })
         .catch((err) => console.error("Không tải được sidebar:", err));
     </script>
+    <script src="../js/setting.js"></script>
   </body>
 </html>

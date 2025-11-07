@@ -8,7 +8,12 @@
 body {
   background-color: #e4eef9;
 }
-
+.dark-mode body {
+  background-color: #000000;
+}
+.dark-mode .container {
+  background-color: #000000;
+}
 .container {
   display: flex;
   min-height: 100vh;

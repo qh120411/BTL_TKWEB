@@ -1,4 +1,3 @@
-
 // biểu đồ js
 const linectx = document.getElementById("linechart").getContext("2d");
 
@@ -11,7 +10,6 @@ gradientOUT.addColorStop(0, "rgba( 182, 211, 250, 0.1)");
 gradientOUT.addColorStop(1, "rgba( 182, 211, 250, 0.02)");
 
 const myChart = new Chart(linectx, {
-
   type: "line",
   data: {
     labels: ["0h", "7h", "9h", "11h", "13h", "15h", "17h", "19h", "21h", "22h"],
@@ -113,9 +111,8 @@ const myChart = new Chart(linectx, {
   },
 });
 
-
 //link ấn trên chart 1
-document.getElementById('xemChiTiet').onclick = function () {
+document.getElementById("xemChiTiet").onclick = function () {
   setTimeout(() => {
     window.location.href = "../html/garage.html";
   }, 500);
@@ -129,19 +126,25 @@ document.getElementById('xemChiTiet').onclick = function () {
   const tryFetch = (paths) => {
     if (!paths.length) {
       console.error("Không tìm thấy file data.json ở các đường dẫn đã thử.");
-      document.getElementById("parking-body").innerHTML =
-        `<tr><td colspan="6" style="text-align:center;color:red">Không thể tải dữ liệu.</td></tr>`;
+      document.getElementById(
+        "parking-body"
+      ).innerHTML = `<tr><td colspan="6" style="text-align:center;color:red">Không thể tải dữ liệu.</td></tr>`;
       return;
     }
     const p = paths[0];
     fetch(p)
-      .then(r => { if (!r.ok) throw new Error(p + " not ok"); return r.json(); })
-      .then(data => {
+      .then((r) => {
+        if (!r.ok) throw new Error(p + " not ok");
+        return r.json();
+      })
+      .then((data) => {
         const top4 = (Array.isArray(data) ? data : []).slice(0, 4);
         const tbody = document.getElementById("parking-body");
         if (!tbody) return;
 
-        tbody.innerHTML = top4.map(item => `
+        tbody.innerHTML = top4
+          .map(
+            (item) => `
           <tr>
             <td>${item.chuXe ?? ""}</td>
             <td>${item.maSinhVien ?? ""}</td>
@@ -153,7 +156,9 @@ document.getElementById('xemChiTiet').onclick = function () {
             </td>
             <td>${item.nhaXe ?? ""}</td>
           </tr>
-        `).join("");
+        `
+          )
+          .join("");
       })
       .catch(() => tryFetch(paths.slice(1))); // thử path khác nếu fail
   };
@@ -162,14 +167,13 @@ document.getElementById('xemChiTiet').onclick = function () {
 })();
 
 //link ấn ds
-document.getElementById('xemds').onclick = function () {
+document.getElementById("xemds").onclick = function () {
   setTimeout(() => {
     window.location.href = "../html/garage.html";
   }, 500);
 };
 
-
-//js 
+//js
 
 // Vẽ biểu đồ tròn với Chart.js
 (async function renderPieChart() {
@@ -181,7 +185,9 @@ document.getElementById('xemds').onclick = function () {
     const response = await fetch("../garagedata.json");
     const data = await response.json();
 
-    let xeDap = 0, xeMay = 0, xeDien = 0;
+    let xeDap = 0,
+      xeMay = 0,
+      xeDien = 0;
     let tongDoanhThu = 0;
 
     // (tuỳ trang) nếu không có bảng thì bỏ qua phần đổ bảng
@@ -191,9 +197,16 @@ document.getElementById('xemds').onclick = function () {
       const loaixe = (item.Loaixe || item["Loại xe"] || "").toLowerCase();
       let doanhThu = 0;
 
-      if (loaixe.includes("điện")) { doanhThu = 3000; xeDien++; }
-      else if (loaixe.includes("máy")) { doanhThu = 3000; xeMay++; }
-      else if (loaixe.includes("đạp")) { doanhThu = 2000; xeDap++; }
+      if (loaixe.includes("điện")) {
+        doanhThu = 3000;
+        xeDien++;
+      } else if (loaixe.includes("máy")) {
+        doanhThu = 3000;
+        xeMay++;
+      } else if (loaixe.includes("đạp")) {
+        doanhThu = 2000;
+        xeDap++;
+      }
 
       tongDoanhThu += doanhThu;
 
@@ -227,33 +240,34 @@ document.getElementById('xemds').onclick = function () {
         ctx.textBaseline = "middle";
         ctx.fillText(`Tổng: ${tongDoanhThu.toLocaleString("vi-VN")} đ`, x, y);
         ctx.restore();
-      }
+      },
     };
 
     new Chart(piectx, {
       type: "doughnut",
       data: {
         // labels: ["Xe đạp", "Xe máy", "Xe điện"],xấu quá nên đã thay bằng html
-        datasets: [{
-          data: [xeDap, xeMay, xeDien],
-          backgroundColor: ["#DBA362", "#CEDEF2", "#9FD3C7"],
-          borderWidth: 0
-        }]
+        datasets: [
+          {
+            data: [xeDap, xeMay, xeDien],
+            backgroundColor: ["#DBA362", "#CEDEF2", "#9FD3C7"],
+            borderWidth: 0,
+          },
+        ],
       },
       options: {
         plugins: { legend: { display: true, position: "bottom" } },
-        cutout: "70%"
+        cutout: "70%",
       },
-      plugins: [centerTextPlugin]
+      plugins: [centerTextPlugin],
     });
-
   } catch (error) {
     console.error("Lỗi khi tải JSON hoặc vẽ biểu đồ:", error);
   }
 })();
 
 //link ấn doanhthu
-document.getElementById('xemdthu').onclick = function () {
+document.getElementById("xemdthu").onclick = function () {
   setTimeout(() => {
     window.location.href = "../html/revenue_statistics.html";
   }, 500);
