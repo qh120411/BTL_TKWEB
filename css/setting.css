@@ -1,0 +1,29 @@
+body {
+  display: flex;
+  background-color: var(--bg-color);
+  padding: 0px;
+}
+:root {
+  --bg-color: #fff;
+  --text-color: black;
+}
+.dark-mode {
+  --bg-color: black;
+  --text-color: white;
+}
+.toggle-container {
+  width: 300px;
+  height: 300px;
+  background-color: blue;
+  display: flex;
+  align-items: center;
+}
+.toggle {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  transition: transform 0.5s, backgroud-color 0.5s;
+}
+#switchModeBtn:checked + .toggle-container .toggle {
+  transform: translateX(160px);
+}
