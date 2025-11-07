@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             console.log("Không tìm thấy localStorage. Đang tải từ data.json...");
             try {
-                const response = await fetch('data.json');
+                const response = await fetch('../data.json');
                 if (!response.ok) throw new Error("Không thể tải file data.json");
                 const data_from_json = await response.json();
                 allData = data_from_json.map((item, index) => ({
