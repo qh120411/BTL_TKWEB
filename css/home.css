@@ -1,137 +1,140 @@
 :root {
-  --bg-color: rgba(227, 237, 249, 0.95);
-  --text-color: #053370;
+    --bg-color: rgba(227, 237, 249, 0.95);
+    --text-color: #053370;
 }
 
 body {
-  margin: 0; /* <<< quan trọng */
-  padding: 0;
-  background-color: var(--bg-color);
-  font-family: "inter", sans-serif;
+    margin: 0;            /* <<< quan trọng */
+    padding: 0;
+    background-color: var(--bg-color);
+    font-family: "inter", sans-serif;
 }
 
 #sidebar {
-  height: 100vh;
+    height: 100vh;
 }
 
 .app-container {
-  display: flex;
-  height: 100vh;
-  justify-content: flex-start;
-  align-items: stretch;
+    display: flex;
+    height: 100vh;
+    justify-content: flex-start;
+    align-items: stretch;
+
 }
 
 .main-container {
-  flex-direction: column;
-  display: flex;
-  width: 100%;
-  padding: 40px;
+    flex-direction: column;
+    display:flex;  
+    width: 100%;
+    padding: 40px;
 }
 
 #linechart {
-  width: 100%;
-  height: 400px;
+    width: 100%;
+    height: 400px;
 }
 
 .main-content {
-  position: relative;
-  margin: 0 auto 20px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 850px;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  margin-bottom: 20px;
+    position: relative;
+    margin:0 auto 20px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 850px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
 }
 
 .main-content h2 {
-  color: var(--text-color);
-  gap: 15px;
-  text-align: center;
+    color: var(--text-color);
+    gap: 15px;
+    text-align: center;
 }
 
-.chart-box {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.chart-box{              
+    width:100%;
+    display:flex;
+    justify-content:center;
 }
 
 .chart-link {
-  position: absolute;
-  bottom: 10px; /* cách đáy 10px */
-  right: 20px; /* cách lề phải 20px */
-  color: #1e5bd8; /* xanh giống hình */
-  text-decoration: underline;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 15px;
+    position: absolute;
+    bottom: 10px;      /* cách đáy 10px */
+    right: 20px;       /* cách lề phải 20px */
+    color: #1e5bd8;    /* xanh giống hình */
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 15px;
 }
 
 .chart-link:hover {
-  color: #0a3db8; /* đổi màu khi hover */
+    color: #0a3db8;    /* đổi màu khi hover */
 }
+
 
 /* bang goc duoi */
 
 .under-container {
-  display: flex;
-  justify-content: center; /* canh giữa toàn bộ hàng */
-  gap: 10%;
-  align-items: stretch;
-  flex-wrap: wrap; /* để responsive */
+    display: flex;
+    justify-content: center; /* canh giữa toàn bộ hàng */
+    gap: 10%;
+    align-items: stretch;
+    flex-wrap: wrap; /* để responsive */
 }
 
+
 .under-left-container {
-  position: relative;
-  background-color: white;
-  font-family: "inter", sans-serif;
-  border: 1.5px solid #d6e4f5;
-  border-radius: 10px;
-  padding: 16px;
-  margin: 24px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  height: auto;
+    position: relative;
+    background-color: white;
+    font-family: "inter", sans-serif;
+    border: 1.5px solid #d6e4f5;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 24px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    height: auto;
 }
 
 .under-left-container h3 {
-  text-align: center;
-  color: var(--text-color);
-  font-weight: 700;
-  margin-bottom: 12px;
-  width: 100%;
-  margin-left: 24px;
+    text-align: center;
+    color: var(--text-color);
+    font-weight: 700;
+    margin-bottom: 12px;
+    width: 100%;
+    margin-left: 24px;
 }
 
 .table-wrap {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 15px;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
 }
 
 .table-wrap thead th {
-  background: #eef5ff;
-  color: #0f265c;
-  font-weight: 700;
-  text-align: left;
-  padding: 10px 14px;
-  border-bottom: 1px solid #dbe6f7;
+    background: #eef5ff;
+    color: #0f265c;
+    font-weight: 700;
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid #dbe6f7;
 }
 
 .table-wrap tbody td {
-  padding: 10px 14px;
-  border-bottom: 1px solid #eef3fb;
-  color: #2c3e66;
+    padding: 10px 14px;
+    border-bottom: 1px solid #eef3fb;
+    color: #2c3e66;
 }
 
 .table-wrap tbody tr:hover {
-  background: #f9fcff;
+    background: #f9fcff;
 }
 
 .under-right-container {
-  /* position: relative;
+    /* position: relative;
     background-color: white;
     border-radius: 10px;
     padding: 20px;
@@ -140,21 +143,22 @@ body {
     margin: 24px auto 30px auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); */
 
-  position: relative;
-  background-color: white;
-  font-family: "inter", sans-serif;
-  border: 1.5px solid #d6e4f5;
-  border-radius: 10px;
-  padding: 20px;
-  text-align: center;
-  margin: 24px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  height: auto;
-  width: 30%;
+    position: relative;
+    background-color: white;
+    font-family: "inter", sans-serif;
+    border: 1.5px solid #d6e4f5;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    margin: 24px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    height: auto;
+    width: 30%;
+
 }
 
 .under-right-container h3 {
-  color: var(--text-color);
+    color: var(--text-color)
 }
 
 .chart-container {
@@ -167,6 +171,7 @@ body {
 #piechart {
   width: 220px !important;
   height: 220px !important;
+
 }
 
 .color-box {
