@@ -69,6 +69,8 @@ body.dark-mode {
 }
 .notify {
   cursor: pointer;
+  font-size: 24px;
+  background: none;
 }
 .user-avatar {
   background: #ffffff;
@@ -248,8 +250,7 @@ table {
   background-color: white;
 }
 
-th,
-td {
+th,td {
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
