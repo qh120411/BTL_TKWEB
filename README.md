@@ -1,6 +1,6 @@
 # Bài tập lớn bộ môn Thiết kế Web
 ![Project](https://img.shields.io/badge/Project-Nhóm_1-blue)  
-![Status](https://img.shields.io/badge/Status-Hoàn thành-red)  
+![Status](https://img.shields.io/badge/Status-Hoàn_thành-red)  
 
 **Link demo**: [Demo](https://qh120411.github.io/BTL_TKWEB/) 
 
@@ -65,6 +65,7 @@
 
 
    
+
 
 
 
