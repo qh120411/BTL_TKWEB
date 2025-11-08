@@ -21,7 +21,7 @@ const menuStructure = [
       { label: "Doanh Thu", link: "revenue_statistics.html" },
     ],
   },
-  { label: "Tra cứu lịch nhận sự", hasSubmenu: false, link: "management.html" },
+  { label: "Tra cứu lịch nhân sự", hasSubmenu: false, link: "management.html" },
 ];
 
 const bottomMenuStructure = [
