@@ -3,6 +3,7 @@ body {
   background-color: var(--bg-color);
   padding: 0px;
   align-items: center;
+  margin: 0px;
 }
 :root {
   --bg-color: #fff;

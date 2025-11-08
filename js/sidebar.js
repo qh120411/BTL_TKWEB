@@ -24,7 +24,10 @@ const menuStructure = [
   { label: "Tra cứu lịch nhận sự", hasSubmenu: false, link: "management.html" },
 ];
 
-const bottomMenuStructure = [{ label: "Cài đặt" }, { label: "Đăng xuất" }];
+const bottomMenuStructure = [
+  { label: "Cài đặt", link: "setting.html" },
+  { label: "Đăng xuất", link: "../index.html" },
+];
 
 // Hàm lấy tên file hiện tại
 function getCurrentPage() {
@@ -66,9 +69,26 @@ function setActivePage() {
   // Nếu không tìm thấy trong submenu, kiểm tra main menu
   if (!foundInSubmenu) {
     navItems.forEach((navItem, index) => {
-      const itemData = menuStructure[index];
-      if (itemData && itemData.link === currentPage) {
-        navItem.classList.add("active");
+      // Kiểm tra main menu items
+      if (index < menuStructure.length) {
+        const itemData = menuStructure[index];
+        if (itemData && itemData.link === currentPage) {
+          navItem.classList.add("active");
+        }
+      } else {
+        // Kiểm tra bottom menu items (Cài đặt, Đăng xuất)
+        const bottomIndex = index - menuStructure.length;
+        if (
+          bottomMenuStructure[bottomIndex] &&
+          bottomMenuStructure[bottomIndex].link
+        ) {
+          const bottomItemLink = bottomMenuStructure[bottomIndex].link;
+          // So sánh với tên file cuối cùng của link
+          const linkPage = bottomItemLink.split("/").pop();
+          if (linkPage === currentPage) {
+            navItem.classList.add("active");
+          }
+        }
       }
     });
   }
@@ -208,8 +228,12 @@ bottomMenuStructure.forEach((item, index) => {
 
     navItem.appendChild(wrapper);
 
+    // Thêm event click để chuyển trang
     navItem.addEventListener("click", () => {
       console.log(`Clicked: ${item.label}`);
+      if (item.link) {
+        window.location.href = item.link;
+      }
     });
   }
 });
@@ -217,9 +241,10 @@ bottomMenuStructure.forEach((item, index) => {
 // Set active page khi load trang
 setActivePage();
 
-// Thêm chức năng chuyển trang cho nút button
+// Thêm chức năng chuyển trang cho nút button (nếu có)
 const Home = document.getElementById("Home");
 const management = document.getElementById("management");
+const setting = document.getElementById("setting");
 const Logout = document.getElementById("Logout");
 
 if (Home) {
@@ -235,6 +260,7 @@ if (management) {
     window.location.href = "management.html";
   });
 }
+
 if (setting) {
   setting.addEventListener("click", (e) => {
     e.stopPropagation();
