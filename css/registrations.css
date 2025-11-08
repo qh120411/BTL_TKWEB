@@ -1,13 +1,41 @@
 :root {
+  --tr-hover-color: rgb(243, 243, 243);
+  --h2-color: #003483;
+  --bg-color: #e4eef9;
+  --button-hover-bg-color: rgb(123, 159, 226);
+  --button-hover-text-color: gray;
+  --bg-canvas-color: white;
+  --text-color: #343a40;
+  --border-color: #e9ecef;
   --primary-blue: #367bf5;
   --dark-blue: #182b4e;
-  --background-color: #e4eef9;
+  --text-secondary: #6c757d;
   --sidebar-bg: #ffffff;
   --content-bg: #ffffff;
-  --text-primary: #343a40;
-  --text-secondary: #6c757d;
-  --border-color: #e9ecef;
+  --modal-bg: white;
+  --delete-btn-bg: #dc3545;
+  --delete-btn-hover: #c82333;
   --font-family: "Inter", sans-serif;
+}
+
+/* Dark mode */
+body.dark-mode {
+  --tr-hover-color: rgb(80, 80, 80);
+  --h2-color: rgb(255, 255, 255);
+  --button-hover-bg-color: rgb(255, 0, 34);
+  --button-hover-text-color: rgb(255, 255, 255);
+  --bg-color: #02214d;
+  --bg-canvas-color: #101d31;
+  --text-color: white;
+  --border-color: rgba(255, 255, 255, 0.2);
+  --primary-blue: #5b9bd5;
+  --dark-blue: #5b9bd5;
+  --text-secondary: #a8b3c5;
+  --sidebar-bg: #32527e;
+  --content-bg: #1a2942;
+  --modal-bg: #1a2942;
+  --delete-btn-bg: #ff4444;
+  --delete-btn-hover: #cc0000;
 }
 
 * {
@@ -18,8 +46,8 @@
 
 body {
   font-family: var(--font-family);
-  background-color: var(--background-color);
-  color: var(--text-primary);
+  background-color: var(--bg-color);
+  color: var(--text-color);
   height: 100vh;
   overflow: hidden;
 }
@@ -54,8 +82,8 @@ body {
 }
 
 .user-avatar {
-  background: #ffffff;
-  color: #032b64;
+  background: var(--bg-canvas-color);
+  color: var(--primary-blue);
   font-weight: 600;
   border-radius: 50%;
   width: 34px;
@@ -112,30 +140,33 @@ body {
 .btn-primary {
   background-color: var(--primary-blue);
   color: white;
+  border: none;
 }
 
 .btn-primary:hover {
   opacity: 0.9;
+  background-color: var(--button-hover-bg-color);
 }
 
 .btn-secondary {
-  background-color: white;
-  color: var(--text-primary);
+  background-color: var(--bg-canvas-color);
+  color: var(--text-color);
   border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover {
-  background-color: #f8f9fa;
+  background-color: var(--tr-hover-color);
 }
 
 .btn-tertiary {
-  background-color: #f8f9fa;
-  color: var(--text-primary);
+  background-color: var(--bg-canvas-color);
+  color: var(--text-color);
   border: 1px solid var(--border-color);
 }
 
 .btn-tertiary:hover {
-  background-color: #e9ecef;
+  background-color: var(--button-hover-bg-color);
+  color: var(--button-hover-text-color);
 }
 
 .btn:disabled {
@@ -179,11 +210,11 @@ tbody tr:last-child td {
 
 tbody td {
   font-size: 14px;
-  color: var(--text-primary);
+  color: var(--text-color);
 }
 
 tbody tr:hover {
-  background-color: #f8f9fa;
+  background-color: var(--tr-hover-color);
 }
 
 .pagination {
@@ -217,13 +248,17 @@ tbody tr:hover {
   padding: 16px;
 }
 
+body.dark-mode .modal-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
 .modal-overlay.hidden {
   opacity: 0;
   pointer-events: none;
 }
 
 .modal-content {
-  background-color: white;
+  background-color: var(--modal-bg);
   padding: 32px;
   border-radius: 16px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -253,7 +288,7 @@ tbody tr:hover {
 .form-group label {
   flex: 1;
   margin-right: 16px;
-  color: var(--text-primary);
+  color: var(--text-color);
   font-weight: 500;
 }
 
@@ -266,6 +301,8 @@ tbody tr:hover {
   font-size: 14px;
   font-family: var(--font-family);
   width: 100%;
+  background-color: var(--bg-canvas-color);
+  color: var(--text-color);
 }
 
 .modal-actions {
@@ -276,7 +313,7 @@ tbody tr:hover {
 }
 
 .btn-delete {
-  background-color: #dc3545;
+  background-color: var(--delete-btn-bg);
   color: white;
   border: none;
   padding: 5px 10px;
@@ -287,7 +324,7 @@ tbody tr:hover {
 }
 
 .btn-delete:hover {
-  background-color: #c82333;
+  background-color: var(--delete-btn-hover);
 }
 
 .search-container {
@@ -303,6 +340,8 @@ tbody tr:hover {
   border-radius: 6px;
   font-size: 14px;
   font-family: var(--font-family);
+  background-color: var(--bg-canvas-color);
+  color: var(--text-color);
 }
 
 @media (max-width: 768px) {
