@@ -2,15 +2,15 @@
 ![Project](https://img.shields.io/badge/Project-Nhóm_1-blue)  
 ![Status](https://img.shields.io/badge/Status-Hoàn_thành-red)  
 
-**Link demo**: [Demo](https://qh120411.github.io/BTL_TKWEB/) 
+**LINK DEMO**: [Demo](https://qh120411.github.io/BTL_TKWEB/) 
 
 *Bài tập lớn của **nhóm 1** với đề tài: Thiết kế giao diện quản lí cho **nhà xe trường UTC*** 🚍
 
-**HƯỚNG DẪN SỬ DỤNG GIT** --- [Link Github](https://gist.github.com/antruongnguyen/6bb4ebbcb8ad3608eeddff97ca615c47)
+**LINK FIGMA** --- [Link Figma](https://www.figma.com/design/iGuidKTTSwQe7aK2f92eEH/Trang-web?node-id=0-1&t=YXv9H7UaS0SoyGkc-1)
+
 
 **HƯỚNG DẪN ĐẶT TÊN COMMIT** --- [Link hướng dẫn](https://viblo.asia/p/dat-ten-commit-message-sao-cho-tinh-nghia-anh-em-chac-chan-ben-lau-OeVKBM605kW)
 
-**LINK FIGMA** --- [Link Figma](https://www.figma.com/design/iGuidKTTSwQe7aK2f92eEH/Trang-web?node-id=0-1&t=YXv9H7UaS0SoyGkc-1)
 
 ## Hướng dẫn cơ bản clone và push
 
@@ -49,7 +49,7 @@
 3. Bố cục code sao cho dễ nhìn.
 
 # CẤU TRÚC THƯ MỤC
-   ```python
+   ```bash
     ├── index.html
     │
     ├── folder css
@@ -58,6 +58,8 @@
     │           └── các file cho từng chức năng 
     ├── folder html
     │           └── các file cho từng chức năng
+    ├── file báo cáo
+    │
     ├── các file .json
     │
     └── README.md
@@ -65,6 +67,7 @@
 
 
    
+
 
 
 
